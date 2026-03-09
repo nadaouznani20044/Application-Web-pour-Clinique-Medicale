@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+
+/* ===========================
+   LAYOUT
+=========================== */
+.rad-wrapper {
+  font-family: 'DM Sans', sans-serif;
+  background: #f1f5f9;
+  padding: 24px 20px;
+  height: 30vh;
+  width: 100vw;
+  color: #1a202c;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.rad-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.rad-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.rad-title span {
+  color: #0f4c75;
+}
+
+.rad-subtitle {
+  font-size: 0.82rem;
+  color: #718096;
+  margin: 0;
+}
+
+.rad-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 12px;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+.rad-btn-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0f4c75 0%, #1b6ca8 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 76, 117, 0.35);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rad-btn-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(15, 76, 117, 0.45);
+}
+
+/* ===========================
+   STATS CARDS
+=========================== */
+.rad-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.rad-stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rad-stat-card.total   { border-left-color: #0f4c75; }
+.rad-stat-card.radio   { border-left-color: #1b6ca8; }
+.rad-stat-card.scanner { border-left-color: #0d7377; }
+.rad-stat-card.irm     { border-left-color: #14a085; }
+.rad-stat-card.echo    { border-left-color: #1a535c; }
+
+.rad-stat-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rad-stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #a0aec0;
+  margin-bottom: 3px;
+}
+
+.rad-stat-value {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a202c;
+  line-height: 1;
+}
+
+/* ===========================
+   FILTERS
+=========================== */
+.rad-filters {
+  display: flex;
+  gap: 10px;
+  background: white;
+  padding: 16px 18px;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.rad-select {
+  flex: 1;
+  min-width: 140px;
+  padding: 9px 30px 9px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #4a5568;
+  background-color: #fafafa;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.rad-select:focus {
+  border-color: #0f4c75;
+}
+
+.rad-search-wrap {
+  flex: 2;
+  min-width: 200px;
+  position: relative;
+}
+
+.rad-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.rad-search {
+  width: 100%;
+  padding: 9px 12px 9px 34px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #1a202c;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.rad-search:focus {
+  border-color: #0f4c75;
+}
+
+/* ===========================
+   TABLE
+=========================== */
+.rad-table-wrap {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.rad-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.rad-table thead tr {
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.rad-table th {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+}
+
+.rad-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.rad-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.rad-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.rad-table td {
+  padding: 11px 10px;
+  font-size: 0.82rem;
+  color: #2d3748;
+  vertical-align: middle;
+}
+
+/* ===========================
+   PATIENT CELL & AVATAR
+=========================== */
+.rad-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rad-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.rad-patient-name {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+/* ===========================
+   TYPE CHIP
+=========================== */
+.rad-type-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+
+/* ===========================
+   RESULTAT
+=========================== */
+.rad-resultat {
+  font-size: 0.8rem;
+  color: #475569;
+  max-width: 160px;
+}
+
+.rad-pending {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+/* ===========================
+   STATUT CHIP
+=========================== */
+.rad-statut-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rad-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+.rad-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.rad-action-btn {
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.rad-action-btn.view {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.rad-action-btn.view:hover {
+  background: #bfdbfe;
+}
+
+.rad-action-btn.edit {
+  background: #e0f2fe;
+  color: #0f4c75;
+}
+
+.rad-action-btn.edit:hover {
+  background: #bae6fd;
+}
+
+/* ===========================
+   TABLE FOOTER
+=========================== */
+.rad-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.82rem;
+  color: #718096;
+}
+
+.rad-count {
+  font-weight: 600;
+  color: #0f4c75;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+.rad-empty {
+  text-align: center;
+  padding: 70px 20px;
+  color: #a0aec0;
+}
+
+.rad-empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.rad-empty-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  margin-bottom: 6px;
+}
+
+.rad-empty-sub {
+  font-size: 0.82rem;
+  color: #a0aec0;
+}
+
+/* ===========================
+   MODAL
+=========================== */
+.rad-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: radFadeIn 0.2s ease;
+}
+
+@keyframes radFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.rad-modal {
+  background: white;
+  border-radius: 18px;
+  padding: 32px;
+  width: 520px;
+  max-width: 90vw;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  animation: radSlideUp 0.25s ease;
+}
+
+@keyframes radSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.rad-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.rad-modal-avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+}
+
+.rad-modal-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.rad-modal-subtitle {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
+.rad-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.rad-modal-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #a0aec0;
+  margin-bottom: 5px;
+}
+
+.rad-modal-field p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.rad-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.rad-modal-close {
+  margin-left: auto;
+  background: #f7fafc;
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #718096;
+  font-size: 1.1rem;
+  transition: background 0.15s;
+}
+
+.rad-modal-close:hover {
+  background: #dbeafe;
+}
+
+.rad-modal-btn {
+  padding: 9px 20px;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,615 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+
+/* ===========================
+   LAYOUT
+=========================== */
+.chi-wrapper {
+  font-family: 'DM Sans', sans-serif;
+  background: #f3f4f6;
+  padding: 24px 20px;
+  height:30vh;
+  width: 100vw;
+  color: #1a202c;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.chi-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.chi-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.chi-title span { color: #374151; }
+
+.chi-subtitle {
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.chi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 12px;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+.chi-btn-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.4);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chi-btn-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(31, 41, 55, 0.5);
+}
+
+/* ===========================
+   STATS
+=========================== */
+.chi-stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chi-stat-card {
+  flex: 1;
+  min-width: 120px;
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chi-stat-card.total   { border-left-color: #374151; }
+.chi-stat-card.prog    { border-left-color: #6d28d9; }
+.chi-stat-card.encours { border-left-color: #059669; background: #f0fdf4; }
+.chi-stat-card.postop  { border-left-color: #b45309; }
+.chi-stat-card.recup   { border-left-color: #0e7490; }
+.chi-stat-card.urgent  { border-left-color: #dc2626; background: #fef2f2; }
+
+.chi-stat-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.chi-stat-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9ca3af;
+  margin-bottom: 3px;
+}
+
+.chi-stat-value {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+
+/* ===========================
+   SALLES D'OPÉRATION
+=========================== */
+.chi-salles {
+  background: white;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  border-top: 3px solid #374151;
+}
+
+.chi-salles-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6b7280;
+  margin-bottom: 14px;
+}
+
+.chi-salles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.chi-salle-card {
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.chi-salle-card.libre {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.chi-salle-card.occupied {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.chi-salle-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.chi-salle-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* ===========================
+   PROTOCOLE
+=========================== */
+.chi-protocole {
+  background: white;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.chi-protocole-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chi-protocole-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6b7280;
+}
+
+.chi-phase-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.chi-phase-tab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chi-phase-tab:hover {
+  border-color: #374151;
+  color: #374151;
+}
+
+.chi-phase-tab.active {
+  background: #1f2937;
+  color: white;
+  border-color: #1f2937;
+}
+
+.chi-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.chi-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.chi-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1f2937;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chi-step-text {
+  font-size: 0.8rem;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ===========================
+   FILTERS
+=========================== */
+.chi-filters {
+  display: flex;
+  gap: 10px;
+  background: white;
+  padding: 16px 18px;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chi-select {
+  flex: 1;
+  min-width: 130px;
+  padding: 9px 30px 9px 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #4b5563;
+  background-color: #f9fafb;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.chi-select:focus { border-color: #374151; }
+
+.chi-search-wrap {
+  flex: 2;
+  min-width: 200px;
+  position: relative;
+}
+
+.chi-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.chi-search {
+  width: 100%;
+  padding: 9px 12px 9px 34px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #111827;
+  background: #f9fafb;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.chi-search:focus { border-color: #374151; }
+
+/* ===========================
+   TABLE
+=========================== */
+.chi-table-wrap {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  overflow-x: auto;
+}
+
+.chi-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.chi-table thead tr {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.chi-table th {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+}
+
+.chi-table tbody tr {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.chi-table tbody tr:last-child { border-bottom: none; }
+.chi-table tbody tr:hover { background: #f9fafb; }
+
+.chi-table td {
+  padding: 11px 10px;
+  font-size: 0.82rem;
+  color: #374151;
+  vertical-align: middle;
+}
+
+/* ===========================
+   PATIENT CELL & AVATAR
+=========================== */
+.chi-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chi-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.chi-patient-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ===========================
+   CHIPS & TAGS
+=========================== */
+.chi-spec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chi-salle-tag {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.chi-statut-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chi-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+.chi-actions { display: flex; gap: 6px; }
+
+.chi-action-btn {
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chi-action-btn.view { background: #f3f4f6; color: #374151; }
+.chi-action-btn.view:hover { background: #e5e7eb; }
+.chi-action-btn.edit { background: #e5e7eb; color: #1f2937; }
+.chi-action-btn.edit:hover { background: #d1d5db; }
+
+/* ===========================
+   TABLE FOOTER
+=========================== */
+.chi-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.chi-count { font-weight: 700; color: #374151; }
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+.chi-empty { text-align: center; padding: 70px 20px; }
+.chi-empty-icon { font-size: 3.5rem; margin-bottom: 12px; }
+.chi-empty-title { font-size: 1rem; font-weight: 600; color: #6b7280; margin-bottom: 6px; }
+.chi-empty-sub { font-size: 0.82rem; color: #9ca3af; }
+
+/* ===========================
+   MODAL
+=========================== */
+.chi-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: chiFadeIn 0.2s ease;
+}
+
+@keyframes chiFadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+.chi-modal {
+  background: white;
+  border-radius: 18px;
+  padding: 32px;
+  width: 560px;
+  max-width: 90vw;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  animation: chiSlideUp 0.25s ease;
+}
+
+@keyframes chiSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.chi-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.chi-modal-avatar { width: 48px; height: 48px; font-size: 1.1rem; }
+
+.chi-modal-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.chi-modal-subtitle { font-size: 0.8rem; color: #9ca3af; margin-top: 2px; }
+
+.chi-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chi-modal-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9ca3af;
+  margin-bottom: 5px;
+}
+
+.chi-modal-field p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.chi-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+.chi-modal-close {
+  margin-left: auto;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 1.1rem;
+  transition: background 0.15s;
+}
+
+.chi-modal-close:hover { background: #e5e7eb; }
+.chi-modal-btn { padding: 9px 20px; font-size: 0.875rem; }

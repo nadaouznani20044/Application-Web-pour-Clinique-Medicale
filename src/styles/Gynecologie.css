@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+
+/* ===========================
+   LAYOUT
+=========================== */
+.gyn-wrapper {
+  font-family: 'DM Sans', sans-serif;
+  background: #f8f5ff;
+  padding: 24px 20px;
+  height: 30vh;
+  width: 100vw;
+  color: #1a202c;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.gyn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.gyn-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: -0.5px;
+}
+
+.gyn-title span {
+  color: #7c3aed;
+}
+
+.gyn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3e8ff;
+  color: #7c3aed;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-left: 14px;
+  letter-spacing: 0.3px;
+}
+
+.gyn-btn-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.gyn-btn-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+}
+
+/* ===========================
+   STATS CARDS
+=========================== */
+.gyn-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.gyn-stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid transparent;
+}
+
+.gyn-stat-card.total       { border-left-color: #7c3aed; }
+.gyn-stat-card.grossesse   { border-left-color: #a855f7; }
+.gyn-stat-card.echographie { border-left-color: #0369a1; }
+.gyn-stat-card.postpartum  { border-left-color: #b45309; }
+
+.gyn-stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #a0aec0;
+  margin-bottom: 6px;
+}
+
+.gyn-stat-value {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+/* ===========================
+   FILTERS
+=========================== */
+.gyn-filters {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 18px 20px;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.gyn-select {
+  flex: 1;
+  min-width: 160px;
+  padding: 10px 32px 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #4a5568;
+  background-color: #fafafa;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.gyn-select:focus {
+  border-color: #7c3aed;
+}
+
+.gyn-search-wrap {
+  flex: 2;
+  min-width: 200px;
+  position: relative;
+}
+
+.gyn-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.gyn-search {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #1a202c;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.gyn-search:focus {
+  border-color: #7c3aed;
+}
+
+/* ===========================
+   TABLE
+=========================== */
+.gyn-table-wrap {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.gyn-table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: collapse;
+}
+
+.gyn-table thead tr {
+  background: #faf5ff;
+  border-bottom: 2px solid #ede9fe;
+}
+
+.gyn-table th {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+.gyn-table tbody tr {
+  border-bottom: 1px solid #f5f3ff;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.gyn-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.gyn-table tbody tr:hover {
+  background: #faf5ff;
+}
+
+.gyn-table td {
+  padding: 11px 10px;
+  font-size: 0.82rem;
+  color: #2d3748;
+  vertical-align: middle;
+}
+
+/* ===========================
+   PATIENT CELL & AVATAR
+=========================== */
+.gyn-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gyn-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.gyn-patient-name {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+/* ===========================
+   DETAIL TAG
+=========================== */
+.gyn-detail-tag {
+  display: inline-block;
+  background: #f3e8ff;
+  color: #6d28d9;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+/* ===========================
+   CAS CHIP
+=========================== */
+.gyn-cas-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  max-width: 200px;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+.gyn-table th:last-child,
+.gyn-table td:last-child {
+  width: 90px;
+}
+
+.gyn-table th:nth-child(7),
+.gyn-table td:nth-child(7) {
+  max-width: 200px;
+}
+
+.gyn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+.gyn-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.gyn-action-btn {
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.gyn-action-btn.view {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.gyn-action-btn.view:hover {
+  background: #ddd6fe;
+}
+
+.gyn-action-btn.edit {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.gyn-action-btn.edit:hover {
+  background: #e9d5ff;
+}
+
+/* ===========================
+   TABLE FOOTER
+=========================== */
+.gyn-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #faf5ff;
+  border-top: 1px solid #ede9fe;
+  font-size: 0.82rem;
+  color: #718096;
+}
+
+.gyn-count {
+  font-weight: 600;
+  color: #7c3aed;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+.gyn-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #a0aec0;
+}
+
+.gyn-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+/* ===========================
+   MODAL
+=========================== */
+.gyn-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: gynFadeIn 0.2s ease;
+}
+
+@keyframes gynFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.gyn-modal {
+  background: white;
+  border-radius: 18px;
+  padding: 32px;
+  width: 520px;
+  max-width: 90vw;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  animation: gynSlideUp 0.25s ease;
+}
+
+@keyframes gynSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.gyn-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.gyn-modal-avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+}
+
+.gyn-modal-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.gyn-modal-subtitle {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
+.gyn-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.gyn-modal-field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #a0aec0;
+  margin-bottom: 5px;
+}
+
+.gyn-modal-field p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.gyn-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.gyn-modal-close {
+  margin-left: auto;
+  background: #f7fafc;
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #718096;
+  font-size: 1.1rem;
+  transition: background 0.15s;
+}
+
+.gyn-modal-close:hover {
+  background: #ede9fe;
+}
+
+.gyn-modal-btn {
+  padding: 9px 20px;
+  font-size: 0.875rem;
+}

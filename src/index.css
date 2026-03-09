@@ -1,3 +1,21 @@
+@import url('./styles/global.css');
+@import url('./styles/login.css');
+@import url('./styles/app.css');
+
+
+@import url('./styles/dashboard.css');
+@import url('./styles/services.css');
+@import url('./styles/patients.css');
+@import url('./styles/Calendar.css');
+
+@import url('./styles/Pediatrie.css');
+@import url('./styles/Gynecologie.css');
+@import url('./styles/Ophtalmologie.css');
+@import url('./styles/Radiologie.css');
+@import url('./styles/Laboratoire.css');
+@import url('./styles/Chirurgie.css');
+@import url('./styles/Urgence.css');
+@import url('./styles/Medecineinterne.css');
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

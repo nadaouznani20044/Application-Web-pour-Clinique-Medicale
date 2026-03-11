@@ -1,24 +1,24 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import "../styles/Radiologie.css";
 
 const examensData = [];
 
-const medecins   = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
-const typeImages  = ["Tous les types", "Radio", "Scanner", "IRM", "Échographie"];
+const medecins   = ["Tous les mÃ©decins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const typeImages  = ["Tous les types", "Radio", "Scanner", "IRM", "Ã‰chographie"];
 const statuts     = ["Tous les statuts", "en-attente", "en-cours", "termine", "urgent"];
 
 const statutLabels = {
   "en-attente": { label: "En attente",  color: "#b45309", bg: "#fffbeb" },
   "en-cours":   { label: "En cours",    color: "#0369a1", bg: "#f0f9ff" },
-  "termine":    { label: "Terminé",     color: "#047857", bg: "#f0fdf4" },
+  "termine":    { label: "TerminÃ©",     color: "#047857", bg: "#f0fdf4" },
   "urgent":     { label: "Urgent",      color: "#dc2626", bg: "#fef2f2" },
 };
 
 const typeImageIcons = {
-  "Radio":        "🩻",
-  "Scanner":      "🖥️",
-  "IRM":          "🧲",
-  "Échographie":  "📡",
+  "Radio":        "ðŸ©»",
+  "Scanner":      "ðŸ–¥ï¸",
+  "IRM":          "ðŸ§²",
+  "Ã‰chographie":  "ðŸ“¡",
 };
 
 const avatarColors = [
@@ -32,7 +32,7 @@ function getAvatarColor(name) {
 
 export default function Radiologie() {
   const [searchQuery,      setSearchQuery]      = useState("");
-  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les médecins");
+  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les mÃ©decins");
   const [selectedDate,     setSelectedDate]     = useState("");
   const [selectedType,     setSelectedType]     = useState("Tous les types");
   const [selectedStatut,   setSelectedStatut]   = useState("Tous les statuts");
@@ -41,7 +41,7 @@ export default function Radiologie() {
 
   const filtered = examensData.filter((e) => {
     const matchSearch  = e.nom.toLowerCase().includes(searchQuery.toLowerCase()) || e.typeExamen.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les médecins" || e.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || e.medecin === selectedMedecin;
     const matchType    = selectedType    === "Tous les types"    || e.typeImage === selectedType;
     const matchStatut  = selectedStatut  === "Tous les statuts"  || e.statut === selectedStatut;
     return matchSearch && matchMedecin && matchType && matchStatut;
@@ -56,7 +56,7 @@ export default function Radiologie() {
     <>
       <div className="rad-wrapper">
 
-        {/* Header */}
+        
         <div className="rad-header">
           <div>
             <h1 className="rad-title">
@@ -66,9 +66,9 @@ export default function Radiologie() {
                 Actif
               </span>
             </h1>
-            <p className="rad-subtitle">Imagerie médicale — Diagnostic pré-consultation & hospitalisation</p>
+            <p className="rad-subtitle">Imagerie mÃ©dicale â€” Diagnostic prÃ©-consultation & hospitalisation</p>
           </div>
-          <button className="rad-btn-add" onClick={() => alert("Formulaire d'examen à intégrer")}>
+          <button className="rad-btn-add" onClick={() => alert("Formulaire d'examen Ã  intÃ©grer")}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
@@ -76,14 +76,14 @@ export default function Radiologie() {
           </button>
         </div>
 
-        {/* Stats */}
+        
         <div className="rad-stats">
           {[
-            { label: "Total Examens",  value: examensData.length,              cls: "total",  icon: "📋" },
-            { label: "Radio",          value: countBy("typeImage", "Radio"),    cls: "radio",  icon: "🩻" },
-            { label: "Scanner",        value: countBy("typeImage", "Scanner"),  cls: "scanner",icon: "🖥️" },
-            { label: "IRM",            value: countBy("typeImage", "IRM"),      cls: "irm",    icon: "🧲" },
-            { label: "Échographie",    value: countBy("typeImage","Échographie"),cls:"echo",   icon: "📡" },
+            { label: "Total Examens",  value: examensData.length,              cls: "total",  icon: "ðŸ“‹" },
+            { label: "Radio",          value: countBy("typeImage", "Radio"),    cls: "radio",  icon: "ðŸ©»" },
+            { label: "Scanner",        value: countBy("typeImage", "Scanner"),  cls: "scanner",icon: "ðŸ–¥ï¸" },
+            { label: "IRM",            value: countBy("typeImage", "IRM"),      cls: "irm",    icon: "ðŸ§²" },
+            { label: "Ã‰chographie",    value: countBy("typeImage","Ã‰chographie"),cls:"echo",   icon: "ðŸ“¡" },
           ].map((s) => (
             <div key={s.cls} className={`rad-stat-card ${s.cls}`}>
               <div className="rad-stat-icon">{s.icon}</div>
@@ -95,7 +95,7 @@ export default function Radiologie() {
           ))}
         </div>
 
-        {/* Filters */}
+        
         <div className="rad-filters">
           <select className="rad-select" value={selectedMedecin} onChange={(e) => setSelectedMedecin(e.target.value)}>
             {medecins.map((m) => <option key={m}>{m}</option>)}
@@ -120,18 +120,18 @@ export default function Radiologie() {
           </div>
         </div>
 
-        {/* Table */}
+        
         <div className="rad-table-wrap">
           <table className="rad-table">
             <thead>
               <tr>
                 <th>Patient</th>
-                <th>Âge</th>
-                <th>Médecin Prescripteur</th>
+                <th>Ã‚ge</th>
+                <th>MÃ©decin Prescripteur</th>
                 <th>Type d'Imagerie</th>
                 <th>Zone / Organe</th>
                 <th>Date Examen</th>
-                <th>Résultat Préliminaire</th>
+                <th>RÃ©sultat PrÃ©liminaire</th>
                 <th>Statut</th>
                 <th>Actions</th>
               </tr>
@@ -141,9 +141,9 @@ export default function Radiologie() {
                 <tr>
                   <td colSpan={9}>
                     <div className="rad-empty">
-                      <div className="rad-empty-icon">🩻</div>
-                      <div className="rad-empty-title">Aucun examen enregistré</div>
-                      <div className="rad-empty-sub">Les examens d'imagerie apparaîtront ici</div>
+                      <div className="rad-empty-icon">ðŸ©»</div>
+                      <div className="rad-empty-title">Aucun examen enregistrÃ©</div>
+                      <div className="rad-empty-sub">Les examens d'imagerie apparaÃ®tront ici</div>
                     </div>
                   </td>
                 </tr>
@@ -168,7 +168,7 @@ export default function Radiologie() {
                     </td>
                     <td>{e.zone}</td>
                     <td>{e.dateExamen}</td>
-                    <td className="rad-resultat">{e.resultat || <span className="rad-pending">—</span>}</td>
+                    <td className="rad-resultat">{e.resultat || <span className="rad-pending">â€”</span>}</td>
                     <td>
                       <span className="rad-statut-chip" style={{ background: chip.bg, color: chip.color }}>
                         <span className="rad-dot" style={{ background: chip.color }} />
@@ -189,13 +189,13 @@ export default function Radiologie() {
 
           <div className="rad-footer">
             <span>Affichage de <span className="rad-count">{filtered.length}</span> sur <span className="rad-count">{examensData.length}</span> examens</span>
-            <span>Service de Radiologie — MedGest Connect</span>
+            <span>Service de Radiologie â€” MedGest Connect</span>
           </div>
         </div>
 
       </div>
 
-      {/* Modal */}
+      
       {showModal && selectedExamen && (
         <div className="rad-modal-overlay" onClick={closeModal}>
           <div className="rad-modal" onClick={(e) => e.stopPropagation()}>
@@ -205,19 +205,19 @@ export default function Radiologie() {
               </div>
               <div>
                 <div className="rad-modal-title">{selectedExamen.nom}</div>
-                <div className="rad-modal-subtitle">Dossier imagerie — Radiologie</div>
+                <div className="rad-modal-subtitle">Dossier imagerie â€” Radiologie</div>
               </div>
-              <button className="rad-modal-close" onClick={closeModal}>✕</button>
+              <button className="rad-modal-close" onClick={closeModal}>âœ•</button>
             </div>
 
             <div className="rad-modal-grid">
               {[
-                { label: "Âge",                  value: selectedExamen.age        },
+                { label: "Ã‚ge",                  value: selectedExamen.age        },
                 { label: "Date Examen",           value: selectedExamen.dateExamen },
-                { label: "Médecin Prescripteur",  value: selectedExamen.medecin    },
+                { label: "MÃ©decin Prescripteur",  value: selectedExamen.medecin    },
                 { label: "Type d'Imagerie",       value: selectedExamen.typeImage  },
                 { label: "Zone / Organe",         value: selectedExamen.zone       },
-                { label: "Résultat Préliminaire", value: selectedExamen.resultat || "En attente" },
+                { label: "RÃ©sultat PrÃ©liminaire", value: selectedExamen.resultat || "En attente" },
               ].map((f) => (
                 <div key={f.label} className="rad-modal-field">
                   <label>{f.label}</label>

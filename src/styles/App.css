@@ -1,10 +1,10 @@
 .app-wrapper {
   display: flex;
   height: 100vh;
+  width: 100%;
   background-color: #f1f5f9;
   overflow: hidden;
 }
-
 
 .sidebar {
   background-color: #0f766e;
@@ -14,6 +14,7 @@
   transition: width 300ms ease-in-out;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   z-index: 40;
+  flex-shrink: 0;
 }
 
 .sidebar.open {
@@ -63,7 +64,6 @@
   height: 1.25rem;
 }
 
-
 .sidebar-nav {
   flex: 1;
   padding: 1.5rem 1rem;
@@ -112,14 +112,18 @@
   text-overflow: ellipsis;
 }
 
-
-
 .sidebar-footer {
   padding: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+}
 
 .topbar {
   background: white;
@@ -163,8 +167,6 @@
   flex-shrink: 0;
 }
 
-
-
 .topbar-icon {
   width: 1.25rem;
   height: 1.25rem;
@@ -196,22 +198,14 @@
   color: #475569;
 }
 
-
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
 .content-area {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  width: 100%;
+  height: calc(100vh - 72px);
+  padding: 1rem;
 }
-
-
 
 .help-button {
   position: fixed;
@@ -248,7 +242,111 @@
   height: 1.5rem;
 }
 
+.access-denied {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 1rem;
+}
 
+.access-denied-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.access-denied-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.access-denied-text {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+.access-denied-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.access-denied-button {
+  background: #0d9488;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.access-denied-button:hover {
+  background: #0f766e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(13, 148, 136, 0.25);
+}
+
+.service-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.service-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.service-detail-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.service-back-button {
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.service-back-button:hover {
+  background: #f8fafc;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.service-detail-empty {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: #475569;
+  font-weight: 600;
+}
 
 ::-webkit-scrollbar {
   width: 0.5rem;
@@ -267,8 +365,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
-
-
 
 @keyframes fadeIn {
   from {
@@ -298,8 +394,6 @@
   animation: slideInLeft 200ms ease-out;
 }
 
-
-
 @media (max-width: 1024px) {
   .sidebar.open {
     width: 14rem; 
@@ -325,6 +419,7 @@
     max-height: 50vh;
     flex-direction: row;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
   }
   
   .sidebar-header {
@@ -365,6 +460,10 @@
   .topbar-right {
     flex-basis: 100%;
     order: 1;
+  }
+  
+  .content-area {
+    margin-bottom: 0;
   }
   
   .help-button {

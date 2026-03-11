@@ -1,21 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .ped-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #f0f4f8;
   padding: 32px 36px;
-  height: 30vh;
-  width: 100vw;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .ped-header {
   display: flex;
   align-items: center;
@@ -72,9 +69,7 @@
   box-shadow: 0 6px 20px rgba(26, 107, 74, 0.45);
 }
 
-/* ===========================
-   STATS CARDS
-=========================== */
+
 .ped-stats {
   display: flex;
   gap: 16px;
@@ -111,9 +106,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .ped-filters {
   display: flex;
   gap: 12px;
@@ -181,9 +174,7 @@
   border-color: #1a6b4a;
 }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .ped-table-wrap {
   background: white;
   border-radius: 14px;
@@ -233,9 +224,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .ped-patient-cell {
   display: flex;
   align-items: center;
@@ -261,9 +250,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   CAS CHIP
-=========================== */
+
 .ped-cas-chip {
   display: inline-flex;
   align-items: center;
@@ -281,9 +268,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .ped-actions {
   display: flex;
   gap: 8px;
@@ -318,9 +303,7 @@
   background: #c6e6d9;
 }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .ped-footer {
   display: flex;
   align-items: center;
@@ -337,9 +320,7 @@
   color: #1a6b4a;
 }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .ped-empty {
   text-align: center;
   padding: 60px 20px;
@@ -351,9 +332,7 @@
   margin-bottom: 12px;
 }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .ped-modal-overlay {
   position: fixed;
   inset: 0;
@@ -466,3 +445,4 @@
   padding: 9px 20px;
   font-size: 0.875rem;
 }
+

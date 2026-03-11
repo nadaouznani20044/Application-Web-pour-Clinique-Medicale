@@ -1,14 +1,15 @@
-import { useState } from "react";
+﻿import { useState } from "react";
+import AdmissionPatientModal from "../components/AdmissionPatientModal";
 import "../styles/Gynecologie.css";
 
 const patientesData = [
 ];
-const medecins  = ["Tous les médecins",];
+const medecins  = ["Tous les mÃ©decins",];
 const casTypes  = ["Tous les cas", "grossesse", "echographie", "examen", "postpartum"];
 
 const casTypeLabels = {
   grossesse:   { label: "Grossesse",    color: "#6b21a8", bg: "#faf5ff" },
-  echographie: { label: "Échographie",  color: "#0369a1", bg: "#f0f9ff" },
+  echographie: { label: "Ã‰chographie",  color: "#0369a1", bg: "#f0f9ff" },
   examen:      { label: "Examen",       color: "#0f766e", bg: "#f0fdfa" },
   postpartum:  { label: "Post-Partum",  color: "#b45309", bg: "#fffbeb" },
 };
@@ -24,15 +25,16 @@ function getAvatarColor(name) {
 
 export default function Gynecologie() {
   const [searchQuery,     setSearchQuery]     = useState("");
-  const [selectedMedecin, setSelectedMedecin] = useState("Tous les médecins");
+  const [selectedMedecin, setSelectedMedecin] = useState("Tous les mÃ©decins");
   const [selectedDate,    setSelectedDate]    = useState("");
   const [selectedCas,     setSelectedCas]     = useState("Tous les cas");
+  const [showAdmission,   setShowAdmission]   = useState(false);
   const [showModal,       setShowModal]       = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
 
   const filtered = patientesData.filter((p) => {
     const matchSearch  = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.motif.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les médecins" || p.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || p.medecin === selectedMedecin;
     const matchCas     = selectedCas     === "Tous les cas"      || p.casType === selectedCas;
     return matchSearch && matchMedecin && matchCas;
   });
@@ -44,16 +46,16 @@ export default function Gynecologie() {
     <>
       <div className="gyn-wrapper">
 
-        {/* Header */}
+        
         <div className="gyn-header">
           <h1 className="gyn-title">
-            Gestion de Patientes : <span>Service de Gynécologie</span>
+            Gestion de Patientes : <span>Service de GynÃ©cologie</span>
             <span className="gyn-badge">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
               Actif
             </span>
           </h1>
-          <button className="gyn-btn-add" onClick={() => alert("Formulaire d'admission à intégrer")}>
+          <button className="gyn-btn-add" onClick={() => setShowAdmission(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
@@ -61,12 +63,12 @@ export default function Gynecologie() {
           </button>
         </div>
 
-        {/* Stats */}
+        
         <div className="gyn-stats">
           {[
             { label: "Total Patientes",  value: patientesData.length,                                          cls: "total"      },
             { label: "Grossesses",       value: patientesData.filter(p => p.casType === "grossesse").length,   cls: "grossesse"  },
-            { label: "Échographies",     value: patientesData.filter(p => p.casType === "echographie").length, cls: "echographie"},
+            { label: "Ã‰chographies",     value: patientesData.filter(p => p.casType === "echographie").length, cls: "echographie"},
             { label: "Post-Partum",      value: patientesData.filter(p => p.casType === "postpartum").length,  cls: "postpartum" },
           ].map((s) => (
             <div key={s.cls} className={`gyn-stat-card ${s.cls}`}>
@@ -76,7 +78,7 @@ export default function Gynecologie() {
           ))}
         </div>
 
-        {/* Filters */}
+        
         <div className="gyn-filters">
           <select className="gyn-select" value={selectedMedecin} onChange={(e) => setSelectedMedecin(e.target.value)}>
             {medecins.map((m) => <option key={m}>{m}</option>)}
@@ -98,18 +100,18 @@ export default function Gynecologie() {
           </div>
         </div>
 
-        {/* Table */}
+        
         <div className="gyn-table-wrap">
           <table className="gyn-table">
             <thead>
               <tr>
-                <th>Patient Name</th>
-                <th>Date de Naissance / Âge</th>
-                <th>Médecin Assigné</th>
+                <th>Nom du patient</th>
+                <th>Date de Naissance / Ã‚ge</th>
+                <th>MÃ©decin AssignÃ©</th>
                 <th>Type d'Examen / Cas</th>
-                <th>Détails Spécifiques</th>
-                <th>Date Admission</th>
-                <th>Cas Traité / Motif</th>
+                <th>DÃ©tails SpÃ©cifiques</th>
+                <th>Date d'admission</th>
+                <th>Cas TraitÃ© / Motif</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -118,8 +120,8 @@ export default function Gynecologie() {
                 <tr>
                   <td colSpan={8}>
                     <div className="gyn-empty">
-                      <div className="gyn-empty-icon">🔍</div>
-                      <div>Aucune patiente trouvée</div>
+                      <div className="gyn-empty-icon">ðŸ”</div>
+                      <div>Aucune patiente trouvÃ©e</div>
                     </div>
                   </td>
                 </tr>
@@ -162,13 +164,13 @@ export default function Gynecologie() {
 
           <div className="gyn-footer">
             <span>Affichage de <span className="gyn-count">{filtered.length}</span> sur <span className="gyn-count">{patientesData.length}</span> patientes</span>
-            <span>Service de Gynécologie — MedGest Connect</span>
+            <span>Service de GynÃ©cologie â€” MedGest Connect</span>
           </div>
         </div>
 
       </div>
 
-      {/* Modal */}
+      
       {showModal && selectedPatient && (
         <div className="gyn-modal-overlay" onClick={closeModal}>
           <div className="gyn-modal" onClick={(e) => e.stopPropagation()}>
@@ -178,18 +180,18 @@ export default function Gynecologie() {
               </div>
               <div>
                 <div className="gyn-modal-title">{selectedPatient.nom}</div>
-                <div className="gyn-modal-subtitle">Dossier patiente — Gynécologie</div>
+                <div className="gyn-modal-subtitle">Dossier patiente â€” GynÃ©cologie</div>
               </div>
-              <button className="gyn-modal-close" onClick={closeModal}>✕</button>
+              <button className="gyn-modal-close" onClick={closeModal}>âœ•</button>
             </div>
 
             <div className="gyn-modal-grid">
               {[
-                { label: "Âge",                value: selectedPatient.age           },
-                { label: "Date Admission",      value: selectedPatient.dateAdmission },
-                { label: "Médecin Assigné",     value: selectedPatient.medecin       },
+                { label: "Ã‚ge",                value: selectedPatient.age           },
+                { label: "Date d'admission",      value: selectedPatient.dateAdmission },
+                { label: "MÃ©decin AssignÃ©",     value: selectedPatient.medecin       },
                 { label: "Type d'Examen",       value: selectedPatient.typeExamen    },
-                { label: "Détails Spécifiques", value: selectedPatient.details       },
+                { label: "DÃ©tails SpÃ©cifiques", value: selectedPatient.details       },
                 { label: "Motif / Cas",         value: selectedPatient.motif         },
               ].map((f) => (
                 <div key={f.label} className="gyn-modal-field">
@@ -206,6 +208,14 @@ export default function Gynecologie() {
           </div>
         </div>
       )}
+
+      <AdmissionPatientModal
+        isOpen={showAdmission}
+        onClose={() => setShowAdmission(false)}
+        defaultService="gynecologie"
+      />
     </>
   );
 }
+
+

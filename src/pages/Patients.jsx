@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import '../styles/patients.css';
 
 const Patients = () => {
   const [patients, setPatients] = useState([
-    { id: 'PA-203-1456', name: 'Amina ', birthDate: '00/05/2023', service: 'Pédiatrie', status: 'Active', active: true },
+    { id: 'PA-203-1456', name: 'Amina ', birthDate: '00/05/2023', service: 'PÃ©diatrie', status: 'Active', active: true },
   ]);
 
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -19,14 +19,14 @@ const Patients = () => {
         </button>
       </div>
 
-      {/* Stats Cards */}
+      
       <div className="stats-grid">
         <StatsCard title="Total Dossiers" value="" />
         <StatsCard title="Nouveaux Patients (Mois)" value="" />
         <StatsCard title="Urgences Actives" value="" />
       </div>
 
-      {/* Patients Table */}
+      
       <div className="patients-table-wrapper">
         <table className="patients-table">
           <thead>
@@ -59,7 +59,7 @@ const Patients = () => {
         </table>
       </div>
 
-      {/* Patient Detail Modal */}
+      
       {selectedPatient && (
         <div className="modal-overlay">
           <div className="modal">
@@ -73,7 +73,7 @@ const Patients = () => {
                 className="modal-close"
                 aria-label="Close modal"
               >
-                ✕
+                âœ•
               </button>
             </div>
 

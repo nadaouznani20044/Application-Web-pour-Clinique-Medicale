@@ -1,11 +1,12 @@
-import { useState } from "react";
+﻿import { useState } from "react";
+import AdmissionPatientModal from "../components/AdmissionPatientModal";
 import "../styles/Pediatrie.css";
 
 const patientsData = [
 
 ];
 
-const medecins = ["Tous les médecins"];
+const medecins = ["Tous les mÃ©decins"];
 const casTypes  = ["Tous les cas", "urgent", "suivi", "chirurgie", "vaccin"];
 
 const casTypeLabels = {
@@ -26,15 +27,16 @@ function getAvatarColor(name) {
 
 export default function Pediatrie() {
   const [searchQuery,      setSearchQuery]      = useState("");
-  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les médecins");
+  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les mÃ©decins");
   const [selectedDate,     setSelectedDate]     = useState("");
   const [selectedCas,      setSelectedCas]      = useState("Tous les cas");
+  const [showAdmission,    setShowAdmission]    = useState(false);
   const [showModal,        setShowModal]        = useState(false);
   const [selectedPatient,  setSelectedPatient]  = useState(null);
 
   const filtered = patientsData.filter((p) => {
     const matchSearch   = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.cas.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin  = selectedMedecin === "Tous les médecins" || p.medecin === selectedMedecin;
+    const matchMedecin  = selectedMedecin === "Tous les mÃ©decins" || p.medecin === selectedMedecin;
     const matchCas      = selectedCas     === "Tous les cas"      || p.casType === selectedCas;
     return matchSearch && matchMedecin && matchCas;
   });
@@ -46,16 +48,16 @@ export default function Pediatrie() {
     <>
       <div className="ped-wrapper">
 
-        {/* Header */}
+        
         <div className="ped-header">
           <h1 className="ped-title">
-            Gestion de Patients : <span>Service de Pédiatrie</span>
+            Gestion de Patients : <span>Service de PÃ©diatrie</span>
             <span className="ped-badge">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
               Actif
             </span>
           </h1>
-          <button className="ped-btn-add" onClick={() => alert("Formulaire d'admission à intégrer")}>
+          <button className="ped-btn-add" onClick={() => setShowAdmission(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
@@ -63,7 +65,7 @@ export default function Pediatrie() {
           </button>
         </div>
 
-        {/* Stats */}
+        
         <div className="ped-stats">
           {[
             { label: "Total Patients", value: patientsData.length,                                     cls: "total"  },
@@ -78,7 +80,7 @@ export default function Pediatrie() {
           ))}
         </div>
 
-        {/* Filters */}
+        
         <div className="ped-filters">
           <select className="ped-select" value={selectedMedecin} onChange={(e) => setSelectedMedecin(e.target.value)}>
             {medecins.map((m) => <option key={m}>{m}</option>)}
@@ -100,17 +102,17 @@ export default function Pediatrie() {
           </div>
         </div>
 
-        {/* Table */}
+        
         <div className="ped-table-wrap">
           <table className="ped-table">
             <thead>
               <tr>
-                <th>Patient Name</th>
-                <th>Date de Naissance / Âge</th>
-                <th>Médecin Assigné</th>
-                <th>Infirmier Référent</th>
-                <th>Date Admission</th>
-                <th>Cas Traité / Motif</th>
+                <th>Nom du patient</th>
+                <th>Date de Naissance / Ã‚ge</th>
+                <th>MÃ©decin AssignÃ©</th>
+                <th>Infirmier RÃ©fÃ©rent</th>
+                <th>Date d'admission</th>
+                <th>Cas TraitÃ© / Motif</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -119,8 +121,8 @@ export default function Pediatrie() {
                 <tr>
                   <td colSpan={7}>
                     <div className="ped-empty">
-                      <div className="ped-empty-icon">🔍</div>
-                      <div>Aucun patient trouvé</div>
+                      <div className="ped-empty-icon">ðŸ”</div>
+                      <div>Aucun patient trouvÃ©</div>
                     </div>
                   </td>
                 </tr>
@@ -160,13 +162,13 @@ export default function Pediatrie() {
 
           <div className="ped-footer">
             <span>Affichage de <span className="ped-count">{filtered.length}</span> sur <span className="ped-count">{patientsData.length}</span> patients</span>
-            <span>Service de Pédiatrie — MedGest Connect</span>
+            <span>Service de PÃ©diatrie â€” MedGest Connect</span>
           </div>
         </div>
 
       </div>
 
-      {/* Modal */}
+      
       {showModal && selectedPatient && (
         <div className="ped-modal-overlay" onClick={closeModal}>
           <div className="ped-modal" onClick={(e) => e.stopPropagation()}>
@@ -177,17 +179,17 @@ export default function Pediatrie() {
               </div>
               <div>
                 <div className="ped-modal-title">{selectedPatient.nom}</div>
-                <div className="ped-modal-subtitle">Dossier patient — Pédiatrie</div>
+                <div className="ped-modal-subtitle">Dossier patient â€” PÃ©diatrie</div>
               </div>
-              <button className="ped-modal-close" onClick={closeModal}>✕</button>
+              <button className="ped-modal-close" onClick={closeModal}>âœ•</button>
             </div>
 
             <div className="ped-modal-grid">
               {[
-                { label: "Âge / Stade",       value: selectedPatient.dateNaissance },
-                { label: "Date Admission",     value: selectedPatient.dateAdmission },
-                { label: "Médecin Assigné",    value: selectedPatient.medecin       },
-                { label: "Infirmier Référent", value: selectedPatient.infirmier     },
+                { label: "Ã‚ge / Stade",       value: selectedPatient.dateNaissance },
+                { label: "Date d'admission",     value: selectedPatient.dateAdmission },
+                { label: "MÃ©decin AssignÃ©",    value: selectedPatient.medecin       },
+                { label: "Infirmier RÃ©fÃ©rent", value: selectedPatient.infirmier     },
                 { label: "Motif / Cas",        value: selectedPatient.cas           },
                 { label: "Statut",             value: casTypeLabels[selectedPatient.casType].label },
               ].map((f) => (
@@ -206,6 +208,14 @@ export default function Pediatrie() {
           </div>
         </div>
       )}
+
+      <AdmissionPatientModal
+        isOpen={showAdmission}
+        onClose={() => setShowAdmission(false)}
+        defaultService="pediatrie"
+      />
     </>
   );
 }
+
+

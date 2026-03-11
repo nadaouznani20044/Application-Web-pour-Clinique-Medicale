@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ── LAYOUT ─────────────────────────────── */
+
 .cal-container {
   font-family: 'DM Sans', sans-serif;
   background: #f8fafc;
   padding: 24px 20px;
-  height: 20vh;
+  height: 85vh;
   width: 100vw;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ── HEADER ─────────────────────────────── */
+
 .cal-header {
   display: flex;
   align-items: flex-start;
@@ -82,7 +82,7 @@
 
 .cal-btn-add:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(26,107,74,.4); }
 
-/* ── STATS ───────────────────────────────── */
+
 .cal-stats {
   display: flex;
   gap: 12px;
@@ -124,7 +124,7 @@
   margin-top: 2px;
 }
 
-/* ── SERVICE TABS ────────────────────────── */
+
 .cal-services {
   display: flex;
   gap: 8px;
@@ -152,7 +152,7 @@
 
 .cal-service-tab:hover { border-color: #1a6b4a; color: #1a6b4a; }
 
-/* ── FILTERS ─────────────────────────────── */
+
 .cal-filters {
   display: flex;
   align-items: center;
@@ -202,7 +202,7 @@
   border-radius: 20px;
 }
 
-/* ── CALENDAR TABLE ──────────────────────── */
+
 .cal-grid-wrap {
   background: white;
   border-radius: 14px;
@@ -217,7 +217,7 @@
   border-collapse: collapse;
 }
 
-/* Head */
+
 .cal-table thead tr {
   background: #f9fafb;
   border-bottom: 2px solid #e5e7eb;
@@ -279,7 +279,7 @@
 
 .cal-th-day.today .cal-th-month { color: #1a6b4a; }
 
-/* Rows */
+
 .cal-row {
   border-bottom: 1px solid #f3f4f6;
 }
@@ -314,7 +314,7 @@
 .cal-td-cell:hover { background: #f0fdf4; }
 .cal-td-cell.today-col { background: #fafffe; }
 
-/* RDV chip */
+
 .cal-rdv {
   border-radius: 6px;
   padding: 4px 7px;
@@ -339,7 +339,7 @@
   line-height: 1.2;
 }
 
-/* ── EMPTY STATE ─────────────────────────── */
+
 .cal-empty {
   text-align: center;
   padding: 40px 20px;
@@ -350,7 +350,7 @@
 .cal-empty-title { font-size: 0.95rem; font-weight: 600; color: #6b7280; margin-bottom: 4px; }
 .cal-empty-sub   { font-size: 0.8rem; }
 
-/* ── LEGEND ──────────────────────────────── */
+
 .cal-legend {
   display: flex;
   gap: 14px;
@@ -374,7 +374,7 @@
   border-radius: 50%;
 }
 
-/* ── MODAL ───────────────────────────────── */
+
 .cal-overlay {
   position: fixed;
   inset: 0;
@@ -544,7 +544,7 @@
 
 .cal-btn-delete:hover { background: #fee2e2; }
 
-/* Detail modal */
+
 .cal-detail-patient {
   display: flex;
   align-items: center;

@@ -1,21 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .rad-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #f1f5f9;
   padding: 24px 20px;
-  height: 30vh;
-  width: 100vw;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .rad-header {
   display: flex;
   align-items: flex-start;
@@ -82,9 +79,7 @@
   box-shadow: 0 6px 20px rgba(15, 76, 117, 0.45);
 }
 
-/* ===========================
-   STATS CARDS
-=========================== */
+
 .rad-stats {
   display: flex;
   gap: 12px;
@@ -131,9 +126,7 @@
   line-height: 1;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .rad-filters {
   display: flex;
   gap: 10px;
@@ -201,9 +194,7 @@
   border-color: #0f4c75;
 }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .rad-table-wrap {
   background: white;
   border-radius: 14px;
@@ -254,9 +245,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .rad-patient-cell {
   display: flex;
   align-items: center;
@@ -281,9 +270,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   TYPE CHIP
-=========================== */
+
 .rad-type-chip {
   display: inline-flex;
   align-items: center;
@@ -297,9 +284,7 @@
   white-space: nowrap;
 }
 
-/* ===========================
-   RESULTAT
-=========================== */
+
 .rad-resultat {
   font-size: 0.8rem;
   color: #475569;
@@ -311,9 +296,7 @@
   font-size: 1rem;
 }
 
-/* ===========================
-   STATUT CHIP
-=========================== */
+
 .rad-statut-chip {
   display: inline-flex;
   align-items: center;
@@ -332,9 +315,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .rad-actions {
   display: flex;
   gap: 6px;
@@ -369,9 +350,7 @@
   background: #bae6fd;
 }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .rad-footer {
   display: flex;
   align-items: center;
@@ -388,9 +367,7 @@
   color: #0f4c75;
 }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .rad-empty {
   text-align: center;
   padding: 70px 20px;
@@ -414,9 +391,7 @@
   color: #a0aec0;
 }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .rad-modal-overlay {
   position: fixed;
   inset: 0;
@@ -529,3 +504,4 @@
   padding: 9px 20px;
   font-size: 0.875rem;
 }
+

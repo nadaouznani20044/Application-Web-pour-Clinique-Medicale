@@ -1,21 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .gyn-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #f8f5ff;
   padding: 24px 20px;
-  height: 30vh;
-  width: 100vw;
+  height: 90vh;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .gyn-header {
   display: flex;
   align-items: center;
@@ -72,9 +68,7 @@
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
 }
 
-/* ===========================
-   STATS CARDS
-=========================== */
+
 .gyn-stats {
   display: flex;
   gap: 16px;
@@ -111,9 +105,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .gyn-filters {
   display: flex;
   gap: 12px;
@@ -181,9 +173,7 @@
   border-color: #7c3aed;
 }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .gyn-table-wrap {
   background: white;
   border-radius: 14px;
@@ -234,9 +224,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .gyn-patient-cell {
   display: flex;
   align-items: center;
@@ -262,9 +250,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   DETAIL TAG
-=========================== */
+
 .gyn-detail-tag {
   display: inline-block;
   background: #f3e8ff;
@@ -275,9 +261,7 @@
   border-radius: 6px;
 }
 
-/* ===========================
-   CAS CHIP
-=========================== */
+
 .gyn-cas-chip {
   display: inline-flex;
   align-items: center;
@@ -308,9 +292,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .gyn-actions {
   display: flex;
   gap: 8px;
@@ -345,9 +327,7 @@
   background: #e9d5ff;
 }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .gyn-footer {
   display: flex;
   align-items: center;
@@ -364,9 +344,7 @@
   color: #7c3aed;
 }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .gyn-empty {
   text-align: center;
   padding: 60px 20px;
@@ -378,9 +356,7 @@
   margin-bottom: 12px;
 }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .gyn-modal-overlay {
   position: fixed;
   inset: 0;
@@ -493,3 +469,4 @@
   padding: 9px 20px;
   font-size: 0.875rem;
 }
+

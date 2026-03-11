@@ -1,21 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .lab-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #fdf8f0;
   padding: 24px 20px;
   height:20vh;
-  width: 100vw;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .lab-header {
   display: flex;
   align-items: flex-start;
@@ -82,9 +78,7 @@
   box-shadow: 0 6px 20px rgba(180, 83, 9, 0.45);
 }
 
-/* ===========================
-   STATS CARDS
-=========================== */
+
 .lab-stats {
   display: flex;
   gap: 10px;
@@ -134,9 +128,7 @@
   line-height: 1;
 }
 
-/* ===========================
-   REFERENCE SECTION
-=========================== */
+
 .lab-ref-section {
   background: white;
   border-radius: 14px;
@@ -205,9 +197,7 @@
   font-weight: 600;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .lab-filters {
   display: flex;
   gap: 10px;
@@ -275,9 +265,7 @@
   border-color: #b45309;
 }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .lab-table-wrap {
   background: white;
   border-radius: 14px;
@@ -328,9 +316,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .lab-patient-cell {
   display: flex;
   align-items: center;
@@ -355,9 +341,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   CATEGORY CHIP
-=========================== */
+
 .lab-cat-chip {
   display: inline-flex;
   align-items: center;
@@ -369,9 +353,7 @@
   white-space: nowrap;
 }
 
-/* ===========================
-   RESULTAT
-=========================== */
+
 .lab-resultat {
   font-size: 0.8rem;
   color: #059669;
@@ -383,9 +365,7 @@
   font-size: 1rem;
 }
 
-/* ===========================
-   STATUT CHIP
-=========================== */
+
 .lab-statut-chip {
   display: inline-flex;
   align-items: center;
@@ -404,9 +384,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .lab-actions {
   display: flex;
   gap: 6px;
@@ -441,9 +419,7 @@
   background: #fef3c7;
 }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .lab-footer {
   display: flex;
   align-items: center;
@@ -460,9 +436,7 @@
   color: #b45309;
 }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .lab-empty {
   text-align: center;
   padding: 70px 20px;
@@ -485,9 +459,7 @@
   color: #a0aec0;
 }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .lab-modal-overlay {
   position: fixed;
   inset: 0;
@@ -600,3 +572,4 @@
   padding: 9px 20px;
   font-size: 0.875rem;
 }
+

@@ -1,16 +1,17 @@
-import { useState } from "react";
+﻿import { useState } from "react";
+import AdmissionPatientModal from "../components/AdmissionPatientModal";
 import "../styles/Ophtalmologie.css";
 
 const patientsData = [];
 
-const medecins  = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen"];
+const medecins  = ["Tous les mÃ©decins", "Dr. A. Fournier", "Dr. J. Chen"];
 const casTypes  = ["Tous les cas", "examen", "traitement", "chirurgie", "depistage"];
 
 const casTypeLabels = {
   examen:     { label: "Examen",      color: "#0369a1", bg: "#f0f9ff" },
   traitement: { label: "Traitement",  color: "#0f766e", bg: "#f0fdfa" },
   chirurgie:  { label: "Chirurgie",   color: "#b45309", bg: "#fffbeb" },
-  depistage:  { label: "Dépistage",   color: "#6d28d9", bg: "#faf5ff" },
+  depistage:  { label: "DÃ©pistage",   color: "#6d28d9", bg: "#faf5ff" },
 };
 
 const avatarColors = [
@@ -24,15 +25,16 @@ function getAvatarColor(name) {
 
 export default function Ophtalmologie() {
   const [searchQuery,     setSearchQuery]     = useState("");
-  const [selectedMedecin, setSelectedMedecin] = useState("Tous les médecins");
+  const [selectedMedecin, setSelectedMedecin] = useState("Tous les mÃ©decins");
   const [selectedDate,    setSelectedDate]    = useState("");
   const [selectedCas,     setSelectedCas]     = useState("Tous les cas");
+  const [showAdmission,    setShowAdmission]    = useState(false);
   const [showModal,       setShowModal]       = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
 
   const filtered = patientsData.filter((p) => {
     const matchSearch  = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.motif.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les médecins" || p.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || p.medecin === selectedMedecin;
     const matchCas     = selectedCas     === "Tous les cas"      || p.casType === selectedCas;
     return matchSearch && matchMedecin && matchCas;
   });
@@ -44,7 +46,7 @@ export default function Ophtalmologie() {
     <>
       <div className="oph-wrapper">
 
-        {/* Header */}
+        
         <div className="oph-header">
           <h1 className="oph-title">
             Gestion de Patients : <span>Service d'Ophtalmologie</span>
@@ -53,7 +55,7 @@ export default function Ophtalmologie() {
               Actif
             </span>
           </h1>
-          <button className="oph-btn-add" onClick={() => alert("Formulaire d'admission à intégrer")}>
+          <button className="oph-btn-add" onClick={() => setShowAdmission(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
@@ -61,7 +63,7 @@ export default function Ophtalmologie() {
           </button>
         </div>
 
-        {/* Stats */}
+        
         <div className="oph-stats">
           {[
             { label: "Total Patients", value: patientsData.length,                                          cls: "total"     },
@@ -76,7 +78,7 @@ export default function Ophtalmologie() {
           ))}
         </div>
 
-        {/* Filters */}
+        
         <div className="oph-filters">
           <select className="oph-select" value={selectedMedecin} onChange={(e) => setSelectedMedecin(e.target.value)}>
             {medecins.map((m) => <option key={m}>{m}</option>)}
@@ -98,18 +100,18 @@ export default function Ophtalmologie() {
           </div>
         </div>
 
-        {/* Table */}
+        
         <div className="oph-table-wrap">
           <table className="oph-table">
             <thead>
               <tr>
-                <th>Patient Name</th>
-                <th>Date de Naissance / Âge</th>
-                <th>Médecin Assigné</th>
+                <th>Nom du patient</th>
+                <th>Date de Naissance / Ã‚ge</th>
+                <th>MÃ©decin AssignÃ©</th>
                 <th>Type d'Examen / Cas</th>
-                <th>Résultats Clés / Dét.</th>
-                <th>Date Admission</th>
-                <th>Cas Traité / Motif</th>
+                <th>RÃ©sultats ClÃ©s / DÃ©t.</th>
+                <th>Date d'admission</th>
+                <th>Cas TraitÃ© / Motif</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -118,8 +120,8 @@ export default function Ophtalmologie() {
                 <tr>
                   <td colSpan={8}>
                     <div className="oph-empty">
-                      <div className="oph-empty-icon">👁️</div>
-                      <div>Aucun patient enregistré</div>
+                      <div className="oph-empty-icon">ðŸ‘ï¸</div>
+                      <div>Aucun patient enregistrÃ©</div>
                     </div>
                   </td>
                 </tr>
@@ -160,13 +162,13 @@ export default function Ophtalmologie() {
 
           <div className="oph-footer">
             <span>Affichage de <span className="oph-count">{filtered.length}</span> sur <span className="oph-count">{patientsData.length}</span> patients</span>
-            <span>Service d'Ophtalmologie — MedGest Connect</span>
+            <span>Service d'Ophtalmologie â€” MedGest Connect</span>
           </div>
         </div>
 
       </div>
 
-      {/* Modal */}
+      
       {showModal && selectedPatient && (
         <div className="oph-modal-overlay" onClick={closeModal}>
           <div className="oph-modal" onClick={(e) => e.stopPropagation()}>
@@ -176,18 +178,18 @@ export default function Ophtalmologie() {
               </div>
               <div>
                 <div className="oph-modal-title">{selectedPatient.nom}</div>
-                <div className="oph-modal-subtitle">Dossier patient — Ophtalmologie</div>
+                <div className="oph-modal-subtitle">Dossier patient â€” Ophtalmologie</div>
               </div>
-              <button className="oph-modal-close" onClick={closeModal}>✕</button>
+              <button className="oph-modal-close" onClick={closeModal}>âœ•</button>
             </div>
 
             <div className="oph-modal-grid">
               {[
-                { label: "Âge",                 value: selectedPatient.age           },
-                { label: "Date Admission",       value: selectedPatient.dateAdmission },
-                { label: "Médecin Assigné",      value: selectedPatient.medecin       },
+                { label: "Ã‚ge",                 value: selectedPatient.age           },
+                { label: "Date d'admission",       value: selectedPatient.dateAdmission },
+                { label: "MÃ©decin AssignÃ©",      value: selectedPatient.medecin       },
                 { label: "Type d'Examen",        value: selectedPatient.typeExamen    },
-                { label: "Résultats / Détails",  value: selectedPatient.details       },
+                { label: "RÃ©sultats / DÃ©tails",  value: selectedPatient.details       },
                 { label: "Motif / Cas",          value: selectedPatient.motif         },
               ].map((f) => (
                 <div key={f.label} className="oph-modal-field">
@@ -204,6 +206,14 @@ export default function Ophtalmologie() {
           </div>
         </div>
       )}
+
+      <AdmissionPatientModal
+        isOpen={showAdmission}
+        onClose={() => setShowAdmission(false)}
+        defaultService="Ophtalmologie"
+      />
     </>
   );
 }
+
+

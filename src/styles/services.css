@@ -1,11 +1,9 @@
-/* ========================================
-   SERVICES PAGE STYLES
-   ======================================== */
+﻿
 
 .services-container {
   padding: 3.5rem 2rem;
   width: 100vw;
-  height: 40vh;
+  height: 100vh;
   max-width: none;
    margin: 0;  
 }
@@ -27,33 +25,8 @@
   color: #0f172a;
 }
 
-.btn-add-service {
-  background-color: #0d9488;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 200ms ease-in-out;
-  font-size: 0.875rem;
-}
 
-.btn-add-service:hover {
-  background-color: #0f766e;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
 
-.btn-add-service:active {
-  transform: scale(0.98);
-}
-
-/* ========================================
-   SERVICES TABLE
-   ======================================== */
 
 .services-table-wrapper {
   background: white;
@@ -122,9 +95,7 @@
   text-overflow: ellipsis;
 }
 
-/* ========================================
-   STATUS BADGE
-   ======================================== */
+
 
 .status-badge {
   display: inline-block;
@@ -146,9 +117,7 @@
   color: #92400e;
 }
 
-/* ========================================
-   ACTIONS BUTTONS
-   ======================================== */
+
 
 .service-actions {
   display: flex;
@@ -179,25 +148,26 @@
   height: 1rem;
 }
 
-.btn-edit {
+.btn-icon.btn-view {
+  background: #e0f2fe     ;
+  color: #0d9488;          
+  border: 1px solid #0d9488;
+}
+
+.btn-icon.btn-view:hover {
+  background: #bae6fd  ;  
   color: #0d9488;
+  transform: scale(1.1)    â† Grossit de 10% ;
+  box-shadow: 0 4px 6px rgba(3, 105, 161, 0.2) ; 
 }
 
-.btn-edit:hover {
-  background-color: #d1f1ee;
+.btn-icon.btn-view:active {
+  transform: scale(0.95);
 }
 
-.btn-delete {
-  color: #ef4444;
-}
 
-.btn-delete:hover {
-  background-color: #fee2e2;
-}
 
-/* ========================================
-   EMPTY STATE
-   ======================================== */
+
 
 .empty-state {
   display: flex;
@@ -228,9 +198,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* ========================================
-   LOADING STATE
-   ======================================== */
+
 
 .loading {
   display: flex;
@@ -256,9 +224,7 @@
   }
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+
 
 @media (max-width: 1024px) {
   .services-container {

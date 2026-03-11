@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2 } from 'lucide-react';
+import { Plus, Eye, Trash2 } from 'lucide-react';
 import '../styles/services.css';
 
 const Services = ({ onViewService }) => {
   const [services, setServices] = useState([
-    { id: 1, name: 'Pédiatrie', chef: '', status: 'Active', description: 'Suivi croissance, vaccins...' },
-    { id: 2, name: 'Gynécologie', chef: '', status: 'Active', description: 'Suivi gynécologie' },
-    { id: 3, name: 'Ophtalmologie', chef: '', status: 'Active', description: 'Ophtalmologie +ronsultat...' },
-    { id: 4, name: 'Radiologie', chef: '', status: 'Active', description: 'Suivi croissance, vaccin...' },
-    { id: 5, name: 'Laboratoire / Analyses', chef: '', status: 'Active', description: 'Laboratoire - rabolatoire...' },
-    { id: 6, name: 'Chirurgie', chef: '', status: 'Active', description: 'Chirurgie -mbohara...' },
-    { id: 7, name: 'Urgence', chef: '', status: 'Active', description: 'Dabussements, realiité en Chirurgie' },
-    { id: 8, name: 'Médecine Interne', chef: '', status: 'Active', description: 'Suivi croissance, vaccins...' },
+    { id: 1, name: 'Pédiatrie', chef: '', status: 'Actif', description: 'Suivi de croissance, vaccinations.' },
+    { id: 2, name: 'Gynécologie', chef: '', status: 'Actif', description: 'Suivi gynécologique.' },
+    { id: 3, name: 'Ophtalmologie', chef: '', status: 'Actif', description: 'Bilan et suivi ophtalmologique.' },
+    { id: 4, name: 'Radiologie', chef: '', status: 'Actif', description: 'Imagerie médicale et diagnostics.' },
+    { id: 5, name: 'Laboratoire / Analyses', chef: '', status: 'Actif', description: 'Analyses biologiques.' },
+    { id: 6, name: 'Chirurgie', chef: '', status: 'Actif', description: 'Chirurgie générale et spécialisée.' },
+    { id: 7, name: 'Urgence', chef: '', status: 'Actif', description: 'Urgences et traumatologie.' },
+    { id: 8, name: 'Médecine interne', chef: '', status: 'Actif', description: 'Prise en charge globale.' },
   ]);
 
   const handleDelete = (id) => {
@@ -27,21 +27,18 @@ const Services = ({ onViewService }) => {
   return (
     <div className="services-container">
       <div className="services-header">
-        <h2 className="services-title">Gérer les Services</h2>
-        <button className="btn-add-service">
-          <Plus size={18} />
-          Ajouter un Service
-        </button>
+        <h2 className="services-title">Gérer les services</h2>
+       
       </div>
 
       <div className="services-table-wrapper">
         <table className="services-table">
           <thead>
             <tr>
-              <th>Service Icon</th>
+              <th>Service</th>
               <th>Description</th>
-              <th>Chef de Service</th>
-              <th>Status</th>
+              <th>Chef de service</th>
+              <th>Statut</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -57,19 +54,12 @@ const Services = ({ onViewService }) => {
                 <td>
                   <div className="service-actions">
                     <button 
-                      className="btn-icon btn-edit" 
-                      title="Edit"
+                      className="btn-icon btn-view" 
+                      title="Voir le service"
                       onClick={() => handleViewService(service.name)}
                     >
-                      <Edit2 size={16} />
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(service.id)}
-                      className="btn-icon btn-delete"
-                      title="Delete"
-                    >
-                      <Trash2 size={16} />
-                    </button>
+                      <Eye size={16} />
+                   </button>
                   </div>
                 </td>
               </tr>

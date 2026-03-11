@@ -1,31 +1,26 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { Menu, Users, BarChart3, FileText, Hospital, Settings, LogOut, Bell, HelpCircle, ChevronDown, Activity, Calendar as CalendarIcon } from 'lucide-react';
+﻿import{useEffect, useRef, useState } from 'react';
+import { Menu, Users as UsersIcon ,BarChart3, FileText, Hospital, Settings, LogOut, Bell, HelpCircle, ChevronDown, Activity, Calendar as CalendarIcon } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Services from './pages/Services';
 import Patients from './pages/Patients';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
-import Pediatrie from './gereservices/Pediatrie';
-import Gynecologie from './gereservices/Gynecologie';
-import Ophtalmologie from './gereservices/Ophtalmologie';
-import Radiologie from './gereservices/Radiologie';
-import Laboratoire from './gereservices/Laboratoire';
+import Users from './pages/utilisateur';
 import Chirurgie from './gereservices/Chirurgie';
+import Gynecologie from './gereservices/Gynecologie';
+import Laboratoire from './gereservices/Laboratoire';
+import Medecineinterne from './gereservices/Medecineinterne';
+import Ophtalmologie from './gereservices/Ophtalmologie';
+import Pediatrie from './gereservices/Pediatrie';
+import Radiologie from './gereservices/Radiologie';
 import Urgence from './gereservices/Urgence';
-import MedecineInterne from './gereservices/MedecineInterne';
+import Gyneco from './gestionservices/Gyneco';
+import { canAccess, getDefaultPage } from './auth/permissions';
 import './styles/global.css';
 import './styles/app.css';
 import './styles/login.css';
-import './styles/Calendar.css';
-import './styles/Pediatrie.css';
-import './styles/Gynecologie.css';
-import './styles/Ophtalmologie.css';
-import './styles/Radiologie.css';
-import './styles/Laboratoire.css';
-import './styles/Chirurgie.css';
-import './styles/Urgence.css';
-import './styles/MedecineInterne.css';
+import './styles/users.css';
+import './styles/Gyneco.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,10 +28,13 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedService, setSelectedService] = useState(null);
+  const currentUserRole = currentUser?.role;
+  const contentRef = useRef(null);
 
   const handleLogin = (userData) => {
     setIsAuthenticated(true);
     setCurrentUser(userData);
+    setCurrentPage(getDefaultPage(userData?.role));
   };
 
   const handleLogout = () => {
@@ -55,39 +53,65 @@ const App = () => {
     setCurrentPage('services');
   };
 
-  // Fonction pour rendre le bon composant de service
-  const renderServiceDetail = () => {
-    switch(selectedService) {
-      case 'Pédiatrie':
-        return <Pediatrie serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Gynécologie':
-        return <Gynecologie serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Ophtalmologie':
-        return <Ophtalmologie serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Radiologie':
-        return <Radiologie serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Laboratoire / Analyses':
-        return <Laboratoire serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Chirurgie':
-        return <Chirurgie serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Urgence':
-        return <Urgence serviceName={selectedService} onBack={handleBackFromService} />;
-      case 'Médecine Interne':
-        return <MedecineInterne serviceName={selectedService} onBack={handleBackFromService} />;
-      default:
-        return <Pediatrie serviceName={selectedService} onBack={handleBackFromService} />;
-    }
+  const getServiceDetailComponent = (serviceName) => {
+    const name = (serviceName || '').toLowerCase();
+    if (name.includes('chirurgie')) return <Chirurgie />;
+    if (name.includes('gyn')) return <Gynecologie />;
+    if (name.includes('laboratoire')) return <Laboratoire />;
+    if (name.includes('interne')) return <Medecineinterne />;
+    if (name.includes('ophtal')) return <Ophtalmologie />;
+    if (name.includes('diatrie') || name.includes('pediat')) return <Pediatrie />;
+    if (name.includes('radiologie')) return <Radiologie />;
+    if (name.includes('urgence')) return <Urgence />;
+    return null;
   };
 
-  // Si pas authentifié, afficher la page de connexion
+  const renderServiceDetail = () => {
+    if (currentUserRole === 'Administrateur') {
+      return (
+        <Gyneco
+          service={{ name: selectedService, chef: '', location: '', phone: '', description: '', status: 'Active' }}
+          onBack={handleBackFromService}
+        />
+      );
+    }
+
+    const detail = getServiceDetailComponent(selectedService);
+    if (!detail) {
+      return <div className="service-detail-empty">DÃ©tails du service indisponibles.</div>;
+    }
+    return (
+      <div className="service-detail">
+        <div className="service-detail-header">
+          <button className="service-back-button" onClick={handleBackFromService}>
+            Retour
+          </button>
+          <div className="service-detail-title">{selectedService || 'Service'}</div>
+        </div>
+        {detail}
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+      contentRef.current.scrollLeft = 0;
+    }
+  }, [currentPage]);
+
   if (!isAuthenticated) {
     return <Login onLogin={handleLogin} />;
   }
 
+  const isServiceDetail = currentPage === 'service-detail';
+  const pageKey = isServiceDetail ? 'services' : currentPage;
+  const hasAccess = canAccess(currentUserRole, pageKey);
+  const canView = (key) => canAccess(currentUserRole, key);
 
   return (
     <div className="app-wrapper">
-      {/* Sidebar */}
+      
       <div className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
           {sidebarOpen && <span className="sidebar-title">MedGest Connect</span>}
@@ -99,63 +123,77 @@ const App = () => {
             <Menu />
           </button>
         </div>
-
         <nav className="sidebar-nav">
-          <NavItem 
-            icon={<BarChart3 />} 
-            label="Dashboard" 
-            active={currentPage === 'dashboard'}
-            onClick={() => setCurrentPage('dashboard')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<Users />} 
-            label="User Management" 
-            active={currentPage === 'users'}
-            onClick={() => setCurrentPage('users')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<Hospital />} 
-            label="Manage Services" 
-            active={currentPage === 'services'}
-            onClick={() => setCurrentPage('services')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<FileText />} 
-            label="Patient Records" 
-            active={currentPage === 'patients'}
-            onClick={() => setCurrentPage('patients')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<Activity />} 
-            label="Hospitalization Management" 
-            active={currentPage === 'hospitalization'}
-            onClick={() => setCurrentPage('hospitalization')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<CalendarIcon />} 
-            label="Calender" 
-            active={currentPage === 'calendar'}
-            onClick={() => setCurrentPage('calendar')}
-            expanded={sidebarOpen}
-          />
-          <NavItem 
-            icon={<Settings />} 
-            label="System Settings" 
-            active={currentPage === 'settings'}
-            onClick={() => setCurrentPage('settings')}
-            expanded={sidebarOpen}
-          />
+          {canView('dashboard') && (
+            <NavItem 
+              icon={<BarChart3 />} 
+              label="Tableau de bord" 
+              active={currentPage === 'dashboard'}
+              onClick={() => setCurrentPage('dashboard')}
+              expanded={sidebarOpen}
+            />
+          )}
+          {canView('users') && (
+            <NavItem 
+              icon={<UsersIcon />} 
+              label="Gestion des utilisateurs" 
+              active={currentPage === 'users'}
+              onClick={() => setCurrentPage('users')}
+              expanded={sidebarOpen}
+            />
+          )}
+          
+          {canView('services') && (
+            <NavItem 
+              icon={<Hospital />} 
+              label="GÃ©rer les Services" 
+              active={currentPage === 'services'}
+              onClick={() => setCurrentPage('services')}
+              expanded={sidebarOpen}
+            />
+          )}
+          {canView('patients') && (
+            <NavItem 
+              icon={<FileText />} 
+              label="Dossiers patients" 
+              active={currentPage === 'patients'}
+              onClick={() => setCurrentPage('patients')}
+              expanded={sidebarOpen}
+            />
+          )}
+          {canView('hospitalization') && (
+            <NavItem 
+              icon={<Activity />} 
+              label="Gestion des hospitalisations" 
+              active={currentPage === 'hospitalization'}
+              onClick={() => setCurrentPage('hospitalization')}
+              expanded={sidebarOpen}
+            />
+          )}
+          {canView('calendar') && (
+            <NavItem 
+              icon={<CalendarIcon />} 
+              label="Calendrier" 
+              active={currentPage === 'calendar'}
+              onClick={() => setCurrentPage('calendar')}
+              expanded={sidebarOpen}
+            />
+          )}
+          {canView('settings') && (
+            <NavItem 
+              icon={<Settings />} 
+              label="ParamÃ¨tres systÃ¨me" 
+              active={currentPage === 'settings'}
+              onClick={() => setCurrentPage('settings')}
+              expanded={sidebarOpen}
+            />
+          )}
         </nav>
 
         <div className="sidebar-footer">
           <NavItem 
             icon={<LogOut />} 
-            label="Logout" 
+            label="DÃ©connexion" 
             active={false}
             onClick={handleLogout}
             expanded={sidebarOpen}
@@ -163,14 +201,14 @@ const App = () => {
         </div>
       </div>
 
-      {/* Main Content */}
+      
       <div className="main-content">
-        {/* Top Bar */}
+        
         <div className="topbar">
           <div className="topbar-left">
             <input
               type="text"
-              placeholder="Recherchers au globals"
+              placeholder="Rechercher globalement"
               className="search-input"
             />
           </div>
@@ -181,18 +219,28 @@ const App = () => {
           </div>
         </div>
 
-        {/* Page Content */}
-        <div className="content-area">
-          {currentPage === 'dashboard' && <Dashboard />}
-          {currentPage === 'services' && <Services onViewService={handleViewService} />}
-          {currentPage === 'patients' && <Patients />}
-          {currentPage === 'calendar' && <Calendar />}
-          {currentPage === 'service-detail' && renderServiceDetail()}
+        
+        <div className="content-area" ref={contentRef}>
+          {!hasAccess ? (
+            <AccessDenied
+              role={currentUserRole}
+              onGoHome={() => setCurrentPage(getDefaultPage(currentUserRole))}
+            />
+          ) : (
+            <>
+              {currentPage === 'dashboard' && <Dashboard role={currentUserRole} />}
+              {currentPage === 'services' && <Services onViewService={handleViewService} />}
+              {currentPage === 'patients' && <Patients />}
+              {currentPage === 'calendar' && <Calendar />}
+              {currentPage === 'users' && <Users />}
+              {currentPage === 'service-detail' && renderServiceDetail()}
+            </>
+          )}
         </div>
       </div>
 
-      {/* Help Button */}
-      <button className="help-button" aria-label="Help">
+      
+      <button className="help-button" aria-label="Aide">
         <HelpCircle />
       </button>
     </div>
@@ -210,4 +258,23 @@ const NavItem = ({ icon, label, active, onClick, expanded }) => (
   </button>
 );
 
+const AccessDenied = ({ role, onGoHome }) => (
+  <div className="access-denied">
+    <div className="access-denied-card">
+      <div className="access-denied-title">AccÃ¨s refusÃ©</div>
+      <div className="access-denied-text">
+        Votre rÃ´le ({role || 'Inconnu'}) n'a pas l'autorisation d'accÃ©der Ã  cette page.
+      </div>
+      <div className="access-denied-actions">
+        <button className="access-denied-button" onClick={onGoHome}>
+          Retour au tableau de bord
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 export default App;
+
+
+

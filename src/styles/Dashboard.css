@@ -1,7 +1,7 @@
-.dashboard-container {
+﻿.dashboard-container {
   display: grid;
   gap: 1.5rem;
-  height:30vh;
+  height:80vh;
   width: 100vw;
   padding: 1.5em 1.5rem;
   max-width: 1600px;
@@ -166,9 +166,75 @@
   margin-left: 1rem;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.role-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.role-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.role-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.role-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.role-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+}
+
+.role-item-label {
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.role-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0f766e;
+  background: #d1fae5;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.role-empty {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+
 
 @media (max-width: 1200px) {
   .charts-grid {
@@ -224,3 +290,4 @@
     margin-top: 0.5rem;
   }
 }
+

@@ -1,18 +1,14 @@
-/* ========================================
-   PATIENTS PAGE STYLES
-   ======================================== */
+﻿
 
 .patients-container {
   padding: 1.5rem;
   width: 100vw;
-  height: 30vh;
+  height: 90vh;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* ========================================
-   HEADER
-   ======================================== */
+
 
 .patients-header {
   display: flex;
@@ -53,9 +49,7 @@
   transform: scale(0.98);
 }
 
-/* ========================================
-   STATS CARDS
-   ======================================== */
+
 
 .stats-grid {
   display: grid;
@@ -92,9 +86,7 @@
   color: #0f172a;
 }
 
-/* ========================================
-   PATIENTS TABLE
-   ======================================== */
+
 
 .patients-table-wrapper {
   background: white;
@@ -187,9 +179,7 @@
   display: inline-block;
 }
 
-/* ========================================
-   MODAL
-   ======================================== */
+
 
 .modal-overlay {
   position: fixed;
@@ -198,6 +188,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,9 +361,7 @@
   background-color: #e5e7eb;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+
 
 @media (max-width: 1024px) {
   .patients-container {
@@ -461,3 +450,4 @@
     width: 100%;
   }
 }
+

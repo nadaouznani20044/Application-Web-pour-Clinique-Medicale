@@ -1,6 +1,4 @@
-/* ========================================
-   VARIABLES ET COULEURS
-   ======================================== */
+﻿
 
 :root {
   --color-primary: #0d9488;
@@ -36,9 +34,7 @@
   --transition-slow: 300ms ease-in-out;
 }
 
-/* ========================================
-   RESET ET BASE
-   ======================================== */
+
 
 * {
   margin: 0;
@@ -66,9 +62,7 @@ body {
   height: 100vh;
 }
 
-/* ========================================
-   TYPOGRAPHIE
-   ======================================== */
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -113,9 +107,7 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
-/* ========================================
-   COMPOSANTS COMMUNS
-   ======================================== */
+
 
 .btn {
   padding: 0.5rem 1rem;
@@ -158,9 +150,7 @@ a:hover {
   background-color: #dc2626;
 }
 
-/* ========================================
-   CARDS
-   ======================================== */
+
 
 .card {
   background-color: white;
@@ -189,9 +179,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-/* ========================================
-   TABLEAUX
-   ======================================== */
+
 
 .table-container {
   background-color: white;
@@ -240,9 +228,7 @@ a:hover {
   color: var(--color-slate-900);
 }
 
-/* ========================================
-   BADGES ET STATUTS
-   ======================================== */
+
 
 .badge {
   display: inline-block;
@@ -272,9 +258,7 @@ a:hover {
   color: #1e40af;
 }
 
-/* ========================================
-   INPUT ET FORMULAIRES
-   ======================================== */
+
 
 input[type="text"],
 input[type="email"],
@@ -300,9 +284,7 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
 }
 
-/* ========================================
-   MODAL
-   ======================================== */
+
 
 .modal-overlay {
   position: fixed;
@@ -311,6 +293,7 @@ select:focus {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,9 +347,7 @@ select:focus {
   justify-content: flex-end;
 }
 
-/* ========================================
-   GRID ET LAYOUT
-   ======================================== */
+
 
 .grid {
   display: grid;
@@ -391,9 +372,7 @@ select:focus {
   gap: 1.5rem;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+
 
 @media (max-width: 1024px) {
   .grid-4 {
@@ -434,9 +413,7 @@ select:focus {
   }
 }
 
-/* ========================================
-   UTILITAIRES
-   ======================================== */
+
 
 .text-center {
   text-align: center;
@@ -487,3 +464,4 @@ select:focus {
 .hidden {
   display: none;
 }
+

@@ -1,21 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .oph-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #f0f9ff;
   padding: 24px 20px;
-  height: 30vh;
-  width: 100vw;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .oph-header {
   display: flex;
   align-items: center;
@@ -72,9 +69,7 @@
   box-shadow: 0 6px 20px rgba(3, 105, 161, 0.45);
 }
 
-/* ===========================
-   STATS CARDS
-=========================== */
+
 .oph-stats {
   display: flex;
   gap: 16px;
@@ -111,9 +106,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .oph-filters {
   display: flex;
   gap: 12px;
@@ -181,9 +174,7 @@
   border-color: #0369a1;
 }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .oph-table-wrap {
   background: white;
   border-radius: 14px;
@@ -234,9 +225,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .oph-patient-cell {
   display: flex;
   align-items: center;
@@ -261,9 +250,7 @@
   color: #1a202c;
 }
 
-/* ===========================
-   DETAIL TAG
-=========================== */
+
 .oph-detail-tag {
   display: inline-block;
   background: #e0f2fe;
@@ -274,9 +261,7 @@
   border-radius: 6px;
 }
 
-/* ===========================
-   CAS CHIP
-=========================== */
+
 .oph-cas-chip {
   display: inline-flex;
   align-items: center;
@@ -297,9 +282,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .oph-actions {
   display: flex;
   gap: 8px;
@@ -334,9 +317,7 @@
   background: #e0f2fe;
 }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .oph-footer {
   display: flex;
   align-items: center;
@@ -353,9 +334,7 @@
   color: #0369a1;
 }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .oph-empty {
   text-align: center;
   padding: 60px 20px;
@@ -367,9 +346,7 @@
   margin-bottom: 12px;
 }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .oph-modal-overlay {
   position: fixed;
   inset: 0;
@@ -482,3 +459,4 @@
   padding: 9px 20px;
   font-size: 0.875rem;
 }
+

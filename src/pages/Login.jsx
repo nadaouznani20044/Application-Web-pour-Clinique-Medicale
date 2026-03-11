@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Eye, EyeOff, Bell, Save, ChevronDown, HelpCircle, Shield, Activity } from 'lucide-react';
+import { ROLE_OPTIONS } from '../auth/permissions';
 import '../styles/login.css';
 
 const MedGestLogin = ({ onLogin }) => {
-  const [userRole, setUserRole] = useState('patient');
+  const [userRole, setUserRole] = useState(ROLE_OPTIONS[0]?.value || 'Administrateur');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -41,30 +42,47 @@ const MedGestLogin = ({ onLogin }) => {
           
           <div className="content-area">
 
-            {/* Floating action buttons */}
+            
             <button className="help-btn">
-              <HelpCircle size={14} /> Help
+              <HelpCircle size={14} /> Aide
             </button>
             <div className="lang-btn">
-              Langue: Français (FR) <ChevronDown size={13} />
+              Langue: FranÃ§ais (FR) <ChevronDown size={13} />
             </div>
 
-            {/* Modal Card */}
+            
             <div className="login-modal">
 
              
 
-              {/* Header */}
+              
               <div className="modal-header">
                 <span className="modal-title">Connexion</span>
               </div>
 
              
 
-              {/* Form */}
+              
               <form className="login-form" onSubmit={handleSubmit}>
 
-                {/* Username */}
+                
+                <div className="form-group">
+                  <label className="form-label">Profil / RÃ´le</label>
+                  <select
+                    className="form-select"
+                    value={userRole}
+                    onChange={(e) => setUserRole(e.target.value)}
+                    disabled={isLoading}
+                  >
+                    {ROLE_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                
                 <div className="form-group">
                   <label className="form-label">Nom d'utilisateur / ID</label>
                   <input
@@ -81,11 +99,11 @@ const MedGestLogin = ({ onLogin }) => {
                   {errors.username && <span className="error-msg">{errors.username}</span>}
                 </div>
 
-                {/* Password */}
+                
                 <div className="form-group">
                   <div className="form-label-row">
-                    <label className="form-label">Mot de Passe</label>
-                    <a href="#forgot" className="forgot-link">Mot de Passe Oublié ?</a>
+                    <label className="form-label">Mot de passe</label>
+                    <a href="#forgot" className="forgot-link">Mot de passe oubliÃ© ?</a>
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -113,7 +131,7 @@ const MedGestLogin = ({ onLogin }) => {
                 </div>
 
                 <button type="submit" className="submit-btn" disabled={isLoading}>
-                  {isLoading ? 'Connexion en cours...' : 'Se Connecter'}
+                  {isLoading ? 'Connexion en cours...' : 'Se connecter'}
                 </button>
               </form>
 
@@ -126,3 +144,4 @@ const MedGestLogin = ({ onLogin }) => {
 };
 
 export default MedGestLogin;
+

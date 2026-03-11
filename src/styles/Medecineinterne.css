@@ -1,21 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
 
-/* ===========================
-   LAYOUT
-=========================== */
+
 .med-wrapper {
   font-family: 'DM Sans', sans-serif;
   background: #f0fdfa;
   padding: 24px 20px;
-  height: 30vh;
-  width: 100vw;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
   color: #1a202c;
   box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+
 .med-header {
   display: flex;
   align-items: flex-start;
@@ -82,9 +79,7 @@
   box-shadow: 0 6px 20px rgba(13, 115, 119, 0.45);
 }
 
-/* ===========================
-   STATS
-=========================== */
+
 .med-stats {
   display: flex;
   gap: 10px;
@@ -131,9 +126,7 @@
   line-height: 1;
 }
 
-/* ===========================
-   MALADIES CHRONIQUES
-=========================== */
+
 .med-chronic {
   background: white;
   border-radius: 14px;
@@ -217,9 +210,7 @@
   font-weight: 500;
 }
 
-/* ===========================
-   FILTERS
-=========================== */
+
 .med-filters {
   display: flex;
   gap: 10px;
@@ -283,9 +274,7 @@
 
 .med-search:focus { border-color: #0d7377; }
 
-/* ===========================
-   TABLE
-=========================== */
+
 .med-table-wrap {
   background: white;
   border-radius: 14px;
@@ -331,9 +320,7 @@
   vertical-align: middle;
 }
 
-/* ===========================
-   PATIENT CELL & AVATAR
-=========================== */
+
 .med-patient-cell {
   display: flex;
   align-items: center;
@@ -358,9 +345,7 @@
   color: #111827;
 }
 
-/* ===========================
-   CHIPS & TAGS
-=========================== */
+
 .med-path-chip {
   display: inline-flex;
   align-items: center;
@@ -402,9 +387,7 @@
   flex-shrink: 0;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
+
 .med-actions { display: flex; gap: 6px; }
 
 .med-action-btn {
@@ -423,9 +406,7 @@
 .med-action-btn.edit { background: #f0fdfa; color: #0d7377; }
 .med-action-btn.edit:hover { background: #ccfbf1; }
 
-/* ===========================
-   TABLE FOOTER
-=========================== */
+
 .med-footer {
   display: flex;
   align-items: center;
@@ -439,17 +420,13 @@
 
 .med-count { font-weight: 700; color: #0d7377; }
 
-/* ===========================
-   EMPTY STATE
-=========================== */
+
 .med-empty { text-align: center; padding: 70px 20px; }
 .med-empty-icon { font-size: 3.5rem; margin-bottom: 12px; }
 .med-empty-title { font-size: 1rem; font-weight: 600; color: #6b7280; margin-bottom: 6px; }
 .med-empty-sub { font-size: 0.82rem; color: #9ca3af; }
 
-/* ===========================
-   MODAL
-=========================== */
+
 .med-modal-overlay {
   position: fixed;
   inset: 0;
@@ -543,3 +520,4 @@
 
 .med-modal-close:hover { background: #ccfbf1; }
 .med-modal-btn { padding: 9px 20px; font-size: 0.875rem; }
+

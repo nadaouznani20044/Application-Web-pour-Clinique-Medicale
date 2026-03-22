@@ -1,50 +1,42 @@
 import React, { useState } from 'react';
+import { ROLE_LABELS } from '../auth/permissions';
 import '../styles/Adduserform.css';
 
+const INITIAL_FORM_DATA = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  role: '',
+  department: '',
+};
+
+const DEPARTMENTS = [
+  'Pédiatrie',
+  'Gynécologie',
+  'Urgence',
+  'Radiologie',
+  'Chirurgie',
+  'Laboratoire',
+  'Oncologie',
+  'Cardiologie',
+  'Accueil',
+];
+
 const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
-  const [formData, setFormData] = useState(
-    editingUser || {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      role: '',
-      department: ''
-    }
-  );
-
+  const [formData, setFormData] = useState(editingUser || INITIAL_FORM_DATA);
   const [errors, setErrors] = useState({});
-
-  const roles = [
-    'Administrateur',
-    'Réceptionniste',
-    'Médecin',
-    'Médecin Chef',
-    'Infirmier'
-  ];
-
-  const departments = [
-    'Pédiatrie',
-    'Gynécologie',
-    'Urgence',
-    'Radiologie',
-    'Chirurgie',
-    'Laboratoire',
-    'Oncologie',
-    'Cardiologie',
-    'Accueil'
-  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: '',
       }));
     }
   };
@@ -75,40 +67,25 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const resetForm = () => {
+    setFormData(INITIAL_FORM_DATA);
+    setErrors({});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
-    if (onSubmit) {
-      onSubmit(formData);
-    }
-
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      role: '',
-      department: ''
-    });
+    onSubmit?.(formData);
+    resetForm();
   };
 
   const handleCancel = () => {
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      role: '',
-      department: ''
-    });
-    setErrors({});
-    if (onClose) {
-      onClose();
-    }
+    resetForm();
+    onClose?.();
   };
 
   if (!isOpen) return null;
@@ -119,11 +96,13 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
         <div className="form-header">
           <h2>{editingUser ? "✏️ Modifier l'utilisateur" : '➕ Ajouter un nouvel utilisateur'}</h2>
         </div>
-        
+
         <form className="form-content" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label>Prénom : <span className="required">*</span></label>
+              <label>
+                Prénom : <span className="required">*</span>
+              </label>
               <input
                 type="text"
                 name="firstName"
@@ -132,13 +111,13 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 placeholder="Ex: Alice"
                 className={errors.firstName ? 'error' : ''}
               />
-              {errors.firstName && (
-                <span className="error-message">{errors.firstName}</span>
-              )}
+              {errors.firstName && <span className="error-message">{errors.firstName}</span>}
             </div>
 
             <div className="form-group">
-              <label>Nom : <span className="required">*</span></label>
+              <label>
+                Nom : <span className="required">*</span>
+              </label>
               <input
                 type="text"
                 name="lastName"
@@ -147,14 +126,14 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 placeholder="Ex: Fournier"
                 className={errors.lastName ? 'error' : ''}
               />
-              {errors.lastName && (
-                <span className="error-message">{errors.lastName}</span>
-              )}
+              {errors.lastName && <span className="error-message">{errors.lastName}</span>}
             </div>
           </div>
 
           <div className="form-group">
-            <label>Email : <span className="required">*</span></label>
+            <label>
+              Email : <span className="required">*</span>
+            </label>
             <input
               type="email"
               name="email"
@@ -163,13 +142,13 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
               placeholder="Ex: alice@hospital.com"
               className={errors.email ? 'error' : ''}
             />
-            {errors.email && (
-              <span className="error-message">{errors.email}</span>
-            )}
+            {errors.email && <span className="error-message">{errors.email}</span>}
           </div>
 
           <div className="form-group">
-            <label>Mot de passe : <span className="required">*</span></label>
+            <label>
+              Mot de passe : <span className="required">*</span>
+            </label>
             <input
               type="password"
               name="password"
@@ -178,14 +157,14 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
               placeholder="••••••••"
               className={errors.password ? 'error' : ''}
             />
-            {errors.password && (
-              <span className="error-message">{errors.password}</span>
-            )}
+            {errors.password && <span className="error-message">{errors.password}</span>}
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Rôle : <span className="required">*</span></label>
+              <label>
+                Rôle : <span className="required">*</span>
+              </label>
               <select
                 name="role"
                 value={formData.role}
@@ -193,17 +172,19 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 className={errors.role ? 'error' : ''}
               >
                 <option value="">Sélectionner</option>
-                {roles.map(role => (
-                  <option key={role} value={role}>{role}</option>
+                {ROLE_LABELS.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
                 ))}
               </select>
-              {errors.role && (
-                <span className="error-message">{errors.role}</span>
-              )}
+              {errors.role && <span className="error-message">{errors.role}</span>}
             </div>
 
             <div className="form-group">
-              <label>Département : <span className="required">*</span></label>
+              <label>
+                Département : <span className="required">*</span>
+              </label>
               <select
                 name="department"
                 value={formData.department}
@@ -211,28 +192,21 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 className={errors.department ? 'error' : ''}
               >
                 <option value="">Sélectionner</option>
-                {departments.map(dept => (
-                  <option key={dept} value={dept}>{dept}</option>
+                {DEPARTMENTS.map((department) => (
+                  <option key={department} value={department}>
+                    {department}
+                  </option>
                 ))}
               </select>
-              {errors.department && (
-                <span className="error-message">{errors.department}</span>
-              )}
+              {errors.department && <span className="error-message">{errors.department}</span>}
             </div>
           </div>
 
           <div className="form-actions">
-            <button 
-              type="button" 
-              onClick={handleCancel} 
-              className="btn-cancel"
-            >
+            <button type="button" onClick={handleCancel} className="btn-cancel">
               Annuler
             </button>
-            <button 
-              type="submit" 
-              className="btn-create"
-            >
+            <button type="submit" className="btn-create">
               {editingUser ? 'Sauvegarder' : 'Créer'}
             </button>
           </div>

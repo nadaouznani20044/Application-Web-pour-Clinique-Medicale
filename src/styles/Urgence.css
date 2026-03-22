@@ -85,6 +85,19 @@
   flex-shrink: 0;
 }
 
+.urg-clock {
+  min-width: 110px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+  background: rgba(255, 255, 255, 0.85);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #b91c1c;
+  text-align: center;
+}
+
 
 .urg-btn-add {
   display: flex;

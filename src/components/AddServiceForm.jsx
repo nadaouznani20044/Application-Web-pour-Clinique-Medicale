@@ -47,13 +47,13 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Le tÃ©lÃ©phone est requis';
+      newErrors.phone = 'Le téléphone est requis';
     } else if (!/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
-      newErrors.phone = 'Le tÃ©lÃ©phone doit contenir au moins 10 chiffres';
+      newErrors.phone = 'Le téléphone doit contenir au moins 10 chiffres';
     }
 
     if (!formData.headDoctor.trim()) {
-      newErrors.headDoctor = 'Le mÃ©decin chef est requis';
+      newErrors.headDoctor = 'Le médecin chef est requis';
     }
 
     setErrors(newErrors);
@@ -86,7 +86,7 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
         
         <div className="modal-header-add">
           <h2 className="modal-title">
-            âž• Ajouter un Nouveau Service
+            ➕ Ajouter un Nouveau Service
           </h2>
           <button className="btn-close" onClick={onClose} title="Fermer" type="button">
             <X size={24} />
@@ -106,12 +106,12 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
               name="serviceName"
               value={formData.serviceName}
               onChange={handleChange}
-              placeholder="Ex: Oncologie, PÃ©diatrie, Chirurgie..."
+              placeholder="Ex: Oncologie, Pédiatrie, Chirurgie..."
               className={`form-input ${errors.serviceName ? 'input-error' : ''}`}
               disabled={isLoading}
             />
             {errors.serviceName && (
-              <span className="error-message">âŒ {errors.serviceName}</span>
+              <span className="error-message">❌ {errors.serviceName}</span>
             )}
           </div>
 
@@ -125,13 +125,13 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Ex: Service spÃ©cialisÃ© dans le traitement des cancers..."
+              placeholder="Ex: Service spécialisé dans le traitement des cancers..."
               rows="3"
               className={`form-input ${errors.description ? 'input-error' : ''}`}
               disabled={isLoading}
             />
             {errors.description && (
-              <span className="error-message">âŒ {errors.description}</span>
+              <span className="error-message">❌ {errors.description}</span>
             )}
           </div>
 
@@ -146,12 +146,12 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              placeholder="Ex: Bloc H, Ã‰tage 5"
+              placeholder="Ex: Bloc H, Étage 5"
               className={`form-input ${errors.location ? 'input-error' : ''}`}
               disabled={isLoading}
             />
             {errors.location && (
-              <span className="error-message">âŒ {errors.location}</span>
+              <span className="error-message">❌ {errors.location}</span>
             )}
           </div>
 
@@ -160,7 +160,7 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
           
           <div className="form-group">
             <label htmlFor="headDoctor">
-              Mï¿½ï¿½decin Chef <span className="required">*</span>
+              Médecin Chef <span className="required">*</span>
             </label>
             <input
               type="text"
@@ -179,7 +179,7 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
               ))}
             </datalist>
             {errors.headDoctor && (
-              <span className="error-message">âŒ {errors.headDoctor}</span>
+              <span className="error-message">❌ {errors.headDoctor}</span>
             )}
 
             
@@ -191,7 +191,7 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
                   className="doctor-photo"
                 />
                 <div className="doctor-info">
-                  <p className="doctor-name">ðŸ‘¨â€âš•ï¸ {formData.headDoctor}</p>
+                  <p className="doctor-name">👨‍⚕️ {formData.headDoctor}</p>
                 </div>
               </div>
             )}
@@ -212,7 +212,7 @@ const AddServiceForm = ({ doctors = [], onSubmit, onClose }) => {
               className="btn-submit"
               disabled={isLoading}
             >
-              {isLoading ? 'â³ Traitement...' : 'âœ… CrÃ©er'}
+              {isLoading ? '⏳ Traitement...' : '✅ Créer'}
             </button>
           </div>
         </form>

@@ -3,37 +3,37 @@ import "../styles/Urgence.css";
 
 const urgencesData = [];
 
-const medecins  = ["Tous les mÃ©decins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const medecins  = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
 const types     = ["Tous les types", "Traumatisme", "Cardiaque", "Respiratoire", "Neurologique", "Autre"];
 const triages   = ["Tous les niveaux", "P1", "P2", "P3", "P4"];
 
 const triageConfig = {
-  P1: { label: "P1 â€” Critique",       color: "#ffffff", bg: "#dc2626", border: "#b91c1c", desc: "Urgence absolue" },
-  P2: { label: "P2 â€” Urgent",         color: "#ffffff", bg: "#f97316", border: "#ea580c", desc: "Urgence relative" },
-  P3: { label: "P3 â€” Moins urgent",   color: "#1a202c", bg: "#facc15", border: "#eab308", desc: "Semi-urgent" },
-  P4: { label: "P4 â€” Non urgent",     color: "#ffffff", bg: "#22c55e", border: "#16a34a", desc: "Consultation" },
+  P1: { label: "P1 — Critique",       color: "#ffffff", bg: "#dc2626", border: "#b91c1c", desc: "Urgence absolue" },
+  P2: { label: "P2 — Urgent",         color: "#ffffff", bg: "#f97316", border: "#ea580c", desc: "Urgence relative" },
+  P3: { label: "P3 — Moins urgent",   color: "#1a202c", bg: "#facc15", border: "#eab308", desc: "Semi-urgent" },
+  P4: { label: "P4 — Non urgent",     color: "#ffffff", bg: "#22c55e", border: "#16a34a", desc: "Consultation" },
 };
 
 const statutLabels = {
   "admission":    { label: "Admission",       color: "#dc2626", bg: "#fef2f2" },
-  "evaluation":   { label: "Ã‰valuation",      color: "#f97316", bg: "#fff7ed" },
+  "evaluation":   { label: "Évaluation",      color: "#f97316", bg: "#fff7ed" },
   "traitement":   { label: "Traitement",      color: "#0369a1", bg: "#f0f9ff" },
-  "stabilise":    { label: "StabilisÃ©",       color: "#059669", bg: "#ecfdf5" },
+  "stabilise":    { label: "Stabilisé",       color: "#059669", bg: "#ecfdf5" },
   "transfert":    { label: "Transfert",       color: "#6d28d9", bg: "#faf5ff" },
   "surveillance": { label: "Surveillance",    color: "#b45309", bg: "#fffbeb" },
 };
 
 const typeConfig = {
-  "Traumatisme":   { icon: "ðŸ©¹", color: "#b45309" },
-  "Cardiaque":     { icon: "â¤ï¸", color: "#dc2626" },
-  "Respiratoire":  { icon: "ðŸ«", color: "#0369a1" },
-  "Neurologique":  { icon: "ðŸ§ ", color: "#6d28d9" },
-  "Autre":         { icon: "âš•ï¸",  color: "#374151" },
+  "Traumatisme":   { icon: "🩹", color: "#b45309" },
+  "Cardiaque":     { icon: "❤️", color: "#dc2626" },
+  "Respiratoire":  { icon: "🫁", color: "#0369a1" },
+  "Neurologique":  { icon: "🧠", color: "#6d28d9" },
+  "Autre":         { icon: "⚕️",  color: "#374151" },
 };
 
 const orientations = [
-  "Chirurgie", "MÃ©decine Interne", "Cardiologie", "Neurologie",
-  "RÃ©animation", "PÃ©diatrie", "Retour Ã  domicile",
+  "Chirurgie", "Médecine Interne", "Cardiologie", "Neurologie",
+  "Réanimation", "Pédiatrie", "Retour à domicile",
 ];
 
 const avatarColors = [
@@ -51,12 +51,21 @@ function LiveClock() {
     const t = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
- 
+
+  return (
+    <div className="urg-clock" aria-live="polite">
+      {time.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })}
+    </div>
+  );
 }
 
 export default function Urgence() {
   const [searchQuery,     setSearchQuery]     = useState("");
-  const [selectedMedecin, setSelectedMedecin] = useState("Tous les mÃ©decins");
+  const [selectedMedecin, setSelectedMedecin] = useState("Tous les médecins");
   const [selectedType,    setSelectedType]    = useState("Tous les types");
   const [selectedTriage,  setSelectedTriage]  = useState("Tous les niveaux");
   const [showModal,       setShowModal]       = useState(false);
@@ -64,7 +73,7 @@ export default function Urgence() {
 
   const filtered = urgencesData.filter((u) => {
     const matchSearch  = u.nom.toLowerCase().includes(searchQuery.toLowerCase()) || u.motif.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || u.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les médecins" || u.medecin === selectedMedecin;
     const matchType    = selectedType    === "Tous les types"    || u.type    === selectedType;
     const matchTriage  = selectedTriage  === "Tous les niveaux"  || u.triage  === selectedTriage;
     return matchSearch && matchMedecin && matchType && matchTriage;
@@ -84,18 +93,18 @@ export default function Urgence() {
         <div className="urg-header">
           <div>
             <h1 className="urg-title">
-              <span className="urg-pulse">ðŸš¨</span>
+              <span className="urg-pulse">🚨</span>
               Service des <span>Urgences</span>
               <span className="urg-badge-live">
                 <span className="urg-live-dot" />
                 EN DIRECT
               </span>
             </h1>
-            <p className="urg-subtitle">Admission immÃ©diate Â· Stabilisation Â· Orientation</p>
+            <p className="urg-subtitle">Admission immédiate · Stabilisation · Orientation</p>
           </div>
           <div className="urg-header-right">
             <LiveClock />
-            <button className="urg-btn-add" onClick={() => alert("Admission urgence Ã  intÃ©grer")}>
+            <button className="urg-btn-add" onClick={() => alert("Admission urgence à intégrer")}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
               </svg>
@@ -106,7 +115,7 @@ export default function Urgence() {
 
         
         <div className="urg-triage-banner">
-          <div className="urg-triage-title">TRIAGE â€” NIVEAUX DE PRIORITÃ‰</div>
+          <div className="urg-triage-title">TRIAGE — NIVEAUX DE PRIORITÉ</div>
           <div className="urg-triage-cards">
             {Object.entries(triageConfig).map(([key, cfg]) => (
               <div key={key} className="urg-triage-card" style={{ background: cfg.bg, borderColor: cfg.border }}>
@@ -121,12 +130,12 @@ export default function Urgence() {
         
         <div className="urg-stats">
           {[
-            { label: "Total Cas",      value: urgencesData.length,                  cls: "total",    icon: "ðŸ“‹" },
-            { label: "En Admission",   value: countBy("statut","admission"),         cls: "admit",    icon: "ðŸšª" },
-            { label: "En Traitement",  value: countBy("statut","traitement"),        cls: "traite",   icon: "ðŸ’‰" },
-            { label: "StabilisÃ©s",     value: countBy("statut","stabilise"),         cls: "stable",   icon: "âœ…" },
-            { label: "Transferts",     value: countBy("statut","transfert"),         cls: "transfer", icon: "ðŸ”„" },
-            { label: "Critiques P1",   value: countTriage("P1"),                     cls: "critical", icon: "ðŸš¨" },
+            { label: "Total Cas",      value: urgencesData.length,                  cls: "total",    icon: "📋" },
+            { label: "En Admission",   value: countBy("statut","admission"),         cls: "admit",    icon: "🚪" },
+            { label: "En Traitement",  value: countBy("statut","traitement"),        cls: "traite",   icon: "💉" },
+            { label: "Stabilisés",     value: countBy("statut","stabilise"),         cls: "stable",   icon: "✅" },
+            { label: "Transferts",     value: countBy("statut","transfert"),         cls: "transfer", icon: "🔄" },
+            { label: "Critiques P1",   value: countTriage("P1"),                     cls: "critical", icon: "🚨" },
           ].map((s) => (
             <div key={s.cls} className={`urg-stat-card ${s.cls}`}>
               <div className="urg-stat-icon">{s.icon}</div>
@@ -168,12 +177,12 @@ export default function Urgence() {
             <thead>
               <tr>
                 <th>Patient</th>
-                <th>Ã‚ge</th>
-                <th>MÃ©decin</th>
+                <th>Âge</th>
+                <th>Médecin</th>
                 <th>Triage</th>
                 <th>Type</th>
                 <th>Motif d'Admission</th>
-                <th>Heure ArrivÃ©e</th>
+                <th>Heure Arrivée</th>
                 <th>Statut</th>
                 <th>Orientation</th>
                 <th>Actions</th>
@@ -184,9 +193,9 @@ export default function Urgence() {
                 <tr>
                   <td colSpan={10}>
                     <div className="urg-empty">
-                      <div className="urg-empty-icon">ðŸš‘</div>
+                      <div className="urg-empty-icon">🚑</div>
                       <div className="urg-empty-title">Aucun cas en urgence</div>
-                      <div className="urg-empty-sub">Les admissions apparaÃ®tront ici en temps rÃ©el</div>
+                      <div className="urg-empty-sub">Les admissions apparaîtront ici en temps réel</div>
                     </div>
                   </td>
                 </tr>
@@ -227,7 +236,7 @@ export default function Urgence() {
                     <td>
                       {u.orientation
                         ? <span className="urg-orient-tag">{u.orientation}</span>
-                        : <span className="urg-pending">â€”</span>
+                        : <span className="urg-pending">—</span>
                       }
                     </td>
                     <td onClick={(e) => e.stopPropagation()}>
@@ -244,7 +253,7 @@ export default function Urgence() {
 
           <div className="urg-footer">
             <span>Affichage de <span className="urg-count">{filtered.length}</span> sur <span className="urg-count">{urgencesData.length}</span> cas</span>
-            <span>Service des Urgences â€” MedGest Connect</span>
+            <span>Service des Urgences — MedGest Connect</span>
           </div>
         </div>
 
@@ -256,7 +265,7 @@ export default function Urgence() {
           <div className="urg-modal" onClick={(e) => e.stopPropagation()}>
             <div className="urg-modal-top" style={{ background: triageConfig[selectedCase.triage]?.bg }}>
               <div className="urg-modal-triage" style={{ color: triageConfig[selectedCase.triage]?.color }}>
-                Niveau {selectedCase.triage} â€” {triageConfig[selectedCase.triage]?.desc}
+                Niveau {selectedCase.triage} — {triageConfig[selectedCase.triage]?.desc}
               </div>
             </div>
             <div className="urg-modal-body">
@@ -266,20 +275,20 @@ export default function Urgence() {
                 </div>
                 <div>
                   <div className="urg-modal-title">{selectedCase.nom}</div>
-                  <div className="urg-modal-subtitle">Dossier urgence â€” Admission immÃ©diate</div>
+                  <div className="urg-modal-subtitle">Dossier urgence — Admission immédiate</div>
                 </div>
-                <button className="urg-modal-close" onClick={closeModal}>âœ•</button>
+                <button className="urg-modal-close" onClick={closeModal}>✕</button>
               </div>
               <div className="urg-modal-grid">
                 {[
-                  { label: "Ã‚ge",             value: selectedCase.age          },
-                  { label: "Heure ArrivÃ©e",   value: selectedCase.heureArrivee },
-                  { label: "MÃ©decin",         value: selectedCase.medecin      },
+                  { label: "Âge",             value: selectedCase.age          },
+                  { label: "Heure Arrivée",   value: selectedCase.heureArrivee },
+                  { label: "Médecin",         value: selectedCase.medecin      },
                   { label: "Type",            value: selectedCase.type         },
                   { label: "Motif",           value: selectedCase.motif        },
                   { label: "Statut",          value: statutLabels[selectedCase.statut]?.label },
                   { label: "Orientation",     value: selectedCase.orientation || "En attente" },
-                  { label: "Notes",           value: selectedCase.notes || "â€”" },
+                  { label: "Notes",           value: selectedCase.notes || "—" },
                 ].map((f) => (
                   <div key={f.label} className="urg-modal-field">
                     <label>{f.label}</label>

@@ -1,5 +1,5 @@
-﻿import{useEffect, useRef, useState } from 'react';
-import { Menu, Users as UsersIcon ,BarChart3, FileText, Hospital, Settings, LogOut, Bell, HelpCircle, ChevronDown, Activity, Calendar as CalendarIcon } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Menu, Users as UsersIcon, BarChart3, FileText, Hospital, Settings, LogOut, Bell, HelpCircle, ChevronDown, Activity, Calendar as CalendarIcon } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Services from './pages/Services';
 import Patients from './pages/Patients';
@@ -17,9 +17,9 @@ import Urgence from './gereservices/Urgence';
 import Gyneco from './gestionservices/Gyneco';
 import { canAccess, getDefaultPage } from './auth/permissions';
 import './styles/global.css';
-import './styles/app.css';
-import './styles/login.css';
-import './styles/users.css';
+import './styles/App.css';
+import './styles/Login.css';
+import './styles/Users.css';
 import './styles/Gyneco.css';
 
 const App = () => {
@@ -78,7 +78,7 @@ const App = () => {
 
     const detail = getServiceDetailComponent(selectedService);
     if (!detail) {
-      return <div className="service-detail-empty">DÃ©tails du service indisponibles.</div>;
+      return <div className="service-detail-empty">Détails du service indisponibles.</div>;
     }
     return (
       <div className="service-detail">
@@ -134,55 +134,55 @@ const App = () => {
             />
           )}
           {canView('users') && (
-            <NavItem 
-              icon={<UsersIcon />} 
-              label="Gestion des utilisateurs" 
+            <NavItem
+              icon={<UsersIcon />}
+              label="Gestion des utilisateurs"
               active={currentPage === 'users'}
               onClick={() => setCurrentPage('users')}
               expanded={sidebarOpen}
             />
           )}
-          
+
           {canView('services') && (
-            <NavItem 
-              icon={<Hospital />} 
-              label="GÃ©rer les Services" 
+            <NavItem
+              icon={<Hospital />}
+              label="Gérer les Services"
               active={currentPage === 'services'}
               onClick={() => setCurrentPage('services')}
               expanded={sidebarOpen}
             />
           )}
           {canView('patients') && (
-            <NavItem 
-              icon={<FileText />} 
-              label="Dossiers patients" 
+            <NavItem
+              icon={<FileText />}
+              label="Dossiers patients"
               active={currentPage === 'patients'}
               onClick={() => setCurrentPage('patients')}
               expanded={sidebarOpen}
             />
           )}
           {canView('hospitalization') && (
-            <NavItem 
-              icon={<Activity />} 
-              label="Gestion des hospitalisations" 
+            <NavItem
+              icon={<Activity />}
+              label="Gestion des hospitalisations"
               active={currentPage === 'hospitalization'}
               onClick={() => setCurrentPage('hospitalization')}
               expanded={sidebarOpen}
             />
           )}
           {canView('calendar') && (
-            <NavItem 
-              icon={<CalendarIcon />} 
-              label="Calendrier" 
+            <NavItem
+              icon={<CalendarIcon />}
+              label="Calendrier"
               active={currentPage === 'calendar'}
               onClick={() => setCurrentPage('calendar')}
               expanded={sidebarOpen}
             />
           )}
           {canView('settings') && (
-            <NavItem 
-              icon={<Settings />} 
-              label="ParamÃ¨tres systÃ¨me" 
+            <NavItem
+              icon={<Settings />}
+              label="Paramètres système"
               active={currentPage === 'settings'}
               onClick={() => setCurrentPage('settings')}
               expanded={sidebarOpen}
@@ -191,9 +191,9 @@ const App = () => {
         </nav>
 
         <div className="sidebar-footer">
-          <NavItem 
-            icon={<LogOut />} 
-            label="DÃ©connexion" 
+          <NavItem
+            icon={<LogOut />}
+            label="Déconnexion"
             active={false}
             onClick={handleLogout}
             expanded={sidebarOpen}
@@ -261,9 +261,9 @@ const NavItem = ({ icon, label, active, onClick, expanded }) => (
 const AccessDenied = ({ role, onGoHome }) => (
   <div className="access-denied">
     <div className="access-denied-card">
-      <div className="access-denied-title">AccÃ¨s refusÃ©</div>
+      <div className="access-denied-title">Accès refusé</div>
       <div className="access-denied-text">
-        Votre rÃ´le ({role || 'Inconnu'}) n'a pas l'autorisation d'accÃ©der Ã  cette page.
+        Votre rôle ({role || 'Inconnu'}) n'a pas l'autorisation d'accéder à cette page.
       </div>
       <div className="access-denied-actions">
         <button className="access-denied-button" onClick={onGoHome}>

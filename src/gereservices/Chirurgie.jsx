@@ -4,25 +4,25 @@ import "../styles/Chirurgie.css";
 const operationsData = [];
 
 const medecins      = ["Tous les chirurgiens", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc", "Dr. S. Karim"];
-const specialites   = ["Toutes les spÃ©cialitÃ©s", "OrthopÃ©die", "GÃ©nÃ©rale", "Cardiaque", "Neurologique", "Plastique"];
+const specialites   = ["Toutes les spécialités", "Orthopédie", "Générale", "Cardiaque", "Neurologique", "Plastique"];
 const statuts       = ["Tous les statuts", "preparation", "programmee", "en-cours", "post-op", "recuperation", "urgent"];
 const salles        = ["Toutes les salles", "Salle 1", "Salle 2", "Salle 3", "Salle 4"];
 
 const statutLabels = {
-  "preparation":  { label: "PrÃ©paration",   color: "#0369a1", bg: "#f0f9ff" },
-  "programmee":   { label: "ProgrammÃ©e",    color: "#6d28d9", bg: "#faf5ff" },
+  "preparation":  { label: "Préparation",   color: "#0369a1", bg: "#f0f9ff" },
+  "programmee":   { label: "Programmée",    color: "#6d28d9", bg: "#faf5ff" },
   "en-cours":     { label: "En cours",      color: "#059669", bg: "#ecfdf5" },
-  "post-op":      { label: "Post-opÃ©ratoire", color: "#b45309", bg: "#fffbeb" },
-  "recuperation": { label: "RÃ©cupÃ©ration",  color: "#0e7490", bg: "#ecfeff" },
+  "post-op":      { label: "Post-opératoire", color: "#b45309", bg: "#fffbeb" },
+  "recuperation": { label: "Récupération",  color: "#0e7490", bg: "#ecfeff" },
   "urgent":       { label: "Urgent",        color: "#dc2626", bg: "#fef2f2" },
 };
 
 const specialiteConfig = {
-  "OrthopÃ©die":    { icon: "ðŸ¦´", color: "#0369a1", bg: "#f0f9ff" },
-  "GÃ©nÃ©rale":      { icon: "ðŸ¥", color: "#059669", bg: "#ecfdf5" },
-  "Cardiaque":     { icon: "â¤ï¸", color: "#dc2626", bg: "#fef2f2" },
-  "Neurologique":  { icon: "ðŸ§ ", color: "#6d28d9", bg: "#faf5ff" },
-  "Plastique":     { icon: "âœ¨", color: "#b45309", bg: "#fffbeb" },
+  "Orthopédie":    { icon: "🦴", color: "#0369a1", bg: "#f0f9ff" },
+  "Générale":      { icon: "🏥", color: "#059669", bg: "#ecfdf5" },
+  "Cardiaque":     { icon: "❤️", color: "#dc2626", bg: "#fef2f2" },
+  "Neurologique":  { icon: "🧠", color: "#6d28d9", bg: "#faf5ff" },
+  "Plastique":     { icon: "✨", color: "#b45309", bg: "#fffbeb" },
 };
 
 const avatarColors = [
@@ -38,7 +38,7 @@ export default function Chirurgie() {
   const [searchQuery,      setSearchQuery]      = useState("");
   const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les chirurgiens");
   const [selectedDate,     setSelectedDate]     = useState("");
-  const [selectedSpec,     setSelectedSpec]     = useState("Toutes les spÃ©cialitÃ©s");
+  const [selectedSpec,     setSelectedSpec]     = useState("Toutes les spécialités");
   const [selectedStatut,   setSelectedStatut]   = useState("Tous les statuts");
   const [selectedSalle,    setSelectedSalle]    = useState("Toutes les salles");
   const [showModal,        setShowModal]        = useState(false);
@@ -48,7 +48,7 @@ export default function Chirurgie() {
   const filtered = operationsData.filter((o) => {
     const matchSearch  = o.nom.toLowerCase().includes(searchQuery.toLowerCase()) || o.typeOp.toLowerCase().includes(searchQuery.toLowerCase());
     const matchMedecin = selectedMedecin === "Tous les chirurgiens"     || o.chirurgien  === selectedMedecin;
-    const matchSpec    = selectedSpec    === "Toutes les spÃ©cialitÃ©s"   || o.specialite  === selectedSpec;
+    const matchSpec    = selectedSpec    === "Toutes les spécialités"   || o.specialite  === selectedSpec;
     const matchStatut  = selectedStatut  === "Tous les statuts"         || o.statut      === selectedStatut;
     const matchSalle   = selectedSalle   === "Toutes les salles"        || o.salle       === selectedSalle;
     return matchSearch && matchMedecin && matchSpec && matchStatut && matchSalle;
@@ -62,21 +62,21 @@ export default function Chirurgie() {
   const phases = [
     {
       key: "preparation",
-      label: "PrÃ©-opÃ©ratoire",
-      icon: "ðŸ“‹",
-      steps: ["Bilan prÃ©opÃ©ratoire complet", "Consultation anesthÃ©siste", "JeÃ»ne 6â€“8h avant", "DÃ©pilation et antisepsie", "Pose de voie veineuse", "PrÃ©mÃ©dication si prescrite"],
+      label: "Pré-opératoire",
+      icon: "📋",
+      steps: ["Bilan préopératoire complet", "Consultation anesthésiste", "Jeûne 6–8h avant", "Dépilation et antisepsie", "Pose de voie veineuse", "Prémédication si prescrite"],
     },
     {
       key: "operation",
-      label: "Bloc opÃ©ratoire",
-      icon: "ðŸ”ª",
-      steps: ["Installation en salle d'opÃ©ration", "AnesthÃ©sie gÃ©nÃ©rale / locale", "Intervention chirurgicale", "ContrÃ´le hÃ©mostatique", "Fermeture et sutures", "RÃ©veil en SSPI"],
+      label: "Bloc opératoire",
+      icon: "🔪",
+      steps: ["Installation en salle d'opération", "Anesthésie générale / locale", "Intervention chirurgicale", "Contrôle hémostatique", "Fermeture et sutures", "Réveil en SSPI"],
     },
     {
       key: "postop",
-      label: "Post-opÃ©ratoire",
-      icon: "ðŸ©¹",
-      steps: ["Surveillance paramÃ¨tres vitaux", "Gestion de la douleur", "Soins de la plaie opÃ©ratoire", "KinÃ©sithÃ©rapie prÃ©coce", "Suivi biologique", "Planification sortie / transfert"],
+      label: "Post-opératoire",
+      icon: "🩹",
+      steps: ["Surveillance paramètres vitaux", "Gestion de la douleur", "Soins de la plaie opératoire", "Kinésithérapie précoce", "Suivi biologique", "Planification sortie / transfert"],
     },
   ];
 
@@ -88,31 +88,31 @@ export default function Chirurgie() {
         <div className="chi-header">
           <div>
             <h1 className="chi-title">
-              Gestion des OpÃ©rations : <span>Service de Chirurgie</span>
+              Gestion des Opérations : <span>Service de Chirurgie</span>
               <span className="chi-badge">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
                 Actif
               </span>
             </h1>
-            <p className="chi-subtitle">PrÃ©paration Â· Bloc opÃ©ratoire Â· Suivi post-opÃ©ratoire</p>
+            <p className="chi-subtitle">Préparation · Bloc opératoire · Suivi post-opératoire</p>
           </div>
-          <button className="chi-btn-add" onClick={() => alert("Formulaire d'opÃ©ration Ã  intÃ©grer")}>
+          <button className="chi-btn-add" onClick={() => alert("Formulaire d'opération à intégrer")}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
             </svg>
-            Planifier une OpÃ©ration
+            Planifier une Opération
           </button>
         </div>
 
         
         <div className="chi-stats">
           {[
-            { label: "Total OpÃ©rations",  value: operationsData.length,                   cls: "total",   icon: "ðŸ¥" },
-            { label: "ProgrammÃ©es",       value: countBy("statut", "programmee"),          cls: "prog",    icon: "ðŸ“…" },
-            { label: "En cours",          value: countBy("statut", "en-cours"),            cls: "encours", icon: "âš¡" },
-            { label: "Post-opÃ©ratoire",   value: countBy("statut", "post-op"),             cls: "postop",  icon: "ðŸ©¹" },
-            { label: "RÃ©cupÃ©ration",      value: countBy("statut", "recuperation"),        cls: "recup",   icon: "ðŸ’Š" },
-            { label: "Urgents",           value: countBy("statut", "urgent"),              cls: "urgent",  icon: "ðŸš¨" },
+            { label: "Total Opérations",  value: operationsData.length,                   cls: "total",   icon: "🏥" },
+            { label: "Programmées",       value: countBy("statut", "programmee"),          cls: "prog",    icon: "📅" },
+            { label: "En cours",          value: countBy("statut", "en-cours"),            cls: "encours", icon: "⚡" },
+            { label: "Post-opératoire",   value: countBy("statut", "post-op"),             cls: "postop",  icon: "🩹" },
+            { label: "Récupération",      value: countBy("statut", "recuperation"),        cls: "recup",   icon: "💊" },
+            { label: "Urgents",           value: countBy("statut", "urgent"),              cls: "urgent",  icon: "🚨" },
           ].map((s) => (
             <div key={s.cls} className={`chi-stat-card ${s.cls}`}>
               <div className="chi-stat-icon">{s.icon}</div>
@@ -128,7 +128,7 @@ export default function Chirurgie() {
         <div className="chi-salles">
           <div className="chi-salles-title">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M12 6v6"/></svg>
-            Salles d'opÃ©ration
+            Salles d'opération
           </div>
           <div className="chi-salles-grid">
             {["Salle 1", "Salle 2", "Salle 3", "Salle 4"].map((salle) => {
@@ -136,7 +136,7 @@ export default function Chirurgie() {
               return (
                 <div key={salle} className={`chi-salle-card ${occupied ? "occupied" : "libre"}`}>
                   <div className="chi-salle-name">{salle}</div>
-                  <div className="chi-salle-status">{occupied ? "âš¡ OccupÃ©e" : "âœ… Libre"}</div>
+                  <div className="chi-salle-status">{occupied ? "⚡ Occupée" : "✅ Libre"}</div>
                 </div>
               );
             })}
@@ -190,7 +190,7 @@ export default function Chirurgie() {
             </svg>
             <input
               className="chi-search"
-              placeholder="Rechercher un patient ou opÃ©ration..."
+              placeholder="Rechercher un patient ou opération..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -203,10 +203,10 @@ export default function Chirurgie() {
             <thead>
               <tr>
                 <th>Patient</th>
-                <th>Ã‚ge</th>
+                <th>Âge</th>
                 <th>Chirurgien</th>
-                <th>SpÃ©cialitÃ©</th>
-                <th>Type d'OpÃ©ration</th>
+                <th>Spécialité</th>
+                <th>Type d'Opération</th>
                 <th>Salle</th>
                 <th>Date / Heure</th>
                 <th>Statut</th>
@@ -218,9 +218,9 @@ export default function Chirurgie() {
                 <tr>
                   <td colSpan={9}>
                     <div className="chi-empty">
-                      <div className="chi-empty-icon">ðŸ¥</div>
-                      <div className="chi-empty-title">Aucune opÃ©ration planifiÃ©e</div>
-                      <div className="chi-empty-sub">Les interventions chirurgicales apparaÃ®tront ici</div>
+                      <div className="chi-empty-icon">🏥</div>
+                      <div className="chi-empty-title">Aucune opération planifiée</div>
+                      <div className="chi-empty-sub">Les interventions chirurgicales apparaîtront ici</div>
                     </div>
                   </td>
                 </tr>
@@ -266,8 +266,8 @@ export default function Chirurgie() {
           </table>
 
           <div className="chi-footer">
-            <span>Affichage de <span className="chi-count">{filtered.length}</span> sur <span className="chi-count">{operationsData.length}</span> opÃ©rations</span>
-            <span>Service de Chirurgie â€” MedGest Connect</span>
+            <span>Affichage de <span className="chi-count">{filtered.length}</span> sur <span className="chi-count">{operationsData.length}</span> opérations</span>
+            <span>Service de Chirurgie — MedGest Connect</span>
           </div>
         </div>
 
@@ -283,20 +283,20 @@ export default function Chirurgie() {
               </div>
               <div>
                 <div className="chi-modal-title">{selectedOp.nom}</div>
-                <div className="chi-modal-subtitle">Dossier opÃ©ratoire â€” Chirurgie</div>
+                <div className="chi-modal-subtitle">Dossier opératoire — Chirurgie</div>
               </div>
-              <button className="chi-modal-close" onClick={closeModal}>âœ•</button>
+              <button className="chi-modal-close" onClick={closeModal}>✕</button>
             </div>
             <div className="chi-modal-grid">
               {[
-                { label: "Ã‚ge",              value: selectedOp.age        },
+                { label: "Âge",              value: selectedOp.age        },
                 { label: "Date / Heure",     value: selectedOp.dateHeure  },
                 { label: "Chirurgien",       value: selectedOp.chirurgien },
-                { label: "SpÃ©cialitÃ©",       value: selectedOp.specialite },
-                { label: "Type d'OpÃ©ration", value: selectedOp.typeOp     },
+                { label: "Spécialité",       value: selectedOp.specialite },
+                { label: "Type d'Opération", value: selectedOp.typeOp     },
                 { label: "Salle",            value: selectedOp.salle      },
                 { label: "Statut",           value: statutLabels[selectedOp.statut]?.label },
-                { label: "Notes",            value: selectedOp.notes || "â€”" },
+                { label: "Notes",            value: selectedOp.notes || "—" },
               ].map((f) => (
                 <div key={f.label} className="chi-modal-field">
                   <label>{f.label}</label>

@@ -11,12 +11,12 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
   const [errors, setErrors] = useState({});
 
   const doctors = [
-    { id: 1, name: 'Dr. Alice Fournier', specialty: 'GynÃ©cologue', avatar: 'A' },
-    { id: 2, name: 'Dr. James Chen', specialty: 'PÃ©diatre', avatar: 'J' },
+    { id: 1, name: 'Dr. Alice Fournier', specialty: 'Gynécologue', avatar: 'A' },
+    { id: 2, name: 'Dr. James Chen', specialty: 'Pédiatre', avatar: 'J' },
     { id: 3, name: 'Dr. Karim Hassan', specialty: 'Ophtalmologue', avatar: 'K' },
     { id: 4, name: 'Dr. Victoria Garcia', specialty: 'Radiologue', avatar: 'V' },
     { id: 5, name: 'Dr. Yves Anderson', specialty: 'Chirurgien', avatar: 'Y' },
-    { id: 6, name: 'Dr. Frank Wilson', specialty: 'MÃ©decin interne', avatar: 'F' },
+    { id: 6, name: 'Dr. Frank Wilson', specialty: 'Médecin interne', avatar: 'F' },
   ];
 
   const handleChange = (e) => {
@@ -35,8 +35,8 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.newChief) newErrors.newChief = 'SÃ©lectionnez un mÃ©decin';
-    if (!formData.startDate) newErrors.startDate = 'SÃ©lectionnez une date';
+    if (!formData.newChief) newErrors.newChief = 'Sélectionnez un médecin';
+    if (!formData.startDate) newErrors.startDate = 'Sélectionnez une date';
     return newErrors;
   };
 
@@ -78,7 +78,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content modal-chief" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>ðŸ‘¨â€âš•ï¸ Modifier le Chef de Service</h2>
+          <h2>👨‍⚕️ Modifier le Chef de Service</h2>
           <button onClick={handleClose} className="close-btn">
             <X size={24} />
           </button>
@@ -89,7 +89,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
           <h4>Chef actuel</h4>
           <div className="chief-display">
             <div className="avatar-large">{currentChief?.charAt(0)}</div>
-            <span className="chief-name">{currentChief || 'Non assignÃ©'}</span>
+            <span className="chief-name">{currentChief || 'Non assigné'}</span>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
               onChange={handleChange}
               className={errors.newChief ? 'input-error' : ''}
             >
-              <option value="">-- SÃ©lectionner un mÃ©decin --</option>
+              <option value="">-- Sélectionner un médecin --</option>
               {doctors.map(doctor => (
                 <option key={doctor.id} value={doctor.id}>
                   {doctor.name} ({doctor.specialty})
@@ -148,7 +148,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
               Annuler
             </button>
             <button type="submit" className="btn-save">
-              âœ… Confirmer le changement
+              ✅ Confirmer le changement
             </button>
           </div>
         </form>

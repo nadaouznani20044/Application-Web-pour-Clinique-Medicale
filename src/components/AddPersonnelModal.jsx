@@ -5,21 +5,21 @@ import '../styles/add-personnel-modal.css';
 const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) => {
   const [formData, setFormData] = useState({
     userId: '',
-    role: 'MÃ©decin',
+    role: 'Médecin',
     notes: '',
   });
 
   const [errors, setErrors] = useState({});
 
   const doctors = [
-    { id: 1, name: 'Dr. Alice Fournier', title: 'MÃ©decin' },
-    { id: 2, name: 'Dr. James Chen', title: 'MÃ©decin' },
-    { id: 3, name: 'Dr. Karim Hassan', title: 'MÃ©decin Chef' },
+    { id: 1, name: 'Dr. Alice Fournier', title: 'Médecin' },
+    { id: 2, name: 'Dr. James Chen', title: 'Médecin' },
+    { id: 3, name: 'Dr. Karim Hassan', title: 'Médecin Chef' },
     { id: 4, name: 'Sophie Dupont', title: 'Infirmier' },
     { id: 5, name: 'Marc Bernard', title: 'Aide-soignant' },
   ];
 
-  const roles = ['MÃ©decin', 'Infirmier', 'Aide-soignant', 'Technicien'];
+  const roles = ['Médecin', 'Infirmier', 'Aide-soignant', 'Technicien'];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +37,8 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.userId) newErrors.userId = 'SÃ©lectionnez un utilisateur';
-    if (!formData.role) newErrors.role = 'SÃ©lectionnez un rÃ´le';
+    if (!formData.userId) newErrors.userId = 'Sélectionnez un utilisateur';
+    if (!formData.role) newErrors.role = 'Sélectionnez un rôle';
     return newErrors;
   };
 
@@ -63,7 +63,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
   };
 
   const handleClose = () => {
-    setFormData({ userId: '', role: 'MÃ©decin', notes: '' });
+    setFormData({ userId: '', role: 'Médecin', notes: '' });
     setErrors({});
     onClose();
   };
@@ -74,7 +74,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content modal-compact" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>âž• Ajouter du Personnel</h2>
+          <h2>➕ Ajouter du Personnel</h2>
           <button onClick={handleClose} className="close-btn">
             <X size={24} />
           </button>
@@ -83,7 +83,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
         <form onSubmit={handleSubmit} className="add-personnel-form">
           
           <div className="form-group">
-            <label htmlFor="userId">SÃ©lectionnez un employÃ© *</label>
+            <label htmlFor="userId">Sélectionnez un employé *</label>
             <select
               id="userId"
               name="userId"
@@ -91,7 +91,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
               onChange={handleChange}
               className={errors.userId ? 'input-error' : ''}
             >
-              <option value="">-- Choisir un employÃ© --</option>
+              <option value="">-- Choisir un employé --</option>
               {doctors.map(doctor => (
                 <option key={doctor.id} value={doctor.id}>
                   {doctor.name} ({doctor.title})
@@ -103,7 +103,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
 
           
           <div className="form-group">
-            <label htmlFor="role">RÃ´le dans le service *</label>
+            <label htmlFor="role">Rôle dans le service *</label>
             <select
               id="role"
               name="role"
@@ -126,7 +126,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
               name="notes"
               value={formData.notes}
               onChange={handleChange}
-              placeholder="Ex: SpÃ©cialiste Ã©chographie, disponible les lundis..."
+              placeholder="Ex: Spécialiste échographie, disponible les lundis..."
               rows="3"
             />
           </div>
@@ -137,7 +137,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
               Annuler
             </button>
             <button type="submit" className="btn-save">
-              âž• Ajouter
+              ➕ Ajouter
             </button>
           </div>
         </form>

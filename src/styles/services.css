@@ -157,7 +157,7 @@
 .btn-icon.btn-view:hover {
   background: #bae6fd  ;  
   color: #0d9488;
-  transform: scale(1.1)    â† Grossit de 10% ;
+  transform: scale(1.1);
   box-shadow: 0 4px 6px rgba(3, 105, 161, 0.2) ; 
 }
 

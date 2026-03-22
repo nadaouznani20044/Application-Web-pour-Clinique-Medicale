@@ -13,12 +13,12 @@ import '../styles/change-chief-modal.css';
 const ServiceDetail = ({ service, onBack }) => {
   const [activeTab, setActiveTab] = useState('informations');
   const [staff, setStaff] = useState([
-    { id: 1, name: 'Dr. ' + service.chef, role: 'Chef de Service', department: 'MÃ©decin' },
+    { id: 1, name: 'Dr. ' + service.chef, role: 'Chef de Service', department: 'Médecin' },
   ]);
   const [rooms, setRooms] = useState([
-    { id: 1, number: '101', floor: '1', capacity: 2, occupied: 1, Statut: 'OccupÃ©e' },
+    { id: 1, number: '101', floor: '1', capacity: 2, occupied: 1, Statut: 'Occupée' },
     { id: 2, number: '102', floor: '1', capacity: 2, occupied: 0, Statut: 'Disponible' },
-    { id: 3, number: '201', floor: '2', capacity: 1, occupied: 1, Statut: 'OccupÃ©e' },
+    { id: 3, number: '201', floor: '2', capacity: 1, occupied: 1, Statut: 'Occupée' },
   ]);
 
   const [showEditService, setShowEditService] = useState(false);
@@ -27,23 +27,23 @@ const ServiceDetail = ({ service, onBack }) => {
   const [showChangeChief, setShowChangeChief] = useState(false);
 
   const handleEditService = (data) => {
-    console.log('Service mis Ã  jour:', data);
+    console.log('Service mis a jour:', data);
     setShowEditService(false);
   };
 
   const handleAddPersonnel = (data) => {
-    console.log('Personnel ajoutÃ©:', data);
+    console.log('Personnel ajoute:', data);
     setStaff([...staff, { id: staff.length + 1, ...data }]);
     setShowAddPersonnel(false);
   };
 
   const handleDeleteService = () => {
-    console.log('Service supprimÃ©');
+    console.log('Service supprime');
     onBack();
   };
 
   const handleChangeChief = (data) => {
-    console.log('Chef changÃ©:', data);
+    console.log('Chef change:', data);
     setShowChangeChief(false);
   };
 
@@ -54,7 +54,7 @@ const ServiceDetail = ({ service, onBack }) => {
   if (!service) {
     return (
       <div className="gyneco-detail">
-        <p>Service non trouvÃ©</p>
+        <p>Service non trouvé</p>
       </div>
     );
   }
@@ -71,7 +71,7 @@ const ServiceDetail = ({ service, onBack }) => {
           <ArrowLeft size={20} />
           Retour
         </button>
-        <h1 className="gyneco-title">ðŸ¥ {service.name}</h1>
+        <h1 className="gyneco-title">{service.name}</h1>
         <div className="gyneco-actions">
           <button 
             onClick={() => setShowEditService(true)}
@@ -124,7 +124,7 @@ const ServiceDetail = ({ service, onBack }) => {
           className={`tab-button ${activeTab === 'personnel' ? 'active' : ''}`}
           onClick={() => setActiveTab('personnel')}
         >
-          Personnel RattachÃ©
+          Personnel Rattache
         </button>
         <button 
           className={`tab-button ${activeTab === 'chambres' ? 'active' : ''}`}
@@ -141,7 +141,7 @@ const ServiceDetail = ({ service, onBack }) => {
         {activeTab === 'informations' && (
           <div className="tab-pane active">
             <div className="info-section">
-              <h2>Informations GÃ©nÃ©rales</h2>
+              <h2>Informations Generales</h2>
               <div className="info-grid">
                 <div className="info-item">
                   <span className="info-label">Nom du Service</span>
@@ -156,7 +156,7 @@ const ServiceDetail = ({ service, onBack }) => {
                   <span className="info-value">{service.location}</span>
                 </div>
                 <div className="info-item">
-                  <span className="info-label">TÃ©lÃ©phone</span>
+                  <span className="info-label">Telephone</span>
                   <span className="info-value">{service.phone}</span>
                 </div>
                 <div className="info-item">
@@ -168,7 +168,7 @@ const ServiceDetail = ({ service, onBack }) => {
 
             
             <div className="chief-section">
-              <h2>MÃ©decin Chef</h2>
+              <h2>Medecin Chef</h2>
               <div className="chief-card">
                 <div className="chief-avatar">
                   {service.chef.charAt(0)}
@@ -201,7 +201,7 @@ const ServiceDetail = ({ service, onBack }) => {
                 </div>
                 <div className="schedule-item">
                   <span className="day">Dimanche</span>
-                  <span className="time">FermÃ©</span>
+                  <span className="time">Ferme</span>
                 </div>
               </div>
             </div>
@@ -212,7 +212,7 @@ const ServiceDetail = ({ service, onBack }) => {
         {activeTab === 'personnel' && (
           <div className="tab-pane active">
             <div className="personnel-header">
-              <h2>Personnel RattachÃ©</h2>
+              <h2>Personnel Rattaché</h2>
               <button 
                 onClick={() => setShowAddPersonnel(true)}
                 className="btn-add-staff"
@@ -231,8 +231,8 @@ const ServiceDetail = ({ service, onBack }) => {
                   <thead>
                     <tr>
                       <th>Nom</th>
-                      <th>RÃ´le</th>
-                      <th>DÃ©partement</th>
+                      <th>Role</th>
+                      <th>Departement</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -274,7 +274,7 @@ const ServiceDetail = ({ service, onBack }) => {
                   <span className="value">{totalCapacity}</span>
                 </div>
                 <div className="stat">
-                  <span className="label">OccupÃ©es</span>
+                  <span className="label">Occupees</span>
                   <span className="value">{totalOccupancy}</span>
                 </div>
                 <div className="stat">
@@ -288,7 +288,7 @@ const ServiceDetail = ({ service, onBack }) => {
               {rooms.map((room) => (
                 <div key={room.id} className={`room-card Statut-${room.Statut.toLowerCase()}`}>
                   <div className="room-number">{room.number}</div>
-                  <div className="room-floor">Ã‰tage {room.floor}</div>
+                  <div className="room-floor">Etage {room.floor}</div>
                   <div className="room-capacity">
                     <span>{room.occupied}</span> / {room.capacity}
                   </div>

@@ -320,3 +320,18 @@
     height: 1.75rem;
   }
 }
+
+.role-receptionniste {
+  background: #fef08a;
+  color: #854d0e;
+}
+
+.role-medecin {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.role-medecin-chef {
+  background: #f5d4e6;
+  color: #be185d;
+}

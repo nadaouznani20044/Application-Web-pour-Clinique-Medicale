@@ -4,14 +4,14 @@ import "../styles/Ophtalmologie.css";
 
 const patientsData = [];
 
-const medecins  = ["Tous les mÃ©decins", "Dr. A. Fournier", "Dr. J. Chen"];
+const medecins  = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen"];
 const casTypes  = ["Tous les cas", "examen", "traitement", "chirurgie", "depistage"];
 
 const casTypeLabels = {
   examen:     { label: "Examen",      color: "#0369a1", bg: "#f0f9ff" },
   traitement: { label: "Traitement",  color: "#0f766e", bg: "#f0fdfa" },
   chirurgie:  { label: "Chirurgie",   color: "#b45309", bg: "#fffbeb" },
-  depistage:  { label: "DÃ©pistage",   color: "#6d28d9", bg: "#faf5ff" },
+  depistage:  { label: "Dépistage",   color: "#6d28d9", bg: "#faf5ff" },
 };
 
 const avatarColors = [
@@ -25,7 +25,7 @@ function getAvatarColor(name) {
 
 export default function Ophtalmologie() {
   const [searchQuery,     setSearchQuery]     = useState("");
-  const [selectedMedecin, setSelectedMedecin] = useState("Tous les mÃ©decins");
+  const [selectedMedecin, setSelectedMedecin] = useState("Tous les médecins");
   const [selectedDate,    setSelectedDate]    = useState("");
   const [selectedCas,     setSelectedCas]     = useState("Tous les cas");
   const [showAdmission,    setShowAdmission]    = useState(false);
@@ -34,7 +34,7 @@ export default function Ophtalmologie() {
 
   const filtered = patientsData.filter((p) => {
     const matchSearch  = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.motif.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || p.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les médecins" || p.medecin === selectedMedecin;
     const matchCas     = selectedCas     === "Tous les cas"      || p.casType === selectedCas;
     return matchSearch && matchMedecin && matchCas;
   });
@@ -106,12 +106,12 @@ export default function Ophtalmologie() {
             <thead>
               <tr>
                 <th>Nom du patient</th>
-                <th>Date de Naissance / Ã‚ge</th>
-                <th>MÃ©decin AssignÃ©</th>
+                <th>Date de Naissance / Âge</th>
+                <th>Médecin Assigné</th>
                 <th>Type d'Examen / Cas</th>
-                <th>RÃ©sultats ClÃ©s / DÃ©t.</th>
+                <th>Résultats Clés / Dét.</th>
                 <th>Date d'admission</th>
-                <th>Cas TraitÃ© / Motif</th>
+                <th>Cas Traité / Motif</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -120,8 +120,8 @@ export default function Ophtalmologie() {
                 <tr>
                   <td colSpan={8}>
                     <div className="oph-empty">
-                      <div className="oph-empty-icon">ðŸ‘ï¸</div>
-                      <div>Aucun patient enregistrÃ©</div>
+                      <div className="oph-empty-icon">👁️</div>
+                      <div>Aucun patient enregistré</div>
                     </div>
                   </td>
                 </tr>
@@ -162,7 +162,7 @@ export default function Ophtalmologie() {
 
           <div className="oph-footer">
             <span>Affichage de <span className="oph-count">{filtered.length}</span> sur <span className="oph-count">{patientsData.length}</span> patients</span>
-            <span>Service d'Ophtalmologie â€” MedGest Connect</span>
+            <span>Service d'Ophtalmologie — MedGest Connect</span>
           </div>
         </div>
 
@@ -178,18 +178,18 @@ export default function Ophtalmologie() {
               </div>
               <div>
                 <div className="oph-modal-title">{selectedPatient.nom}</div>
-                <div className="oph-modal-subtitle">Dossier patient â€” Ophtalmologie</div>
+                <div className="oph-modal-subtitle">Dossier patient — Ophtalmologie</div>
               </div>
-              <button className="oph-modal-close" onClick={closeModal}>âœ•</button>
+              <button className="oph-modal-close" onClick={closeModal}>✕</button>
             </div>
 
             <div className="oph-modal-grid">
               {[
-                { label: "Ã‚ge",                 value: selectedPatient.age           },
+                { label: "Âge",                 value: selectedPatient.age           },
                 { label: "Date d'admission",       value: selectedPatient.dateAdmission },
-                { label: "MÃ©decin AssignÃ©",      value: selectedPatient.medecin       },
+                { label: "Médecin Assigné",      value: selectedPatient.medecin       },
                 { label: "Type d'Examen",        value: selectedPatient.typeExamen    },
-                { label: "RÃ©sultats / DÃ©tails",  value: selectedPatient.details       },
+                { label: "Résultats / Détails",  value: selectedPatient.details       },
                 { label: "Motif / Cas",          value: selectedPatient.motif         },
               ].map((f) => (
                 <div key={f.label} className="oph-modal-field">

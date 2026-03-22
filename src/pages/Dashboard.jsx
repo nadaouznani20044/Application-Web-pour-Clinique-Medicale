@@ -11,11 +11,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import '../styles/dashboard.css';
+import '../styles/Dashboard.css';
 
-const ROLE_MEDECIN = 'M\u00e9decin';
-const ROLE_MEDECIN_CHEF = 'M\u00e9decin Chef';
-const ROLE_RECEPTION = 'R\u00e9ceptionniste';
+const ROLE_MEDECIN = 'Médecin';
+const ROLE_MEDECIN_CHEF = 'Médecin Chef';
+const ROLE_RECEPTION = 'Réceptionniste';
 
 const Dashboard = ({ role }) => {
   const isAdmin = role === 'Administrateur';
@@ -121,9 +121,7 @@ const Dashboard = ({ role }) => {
               {alerts.map((alert, idx) => (
                 <div key={idx} className="alert-item">
                   <div className="alert-content">
-                    <span className={`alert-badge ${alert.class}`}>
-                      {alert.type}
-                    </span>
+                    <span className={`alert-badge ${alert.class}`}>{alert.type}</span>
                     <span className="alert-text">{alert.text}</span>
                   </div>
                   <span className="alert-time">{alert.time}</span>

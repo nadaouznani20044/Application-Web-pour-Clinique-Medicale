@@ -4,33 +4,33 @@ import "../styles/Medecineinterne.css";
 
 const patientsData = [];
 
-const medecins    = ["Tous les mÃ©decins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
-const pathologies = ["Toutes les pathologies", "DiabÃ¨te", "Hypertension", "Insuffisance cardiaque", "BPCO", "Insuffisance rÃ©nale", "Autre"];
+const medecins    = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const pathologies = ["Toutes les pathologies", "Diabète", "Hypertension", "Insuffisance cardiaque", "BPCO", "Insuffisance rénale", "Autre"];
 const statuts     = ["Tous les statuts", "hospitalise", "consultation", "suivi", "stable", "decompense"];
 
 const statutLabels = {
-  "hospitalise":  { label: "HospitalisÃ©",    color: "#0369a1", bg: "#f0f9ff" },
+  "hospitalise":  { label: "Hospitalisé",    color: "#0369a1", bg: "#f0f9ff" },
   "consultation": { label: "Consultation",   color: "#6d28d9", bg: "#faf5ff" },
-  "suivi":        { label: "Suivi rÃ©gulier", color: "#059669", bg: "#ecfdf5" },
+  "suivi":        { label: "Suivi régulier", color: "#059669", bg: "#ecfdf5" },
   "stable":       { label: "Stable",         color: "#374151", bg: "#f3f4f6" },
-  "decompense":   { label: "DÃ©compensÃ©",     color: "#dc2626", bg: "#fef2f2" },
+  "decompense":   { label: "Décompensé",     color: "#dc2626", bg: "#fef2f2" },
 };
 
 const pathologieConfig = {
-  "DiabÃ¨te":               { icon: "ðŸ©¸", color: "#b45309", bg: "#fffbeb" },
-  "Hypertension":          { icon: "ðŸ’“", color: "#dc2626", bg: "#fef2f2" },
-  "Insuffisance cardiaque":{ icon: "â¤ï¸", color: "#be123c", bg: "#fff1f2" },
-  "BPCO":                  { icon: "ðŸ«", color: "#0369a1", bg: "#f0f9ff" },
-  "Insuffisance rÃ©nale":   { icon: "ðŸ«˜", color: "#6d28d9", bg: "#faf5ff" },
-  "Autre":                 { icon: "âš•ï¸",  color: "#374151", bg: "#f3f4f6" },
+  "Diabète":               { icon: "🩸", color: "#b45309", bg: "#fffbeb" },
+  "Hypertension":          { icon: "💓", color: "#dc2626", bg: "#fef2f2" },
+  "Insuffisance cardiaque":{ icon: "❤️", color: "#be123c", bg: "#fff1f2" },
+  "BPCO":                  { icon: "🫁", color: "#0369a1", bg: "#f0f9ff" },
+  "Insuffisance rénale":   { icon: "🫘", color: "#6d28d9", bg: "#faf5ff" },
+  "Autre":                 { icon: "⚕️",  color: "#374151", bg: "#f3f4f6" },
 };
 
 const maladiesChroniques = {
-  "DiabÃ¨te":               ["GlycÃ©mie Ã  jeun", "HbA1c", "Fond d'Å“il annuel", "Bilan rÃ©nal", "Neuropathie", "Pied diabÃ©tique"],
-  "Hypertension":          ["Tension artÃ©rielle", "ECG", "Bilan lipidique", "CrÃ©atinine", "Fond d'Å“il", "Ã‰chocardiographie"],
-  "Insuffisance cardiaque":["BNP / NT-proBNP", "Ã‰chocardiographie", "Rx thorax", "Ionogramme", "Poids quotidien", "DiurÃ¨se"],
-  "BPCO":                  ["EFR / SpiromÃ©trie", "Gaz du sang", "Rx thorax", "OxymÃ©trie", "Tabacologie", "RÃ©habilitation"],
-  "Insuffisance rÃ©nale":   ["CrÃ©atinine / DFG", "Ionogramme", "UricÃ©mie", "ProtÃ©inurie", "Ã‰chographie rÃ©nale", "Dialyse"],
+  "Diabète":               ["Glycémie à jeun", "HbA1c", "Fond d'œil annuel", "Bilan rénal", "Neuropathie", "Pied diabétique"],
+  "Hypertension":          ["Tension artérielle", "ECG", "Bilan lipidique", "Créatinine", "Fond d'œil", "Échocardiographie"],
+  "Insuffisance cardiaque":["BNP / NT-proBNP", "Échocardiographie", "Rx thorax", "Ionogramme", "Poids quotidien", "Diurèse"],
+  "BPCO":                  ["EFR / Spirométrie", "Gaz du sang", "Rx thorax", "Oxymétrie", "Tabacologie", "Réhabilitation"],
+  "Insuffisance rénale":   ["Créatinine / DFG", "Ionogramme", "Uricémie", "Protéinurie", "Échographie rénale", "Dialyse"],
 };
 
 const avatarColors = [
@@ -44,18 +44,18 @@ function getAvatarColor(name) {
 
 export default function MedecineInterne() {
   const [searchQuery,      setSearchQuery]      = useState("");
-  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les mÃ©decins");
+  const [selectedMedecin,  setSelectedMedecin]  = useState("Tous les médecins");
   const [selectedDate,     setSelectedDate]     = useState("");
   const [selectedPath,     setSelectedPath]     = useState("Toutes les pathologies");
   const [selectedStatut,   setSelectedStatut]   = useState("Tous les statuts");
   const [showAdmission,    setShowAdmission]    = useState(false);
   const [showModal,        setShowModal]        = useState(false);
   const [selectedPatient,  setSelectedPatient]  = useState(null);
-  const [activePathTab,    setActivePathTab]    = useState("DiabÃ¨te");
+  const [activePathTab,    setActivePathTab]    = useState("Diabète");
 
   const filtered = patientsData.filter((p) => {
     const matchSearch  = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.pathologie.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les mÃ©decins"        || p.medecin    === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les médecins"        || p.medecin    === selectedMedecin;
     const matchPath    = selectedPath    === "Toutes les pathologies"   || p.pathologie === selectedPath;
     const matchStatut  = selectedStatut  === "Tous les statuts"         || p.statut     === selectedStatut;
     return matchSearch && matchMedecin && matchPath && matchStatut;
@@ -73,13 +73,13 @@ export default function MedecineInterne() {
         <div className="med-header">
           <div>
             <h1 className="med-title">
-              Gestion des Patients : <span>MÃ©decine Interne</span>
+              Gestion des Patients : <span>Médecine Interne</span>
               <span className="med-badge">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
                 Actif
               </span>
             </h1>
-            <p className="med-subtitle">Maladies chroniques Â· Suivi rÃ©gulier Â· Patients adultes non chirurgicaux</p>
+            <p className="med-subtitle">Maladies chroniques · Suivi régulier · Patients adultes non chirurgicaux</p>
           </div>
           <button className="med-btn-add" onClick={() => setShowAdmission(true)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -92,12 +92,12 @@ export default function MedecineInterne() {
         
         <div className="med-stats">
           {[
-            { label: "Total Patients",    value: patientsData.length,                    cls: "total",  icon: "ðŸ‘¤" },
-            { label: "DiabÃ¨te",           value: countBy("pathologie", "DiabÃ¨te"),        cls: "diab",   icon: "ðŸ©¸" },
-            { label: "Hypertension",      value: countBy("pathologie", "Hypertension"),   cls: "hta",    icon: "ðŸ’“" },
-            { label: "HospitalisÃ©s",      value: countBy("statut",    "hospitalise"),     cls: "hosp",   icon: "ðŸ¥" },
-            { label: "Suivi rÃ©gulier",    value: countBy("statut",    "suivi"),           cls: "suivi",  icon: "ðŸ“…" },
-            { label: "DÃ©compensÃ©s",       value: countBy("statut",    "decompense"),      cls: "decomp", icon: "âš ï¸"  },
+            { label: "Total Patients",    value: patientsData.length,                    cls: "total",  icon: "👤" },
+            { label: "Diabète",           value: countBy("pathologie", "Diabète"),        cls: "diab",   icon: "🩸" },
+            { label: "Hypertension",      value: countBy("pathologie", "Hypertension"),   cls: "hta",    icon: "💓" },
+            { label: "Hospitalisés",      value: countBy("statut",    "hospitalise"),     cls: "hosp",   icon: "🏥" },
+            { label: "Suivi régulier",    value: countBy("statut",    "suivi"),           cls: "suivi",  icon: "📅" },
+            { label: "Décompensés",       value: countBy("statut",    "decompense"),      cls: "decomp", icon: "⚠️"  },
           ].map((s) => (
             <div key={s.cls} className={`med-stat-card ${s.cls}`}>
               <div className="med-stat-icon">{s.icon}</div>
@@ -173,11 +173,11 @@ export default function MedecineInterne() {
             <thead>
               <tr>
                 <th>Patient</th>
-                <th>Ã‚ge</th>
-                <th>MÃ©decin RÃ©fÃ©rent</th>
+                <th>Âge</th>
+                <th>Médecin Référent</th>
                 <th>Pathologie Chronique</th>
                 <th>Depuis</th>
-                <th>Dernier ContrÃ´le</th>
+                <th>Dernier Contrôle</th>
                 <th>Prochain RDV</th>
                 <th>Statut</th>
                 <th>Actions</th>
@@ -188,9 +188,9 @@ export default function MedecineInterne() {
                 <tr>
                   <td colSpan={9}>
                     <div className="med-empty">
-                      <div className="med-empty-icon">âš•ï¸</div>
-                      <div className="med-empty-title">Aucun patient enregistrÃ©</div>
-                      <div className="med-empty-sub">Les patients en suivi de mÃ©decine interne apparaÃ®tront ici</div>
+                      <div className="med-empty-icon">⚕️</div>
+                      <div className="med-empty-title">Aucun patient enregistré</div>
+                      <div className="med-empty-sub">Les patients en suivi de médecine interne apparaîtront ici</div>
                     </div>
                   </td>
                 </tr>
@@ -239,7 +239,7 @@ export default function MedecineInterne() {
 
           <div className="med-footer">
             <span>Affichage de <span className="med-count">{filtered.length}</span> sur <span className="med-count">{patientsData.length}</span> patients</span>
-            <span>MÃ©decine Interne â€” MedGest Connect</span>
+            <span>Médecine Interne — MedGest Connect</span>
           </div>
         </div>
 
@@ -255,20 +255,20 @@ export default function MedecineInterne() {
               </div>
               <div>
                 <div className="med-modal-title">{selectedPatient.nom}</div>
-                <div className="med-modal-subtitle">Dossier patient â€” MÃ©decine Interne</div>
+                <div className="med-modal-subtitle">Dossier patient — Médecine Interne</div>
               </div>
-              <button className="med-modal-close" onClick={closeModal}>âœ•</button>
+              <button className="med-modal-close" onClick={closeModal}>✕</button>
             </div>
             <div className="med-modal-grid">
               {[
-                { label: "Ã‚ge",                value: selectedPatient.age            },
+                { label: "Âge",                value: selectedPatient.age            },
                 { label: "Pathologie",         value: selectedPatient.pathologie     },
-                { label: "MÃ©decin RÃ©fÃ©rent",   value: selectedPatient.medecin        },
+                { label: "Médecin Référent",   value: selectedPatient.medecin        },
                 { label: "Suivi depuis",       value: selectedPatient.depuis         },
-                { label: "Dernier contrÃ´le",   value: selectedPatient.dernierControle},
+                { label: "Dernier contrôle",   value: selectedPatient.dernierControle},
                 { label: "Prochain RDV",       value: selectedPatient.prochainRdv    },
                 { label: "Statut",             value: statutLabels[selectedPatient.statut]?.label },
-                { label: "Notes",              value: selectedPatient.notes || "â€”"   },
+                { label: "Notes",              value: selectedPatient.notes || "—"   },
               ].map((f) => (
                 <div key={f.label} className="med-modal-field">
                   <label>{f.label}</label>

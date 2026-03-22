@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Eye, EyeOff, Bell, Save, ChevronDown, HelpCircle, Shield, Activity } from 'lucide-react';
 import { ROLE_OPTIONS } from '../auth/permissions';
-import '../styles/login.css';
+import '../styles/Login.css';
 
 const MedGestLogin = ({ onLogin }) => {
   const [userRole, setUserRole] = useState(ROLE_OPTIONS[0]?.value || 'Administrateur');
@@ -47,7 +47,7 @@ const MedGestLogin = ({ onLogin }) => {
               <HelpCircle size={14} /> Aide
             </button>
             <div className="lang-btn">
-              Langue: FranÃ§ais (FR) <ChevronDown size={13} />
+              Langue: Français (FR) <ChevronDown size={13} />
             </div>
 
             
@@ -67,7 +67,7 @@ const MedGestLogin = ({ onLogin }) => {
 
                 
                 <div className="form-group">
-                  <label className="form-label">Profil / RÃ´le</label>
+                  <label className="form-label">Profil / Rôle</label>
                   <select
                     className="form-select"
                     value={userRole}
@@ -103,7 +103,7 @@ const MedGestLogin = ({ onLogin }) => {
                 <div className="form-group">
                   <div className="form-label-row">
                     <label className="form-label">Mot de passe</label>
-                    <a href="#forgot" className="forgot-link">Mot de passe oubliÃ© ?</a>
+                    <a href="#forgot" className="forgot-link">Mot de passe oublié ?</a>
                   </div>
                   <div className="input-wrapper">
                     <input

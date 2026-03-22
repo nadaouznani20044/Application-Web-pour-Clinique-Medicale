@@ -4,12 +4,12 @@ import "../styles/Gynecologie.css";
 
 const patientesData = [
 ];
-const medecins  = ["Tous les mÃ©decins",];
+const medecins  = ["Tous les médecins",];
 const casTypes  = ["Tous les cas", "grossesse", "echographie", "examen", "postpartum"];
 
 const casTypeLabels = {
   grossesse:   { label: "Grossesse",    color: "#6b21a8", bg: "#faf5ff" },
-  echographie: { label: "Ã‰chographie",  color: "#0369a1", bg: "#f0f9ff" },
+  echographie: { label: "Échographie",  color: "#0369a1", bg: "#f0f9ff" },
   examen:      { label: "Examen",       color: "#0f766e", bg: "#f0fdfa" },
   postpartum:  { label: "Post-Partum",  color: "#b45309", bg: "#fffbeb" },
 };
@@ -25,7 +25,7 @@ function getAvatarColor(name) {
 
 export default function Gynecologie() {
   const [searchQuery,     setSearchQuery]     = useState("");
-  const [selectedMedecin, setSelectedMedecin] = useState("Tous les mÃ©decins");
+  const [selectedMedecin, setSelectedMedecin] = useState("Tous les médecins");
   const [selectedDate,    setSelectedDate]    = useState("");
   const [selectedCas,     setSelectedCas]     = useState("Tous les cas");
   const [showAdmission,   setShowAdmission]   = useState(false);
@@ -34,7 +34,7 @@ export default function Gynecologie() {
 
   const filtered = patientesData.filter((p) => {
     const matchSearch  = p.nom.toLowerCase().includes(searchQuery.toLowerCase()) || p.motif.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchMedecin = selectedMedecin === "Tous les mÃ©decins" || p.medecin === selectedMedecin;
+    const matchMedecin = selectedMedecin === "Tous les médecins" || p.medecin === selectedMedecin;
     const matchCas     = selectedCas     === "Tous les cas"      || p.casType === selectedCas;
     return matchSearch && matchMedecin && matchCas;
   });
@@ -49,7 +49,7 @@ export default function Gynecologie() {
         
         <div className="gyn-header">
           <h1 className="gyn-title">
-            Gestion de Patientes : <span>Service de GynÃ©cologie</span>
+            Gestion de Patientes : <span>Service de Gynécologie</span>
             <span className="gyn-badge">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
               Actif
@@ -68,7 +68,7 @@ export default function Gynecologie() {
           {[
             { label: "Total Patientes",  value: patientesData.length,                                          cls: "total"      },
             { label: "Grossesses",       value: patientesData.filter(p => p.casType === "grossesse").length,   cls: "grossesse"  },
-            { label: "Ã‰chographies",     value: patientesData.filter(p => p.casType === "echographie").length, cls: "echographie"},
+            { label: "Échographies",     value: patientesData.filter(p => p.casType === "echographie").length, cls: "echographie"},
             { label: "Post-Partum",      value: patientesData.filter(p => p.casType === "postpartum").length,  cls: "postpartum" },
           ].map((s) => (
             <div key={s.cls} className={`gyn-stat-card ${s.cls}`}>
@@ -106,12 +106,12 @@ export default function Gynecologie() {
             <thead>
               <tr>
                 <th>Nom du patient</th>
-                <th>Date de Naissance / Ã‚ge</th>
-                <th>MÃ©decin AssignÃ©</th>
+                <th>Date de Naissance / Âge</th>
+                <th>Médecin Assigné</th>
                 <th>Type d'Examen / Cas</th>
-                <th>DÃ©tails SpÃ©cifiques</th>
+                <th>Détails Spécifiques</th>
                 <th>Date d'admission</th>
-                <th>Cas TraitÃ© / Motif</th>
+                <th>Cas Traité / Motif</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -120,8 +120,8 @@ export default function Gynecologie() {
                 <tr>
                   <td colSpan={8}>
                     <div className="gyn-empty">
-                      <div className="gyn-empty-icon">ðŸ”</div>
-                      <div>Aucune patiente trouvÃ©e</div>
+                      <div className="gyn-empty-icon">🔍</div>
+                      <div>Aucune patiente trouvée</div>
                     </div>
                   </td>
                 </tr>
@@ -164,7 +164,7 @@ export default function Gynecologie() {
 
           <div className="gyn-footer">
             <span>Affichage de <span className="gyn-count">{filtered.length}</span> sur <span className="gyn-count">{patientesData.length}</span> patientes</span>
-            <span>Service de GynÃ©cologie â€” MedGest Connect</span>
+            <span>Service de Gynécologie — MedGest Connect</span>
           </div>
         </div>
 
@@ -180,18 +180,18 @@ export default function Gynecologie() {
               </div>
               <div>
                 <div className="gyn-modal-title">{selectedPatient.nom}</div>
-                <div className="gyn-modal-subtitle">Dossier patiente â€” GynÃ©cologie</div>
+                <div className="gyn-modal-subtitle">Dossier patiente — Gynécologie</div>
               </div>
-              <button className="gyn-modal-close" onClick={closeModal}>âœ•</button>
+              <button className="gyn-modal-close" onClick={closeModal}>✕</button>
             </div>
 
             <div className="gyn-modal-grid">
               {[
-                { label: "Ã‚ge",                value: selectedPatient.age           },
+                { label: "Âge",                value: selectedPatient.age           },
                 { label: "Date d'admission",      value: selectedPatient.dateAdmission },
-                { label: "MÃ©decin AssignÃ©",     value: selectedPatient.medecin       },
+                { label: "Médecin Assigné",     value: selectedPatient.medecin       },
                 { label: "Type d'Examen",       value: selectedPatient.typeExamen    },
-                { label: "DÃ©tails SpÃ©cifiques", value: selectedPatient.details       },
+                { label: "Détails Spécifiques", value: selectedPatient.details       },
                 { label: "Motif / Cas",         value: selectedPatient.motif         },
               ].map((f) => (
                 <div key={f.label} className="gyn-modal-field">

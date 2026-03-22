@@ -3,7 +3,7 @@ import { Plus, RefreshCw } from 'lucide-react';
 import '../styles/Calendar.css';
 
 const DAY_NAMES_FR  = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
-const MONTH_NAMES_FR = ['Jan','FÃ©v','Mar','Avr','Mai','Juin','Juil','AoÃ»t','Sep','Oct','Nov','DÃ©c'];
+const MONTH_NAMES_FR = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
 
 function getWeekDays() {
   const today = new Date();
@@ -32,28 +32,28 @@ const HOURS = [
 
 const SERVICES = [
   { key: 'tous',         label: 'Tous les Services', color: '#1a6b4a' },
-  { key: 'pediatrie',    label: 'PÃ©diatrie',          color: '#16a34a' },
-  { key: 'gynecologie',  label: 'GynÃ©cologie',         color: '#7c3aed' },
+  { key: 'pediatrie',    label: 'Pédiatrie',          color: '#16a34a' },
+  { key: 'gynecologie',  label: 'Gynécologie',         color: '#7c3aed' },
   { key: 'chirurgie',    label: 'Chirurgie',           color: '#374151' },
   { key: 'radiologie',   label: 'Radiologie',          color: '#0f4c75' },
   { key: 'laboratoire',  label: 'Laboratoire',         color: '#b45309' },
   { key: 'urgence',      label: 'Urgence',             color: '#dc2626' },
-  { key: 'medecine',     label: 'MÃ©d. Interne',        color: '#0d7377' },
+  { key: 'medecine',     label: 'Méd. Interne',        color: '#0d7377' },
 ];
 
-const MEDECINS  = ['Tous les mÃ©decins','Dr. A. Fournier','Dr. J. Chen','Dr. M. Blanc'];
+const MEDECINS  = ['Tous les médecins','Dr. A. Fournier','Dr. J. Chen','Dr. M. Blanc'];
 const CAS_TYPES = ['Tous les cas','Consultation','Suivi','Urgence','Chirurgie','Examen','Vaccination'];
 
 const weekLabel = (() => {
   const f = WEEK_DAYS[0], l = WEEK_DAYS[6];
   return f.month === l.month
-    ? `${f.date} â€” ${l.date} ${l.month}`
-    : `${f.date} ${f.month} â€” ${l.date} ${l.month}`;
+    ? `${f.date} — ${l.date} ${l.month}`
+    : `${f.date} ${f.month} — ${l.date} ${l.month}`;
 })();
 
 const Calendar = () => {
   const [selectedService, setSelectedService] = useState('tous');
-  const [selectedMedecin, setSelectedMedecin] = useState('Tous les mÃ©decins');
+  const [selectedMedecin, setSelectedMedecin] = useState('Tous les médecins');
   const [selectedCas,     setSelectedCas]     = useState('Tous les cas');
   const [rdvs,            setRdvs]            = useState([]);
   const [showModal,       setShowModal]       = useState(false);
@@ -76,7 +76,7 @@ const Calendar = () => {
 
   const filtered = rdvs.filter(r => {
     const matchSvc = selectedService === 'tous' || r.service === selectedService;
-    const matchMed = selectedMedecin === 'Tous les mÃ©decins' || r.medecin === selectedMedecin;
+    const matchMed = selectedMedecin === 'Tous les médecins' || r.medecin === selectedMedecin;
     const matchCas = selectedCas === 'Tous les cas' || r.type === selectedCas;
     return matchSvc && matchMed && matchCas;
   });
@@ -138,9 +138,9 @@ const Calendar = () => {
       
       <div className="cal-stats">
         {[
-          { label: 'RDV semaine', value: totalRdvs,  icon: 'ðŸ“…', cls: 'total' },
-          { label: "Aujourd'hui", value: todayRdvs,  icon: 'ðŸ•', cls: 'today' },
-          { label: 'Urgences',    value: urgentRdvs, icon: 'ðŸš¨', cls: 'urg'   },
+          { label: 'RDV semaine', value: totalRdvs,  icon: '📅', cls: 'total' },
+          { label: "Aujourd'hui", value: todayRdvs,  icon: '🕐', cls: 'today' },
+          { label: 'Urgences',    value: urgentRdvs, icon: '🚨', cls: 'urg'   },
         ].map(s => (
           <div key={s.cls} className={`cal-stat-card ${s.cls}`}>
             <span className="cal-stat-icon">{s.icon}</span>
@@ -175,7 +175,7 @@ const Calendar = () => {
         <select className="cal-select" value={selectedCas} onChange={e => setSelectedCas(e.target.value)}>
           {CAS_TYPES.map(c => <option key={c}>{c}</option>)}
         </select>
-        <span className="cal-rdv-count">{filtered.length} RDV affichÃ©s</span>
+        <span className="cal-rdv-count">{filtered.length} RDV affichés</span>
       </div>
 
       
@@ -231,7 +231,7 @@ const Calendar = () => {
       
       {filtered.length === 0 && (
         <div className="cal-empty">
-          <div className="cal-empty-icon">ðŸ“…</div>
+          <div className="cal-empty-icon">📅</div>
           <div className="cal-empty-title">Aucun RDV cette semaine</div>
           <div className="cal-empty-sub">Cliquez sur une cellule ou "+ Ajouter RDV" pour planifier</div>
         </div>
@@ -252,8 +252,8 @@ const Calendar = () => {
         <div className="cal-overlay" onClick={() => setShowModal(false)}>
           <div className="cal-modal" onClick={e => e.stopPropagation()}>
             <div className="cal-modal-head">
-              <span className="cal-modal-title">âž• Nouveau RDV</span>
-              <button className="cal-modal-close" onClick={() => setShowModal(false)}>âœ•</button>
+              <span className="cal-modal-title">➕ Nouveau RDV</span>
+              <button className="cal-modal-close" onClick={() => setShowModal(false)}>✕</button>
             </div>
             <div className="cal-modal-body">
               <div className="cal-form-row">
@@ -269,9 +269,9 @@ const Calendar = () => {
                   </select>
                 </div>
                 <div className="cal-form-row">
-                  <label>MÃ©decin</label>
+                  <label>Médecin</label>
                   <select className="cal-form-select" value={newRdv.medecin} onChange={e => setNewRdv({...newRdv, medecin: e.target.value})}>
-                    {MEDECINS.filter(m => m !== 'Tous les mÃ©decins').map(m => <option key={m}>{m}</option>)}
+                    {MEDECINS.filter(m => m !== 'Tous les médecins').map(m => <option key={m}>{m}</option>)}
                   </select>
                 </div>
                 <div className="cal-form-row">
@@ -316,8 +316,8 @@ const Calendar = () => {
           <div className="cal-overlay" onClick={() => setShowModal(false)}>
             <div className="cal-modal" onClick={e => e.stopPropagation()}>
               <div className="cal-modal-head" style={{ borderBottom: `3px solid ${cfg.border}` }}>
-                <span className="cal-modal-title" style={{ color: cfg.color }}>ðŸ“… DÃ©tail RDV</span>
-                <button className="cal-modal-close" onClick={() => setShowModal(false)}>âœ•</button>
+                <span className="cal-modal-title" style={{ color: cfg.color }}>📅 Détail RDV</span>
+                <button className="cal-modal-close" onClick={() => setShowModal(false)}>✕</button>
               </div>
               <div className="cal-modal-body">
                 <div className="cal-detail-patient">
@@ -329,11 +329,11 @@ const Calendar = () => {
                 </div>
                 <div className="cal-detail-grid">
                   {[
-                    { label: 'MÃ©decin', value: selectedRdv.medecin },
-                    { label: 'Jour',    value: day ? `${day.label} ${day.date} ${day.month}` : 'â€”' },
+                    { label: 'Médecin', value: selectedRdv.medecin },
+                    { label: 'Jour',    value: day ? `${day.label} ${day.date} ${day.month}` : '—' },
                     { label: 'Heure',   value: selectedRdv.heure },
                     { label: 'Type',    value: selectedRdv.type },
-                    { label: 'Notes',   value: selectedRdv.notes || 'â€”' },
+                    { label: 'Notes',   value: selectedRdv.notes || '—' },
                   ].map(f => (
                     <div key={f.label} className="cal-detail-field">
                       <label>{f.label}</label>
@@ -343,7 +343,7 @@ const Calendar = () => {
                 </div>
               </div>
               <div className="cal-modal-foot">
-                <button className="cal-btn-delete" onClick={() => handleDelete(selectedRdv.id)}>ðŸ—‘ Supprimer</button>
+                <button className="cal-btn-delete" onClick={() => handleDelete(selectedRdv.id)}>🗑 Supprimer</button>
                 <button className="cal-btn-cancel" onClick={() => setShowModal(false)}>Fermer</button>
                 <button className="cal-btn-save" onClick={() => setShowModal(false)}>Modifier</button>
               </div>

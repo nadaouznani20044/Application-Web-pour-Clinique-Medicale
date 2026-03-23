@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import '../styles/add-personnel-modal.css';
+import '../styles/AddPersonnelModal.css';
 
 const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) => {
   const [formData, setFormData] = useState({

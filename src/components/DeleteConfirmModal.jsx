@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlertTriangle, X } from 'lucide-react';
-import '../styles/delete-confirm-modal.css';
+import '../styles/DeleteConfirmModal.css';
 
 const DeleteConfirmModal = ({ isOpen, itemName, itemType = 'Service', onClose, onConfirm }) => {
   if (!isOpen) return null;

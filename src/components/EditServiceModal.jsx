@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import '../styles/edit-service-modal.css';
+import '../styles/EditServiceModal.css';
 
 const EditServiceModal = ({ isOpen, service, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({

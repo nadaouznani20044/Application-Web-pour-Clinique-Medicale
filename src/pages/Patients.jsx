@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
-import '../styles/patients.css';
+import '../styles/Patients.css';
 
 const Patients = () => {
   const [patients, setPatients] = useState([

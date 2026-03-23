@@ -5,10 +5,10 @@ import AddPersonnelModal from '../components/AddPersonnelModal';
 import DeleteConfirmModal from '../components/DeleteConfirmModal';
 import ChangeChiefModal from '../components/ChangeChiefModal';
 import '../styles/Gyneco.css';
-import '../styles/edit-service-modal.css';
-import '../styles/add-personnel-modal.css';
-import '../styles/delete-confirm-modal.css';
-import '../styles/change-chief-modal.css';
+import '../styles/EditServiceModal.css';
+import '../styles/AddPersonnelModal.css';
+import '../styles/DeleteConfirmModal.css';
+import '../styles/ChangeChiefModal.css';
 
 const ServiceDetail = ({ service, onBack }) => {
   const [activeTab, setActiveTab] = useState('informations');

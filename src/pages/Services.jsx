@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Eye, Trash2 } from 'lucide-react';
-import '../styles/services.css';
+import '../styles/Services.css';
 
 const Services = ({ onViewService }) => {
   const [services, setServices] = useState([

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ROLE_LABELS } from '../auth/permissions';
-import '../styles/Adduserform.css';
+import '../styles/AddUserForm.css';
 
 const INITIAL_FORM_DATA = {
   firstName: '',

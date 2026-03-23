@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import '../styles/change-chief-modal.css';
+import '../styles/ChangeChiefModal.css';
 
 const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({

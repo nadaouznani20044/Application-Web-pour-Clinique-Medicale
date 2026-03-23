@@ -1,6 +1,6 @@
 ﻿import { useState } from "react";
 import AdmissionPatientModal from "../components/AdmissionPatientModal";
-import "../styles/Medecineinterne.css";
+import "../styles/MedecineInterne.css";
 
 const patientsData = [];
 

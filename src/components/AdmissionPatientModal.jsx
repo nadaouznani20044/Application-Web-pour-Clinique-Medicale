@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Toast from './Toast';
-import '../styles/admission-patient-modal.css';
+import '../styles/AdmissionPatientModal.css';
 
 const SERVICE_OPTIONS = [
   { value: 'pediatrie', label: 'Pédiatrie' },

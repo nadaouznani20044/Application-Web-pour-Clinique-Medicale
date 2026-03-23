@@ -16,7 +16,7 @@ import Radiologie from './gereservices/Radiologie';
 import Urgence from './gereservices/Urgence';
 import Gyneco from './gestionservices/Gyneco';
 import { canAccess, getDefaultPage } from './auth/permissions';
-import './styles/global.css';
+import './styles/Global.css';
 import './styles/App.css';
 import './styles/Login.css';
 import './styles/Users.css';

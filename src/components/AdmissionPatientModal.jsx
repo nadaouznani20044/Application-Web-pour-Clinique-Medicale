@@ -20,7 +20,6 @@ const BLOOD_TYPE_OPTIONS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 const GENDER_OPTIONS = [
   { value: 'homme', label: 'Homme' },
   { value: 'femme', label: 'Femme' },
-  { value: 'autre', label: 'Autre' },
 ];
 
 const normalize = (value) =>

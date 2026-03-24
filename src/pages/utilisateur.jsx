@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { ROLE_LABELS } from '../auth/permissions';
 import '../styles/Users.css';
-import AddUserForm from '../components/Adduserform';
+import AddUserForm from '../components/AddUserForm';
 import Toast from '../components/Toast';
 
 const getRoleClassName = (role) =>

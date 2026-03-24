@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import AdmissionPatientModal from '../components/AdmissionPatientModal';
 import Toast from '../components/Toast';
 import '../styles/Patients.css';
@@ -131,7 +131,7 @@ const Patients = () => {
                 className="modal-close"
                 aria-label="Fermer la fiche patient"
               >
-                x
+                <X size={18} strokeWidth={2.4} />
               </button>
             </div>
 

@@ -20,9 +20,15 @@ const BLOOD_TYPE_OPTIONS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 const GENDER_OPTIONS = [
   { value: 'homme', label: 'Homme' },
   { value: 'femme', label: 'Femme' },
+  { value: 'autre', label: 'Autre' },
 ];
 
-const normalize = (value) => (value || '').toLowerCase().trim();
+const normalize = (value) =>
+  (value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
 
 const resolveServiceValue = (defaultService) => {
   if (!defaultService) return '';
@@ -47,7 +53,11 @@ const buildEmptyForm = (serviceValue) => ({
   emergencyPhone: '',
 });
 
-const getTodayIso = () => new Date().toISOString().split('T')[0];
+const getTodayIso = () => {
+  const now = new Date();
+  const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return localDate.toISOString().split('T')[0];
+};
 
 const AdmissionPatientModal = ({
   isOpen,

@@ -1,49 +1,55 @@
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
 }
+
 .modal-content {
   background: #ffffff;
   border-radius: 12px;
-  width: 50vw;
+  width: min(560px, 100%);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.modal-header.alert-header {
-  background: #dc2626;
+
+.modal-content.modal-alert {
+  border: 1px solid #fecaca;
 }
 
 .alert-content {
   padding: 2rem;
   text-align: center;
-
 }
 
 .alert-icon {
   color: #dc2626;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .alert-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #0f172a;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
 }
 
 .alert-message {
   font-size: 0.9375rem;
   color: #0f172a;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
+}
+
+.highlight {
+  color: #0f766e;
+  font-weight: 700;
 }
 
 .alert-warning {
@@ -53,14 +59,17 @@
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.5rem;
+}
+
+.alert-actions {
+  border-top: 1px solid #e5e7eb;
 }
 
 .form-actions {
   display: flex;
   gap: 1rem;
   padding: 1.5rem 2rem 2rem;
-  border-top: 2px solid #f0f1f3;
 }
 
 .btn-cancel,
@@ -98,6 +107,7 @@
   .alert-content {
     padding: 1.5rem;
   }
+
   .form-actions {
     flex-direction: column;
     padding: 1rem 1.5rem 1.5rem;

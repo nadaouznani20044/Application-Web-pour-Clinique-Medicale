@@ -11,13 +11,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
 
   const [errors, setErrors] = useState({});
 
-  const doctors = [
-    { id: 1, name: 'Dr. Alice Fournier', title: 'Médecin' },
-    { id: 2, name: 'Dr. James Chen', title: 'Médecin' },
-    { id: 3, name: 'Dr. Karim Hassan', title: 'Médecin Chef' },
-    { id: 4, name: 'Sophie Dupont', title: 'Infirmier' },
-    { id: 5, name: 'Marc Bernard', title: 'Aide-soignant' },
-  ];
+  const doctors = [];
 
   const roles = ['Médecin', 'Infirmier', 'Aide-soignant', 'Technicien'];
 
@@ -126,7 +120,7 @@ const AddPersonnelModal = ({ isOpen, onClose, onSubmit, existingUsers = [] }) =>
               name="notes"
               value={formData.notes}
               onChange={handleChange}
-              placeholder="Ex: Spécialiste échographie, disponible les lundis..."
+              placeholder=""
               rows="3"
             />
           </div>

@@ -3,7 +3,7 @@ import "../styles/Urgence.css";
 
 const urgencesData = [];
 
-const medecins  = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const medecins  = ["Tous les médecins"];
 const types     = ["Tous les types", "Traumatisme", "Cardiaque", "Respiratoire", "Neurologique", "Autre"];
 const triages   = ["Tous les niveaux", "P1", "P2", "P3", "P4"];
 
@@ -17,7 +17,7 @@ const triageConfig = {
 const statutLabels = {
   "admission":    { label: "Admission",       color: "#dc2626", bg: "#fef2f2" },
   "evaluation":   { label: "Évaluation",      color: "#f97316", bg: "#fff7ed" },
-  "traitement":   { label: "Traitement",      color: "#0369a1", bg: "#f0f9ff" },
+  "traitement":   { label: "Traitement",      color: "#0f766e", bg: "#f0fdfa" },
   "stabilise":    { label: "Stabilisé",       color: "#059669", bg: "#ecfdf5" },
   "transfert":    { label: "Transfert",       color: "#6d28d9", bg: "#faf5ff" },
   "surveillance": { label: "Surveillance",    color: "#b45309", bg: "#fffbeb" },
@@ -26,7 +26,7 @@ const statutLabels = {
 const typeConfig = {
   "Traumatisme":   { icon: "🩹", color: "#b45309" },
   "Cardiaque":     { icon: "❤️", color: "#dc2626" },
-  "Respiratoire":  { icon: "🫁", color: "#0369a1" },
+  "Respiratoire":  { icon: "🫁", color: "#0f766e" },
   "Neurologique":  { icon: "🧠", color: "#6d28d9" },
   "Autre":         { icon: "⚕️",  color: "#374151" },
 };
@@ -38,7 +38,7 @@ const orientations = [
 
 const avatarColors = [
   "#b91c1c", "#c2410c", "#b45309", "#15803d",
-  "#0369a1", "#6d28d9", "#be123c", "#7e22ce",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
 ];
 
 function getAvatarColor(name) {

@@ -45,7 +45,7 @@
 }
 
 .modal-header-add{
-  background: linear-gradient(135deg, #0d9488 0%,#0d9488 2 100%);
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
   color: white;
   padding: 24px;
   display: flex;
@@ -128,7 +128,7 @@
   opacity: 0.7;
 }
 
-.form-input textarea {
+textarea.form-input {
   resize: vertical;
   min-height: 100px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -233,13 +233,13 @@
 }
 
 .btn-submit {
-  background: linear-gradient(135deg, #0d9488 0%, #0d9488 100%);
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: linear-gradient(135deg, #0d9488 0%, #0d9488 100%);
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
   box-shadow: 0 6px 16px rgba(27, 94, 32, 0.3);
   transform: translateY(-2px);
 }

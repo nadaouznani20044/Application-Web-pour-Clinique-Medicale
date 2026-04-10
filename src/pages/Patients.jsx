@@ -4,6 +4,8 @@ import AdmissionPatientModal from '../components/AdmissionPatientModal';
 import Toast from '../components/Toast';
 import '../styles/Patients.css';
 
+const EDIT_PATIENT_ROLES = new Set(['Administrateur', 'Médecin Chef', 'Médecin', 'Infirmier']);
+
 const createPatientId = (sequence) => {
   const now = new Date();
   const year = String(now.getFullYear()).slice(-2);
@@ -27,16 +29,24 @@ const isCreatedThisMonth = (value) => {
   return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
 };
 
-const Patients = () => {
+const Patients = ({ role }) => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [showAdmission, setShowAdmission] = useState(false);
+  const [editingPatientId, setEditingPatientId] = useState(null);
   const [toast, setToast] = useState(null);
 
   const totalPatients = patients.length;
   const monthlyPatients = patients.filter((patient) => isCreatedThisMonth(patient.createdAt)).length;
   const activeEmergencies = patients.filter((patient) => patient.serviceValue === 'urgence').length;
   const nextPatientId = createPatientId(totalPatients + 1);
+  const editingPatient = patients.find((patient) => patient.id === editingPatientId) || null;
+  const canEditPatientProfile = EDIT_PATIENT_ROLES.has(role);
+
+  const closeAdmissionModal = () => {
+    setShowAdmission(false);
+    setEditingPatientId(null);
+  };
 
   const handleCreatePatient = (formData) => {
     const newPatient = {
@@ -57,15 +67,55 @@ const Patients = () => {
     };
 
     setPatients((current) => [newPatient, ...current]);
-    setShowAdmission(false);
+    closeAdmissionModal();
     setToast({ message: 'Dossier patient enregistre avec succes', type: 'success' });
+  };
+
+  const handleUpdatePatient = (formData) => {
+    if (!editingPatientId) return;
+
+    setPatients((current) =>
+      current.map((patient) =>
+        patient.id === editingPatientId
+          ? {
+              ...patient,
+              fullName: formData.fullName.trim(),
+              birthDate: formData.birthDate,
+              gender: formData.gender,
+              phone: formData.phone.trim(),
+              service: formData.serviceLabel,
+              serviceValue: formData.service,
+              bloodType: formData.bloodType,
+              medicalHistory: formData.medicalHistory.trim(),
+              emergencyName: formData.emergencyName.trim(),
+              emergencyRelation: formData.emergencyRelation.trim(),
+              emergencyPhone: formData.emergencyPhone.trim(),
+            }
+          : patient
+      )
+    );
+
+    closeAdmissionModal();
+    setToast({ message: 'Profil patient modifie avec succes', type: 'success' });
+  };
+
+  const handleOpenCreate = () => {
+    setEditingPatientId(null);
+    setShowAdmission(true);
+  };
+
+  const handleOpenEdit = () => {
+    if (!selectedPatient || !canEditPatientProfile) return;
+    setEditingPatientId(selectedPatient.id);
+    setSelectedPatient(null);
+    setShowAdmission(true);
   };
 
   return (
     <div className="patients-container">
       <div className="patients-header">
         <h2 className="patients-title">Gestion des Dossiers Patients</h2>
-        <button className="btn-add-patient" onClick={() => setShowAdmission(true)}>
+        <button className="btn-add-patient" onClick={handleOpenCreate}>
           <Plus size={18} />
           Ajouter un Dossier Patient
         </button>
@@ -178,6 +228,11 @@ const Patients = () => {
             </div>
 
             <div className="modal-footer">
+              {canEditPatientProfile && (
+                <button onClick={handleOpenEdit} className="modal-btn modal-btn-secondary">
+                  Modifier le profil
+                </button>
+              )}
               <button onClick={() => setSelectedPatient(null)} className="modal-btn modal-btn-primary">
                 Fermer
               </button>
@@ -188,9 +243,17 @@ const Patients = () => {
 
       <AdmissionPatientModal
         isOpen={showAdmission}
-        onClose={() => setShowAdmission(false)}
-        onSubmit={handleCreatePatient}
-        patientIdPreview={nextPatientId}
+        onClose={closeAdmissionModal}
+        onSubmit={editingPatient ? handleUpdatePatient : handleCreatePatient}
+        patientIdPreview={editingPatient?.id || nextPatientId}
+        initialData={editingPatient}
+        title={editingPatient ? 'Modifier le profil patient' : 'Ajouter un nouveau dossier patient'}
+        subtitle={
+          editingPatient
+            ? "Mettez a jour les informations personnelles, medicales et d'urgence du patient"
+            : "Saisie structuree pour les informations personnelles, medicales et d'urgence"
+        }
+        submitLabel={editingPatient ? 'Enregistrer les modifications' : 'Enregistrer'}
       />
 
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}

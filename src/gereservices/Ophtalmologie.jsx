@@ -4,18 +4,18 @@ import "../styles/Ophtalmologie.css";
 
 const patientsData = [];
 
-const medecins  = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen"];
+const medecins  = ["Tous les médecins"];
 const casTypes  = ["Tous les cas", "examen", "traitement", "chirurgie", "depistage"];
 
 const casTypeLabels = {
-  examen:     { label: "Examen",      color: "#0369a1", bg: "#f0f9ff" },
+  examen:     { label: "Examen",      color: "#0f766e", bg: "#f0fdfa" },
   traitement: { label: "Traitement",  color: "#0f766e", bg: "#f0fdfa" },
   chirurgie:  { label: "Chirurgie",   color: "#b45309", bg: "#fffbeb" },
   depistage:  { label: "Dépistage",   color: "#6d28d9", bg: "#faf5ff" },
 };
 
 const avatarColors = [
-  "#0369a1", "#0891b2", "#0e7490", "#0f766e",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
   "#047857", "#065f46", "#1e40af", "#3730a3",
 ];
 

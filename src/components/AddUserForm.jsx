@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ROLE_LABELS } from '../auth/permissions';
+import React, { useEffect, useState } from 'react';
+import { PERMISSIONS_BY_ROLE, ROLE_LABELS } from '../auth/permissions';
 import '../styles/AddUserForm.css';
 
 const INITIAL_FORM_DATA = {
@@ -12,8 +12,8 @@ const INITIAL_FORM_DATA = {
 };
 
 const DEPARTMENTS = [
-  'Pédiatrie',
-  'Gynécologie',
+  'Pediatrie',
+  'Gynecologie',
   'Urgence',
   'Radiologie',
   'Chirurgie',
@@ -23,48 +23,80 @@ const DEPARTMENTS = [
   'Accueil',
 ];
 
+const PAGE_LABELS = {
+  dashboard: 'Tableau de bord',
+  users: 'Gestion des utilisateurs',
+  services: 'Services',
+  patients: 'Dossiers patients',
+  appointments: 'Rendez-vous',
+  calendar: 'Calendrier',
+  planning: 'Planning',
+  record: 'Dossier patient',
+  referrals: 'References',
+  hospitalization: 'Hospitalisations',
+  settings: 'Parametres systeme',
+  analytics: 'Analytics',
+  chirurgie: 'Chirurgie',
+  gynecologie: 'Gynecologie',
+  laboratoire: 'Laboratoire',
+  medecineinterne: 'Medecine interne',
+  ophtalmologie: 'Ophtalmologie',
+  pediatrie: 'Pediatrie',
+  radiologie: 'Radiologie',
+  urgence: 'Urgence',
+};
+
+const getPermissionLabels = (role) =>
+  (PERMISSIONS_BY_ROLE[role] || []).map((permission) => PAGE_LABELS[permission] || permission);
+
 const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
-  const [formData, setFormData] = useState(editingUser || INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
+  useEffect(() => {
+    if (!isOpen) return;
+    setFormData(
+      editingUser
+        ? {
+            firstName: editingUser.firstName || '',
+            lastName: editingUser.lastName || '',
+            email: editingUser.email || '',
+            password: editingUser.password || '',
+              role: editingUser.role || '',
+              department: editingUser.department || '',
+          }
+        : INITIAL_FORM_DATA
+    );
+    setErrors({});
+  }, [editingUser, isOpen]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({
+      ...current,
       [name]: value,
     }));
+
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
+      setErrors((current) => ({
+        ...current,
         [name]: '',
       }));
     }
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const nextErrors = {};
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'Le prénom est requis';
-    }
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Le nom est requis';
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = "L'email est requis";
-    }
-    if (!formData.password.trim()) {
-      newErrors.password = 'Le mot de passe est requis';
-    }
-    if (!formData.role) {
-      newErrors.role = 'Le rôle est requis';
-    }
-    if (!formData.department) {
-      newErrors.department = 'Le département est requis';
-    }
+    if (!formData.firstName.trim()) nextErrors.firstName = 'Le prenom est requis';
+    if (!formData.lastName.trim()) nextErrors.lastName = 'Le nom est requis';
+    if (!formData.email.trim()) nextErrors.email = "L'email est requis";
+    if (!formData.password.trim()) nextErrors.password = 'Le mot de passe est requis';
+    if (!formData.role) nextErrors.role = 'Le role est requis';
+    if (!formData.department) nextErrors.department = 'Le departement est requis';
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   };
 
   const resetForm = () => {
@@ -72,13 +104,9 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
     setErrors({});
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!validateForm()) return;
     onSubmit?.(formData);
     resetForm();
   };
@@ -90,25 +118,32 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
 
   if (!isOpen) return null;
 
+  const permissionLabels = getPermissionLabels(formData.role);
+
   return (
     <div className="form-overlay">
       <div className="form-modal">
         <div className="form-header">
-          <h2>{editingUser ? "✏️ Modifier l'utilisateur" : '➕ Ajouter un nouvel utilisateur'}</h2>
+          <h2>{editingUser ? "Modifier l'utilisateur" : 'Ajouter un nouvel utilisateur'}</h2>
+          <p className="form-header-subtitle">
+            {editingUser
+              ? 'Modifiez les informations puis enregistrez les changements.'
+              : 'Les permissions sont appliquees automatiquement selon le role choisi. Un email de bienvenue sera envoye apres creation.'}
+          </p>
         </div>
 
         <form className="form-content" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
               <label>
-                Prénom : <span className="required">*</span>
+                Prenom <span className="required">*</span>
               </label>
               <input
                 type="text"
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                placeholder="Ex: Alice"
+                placeholder="Prenom"
                 className={errors.firstName ? 'error' : ''}
               />
               {errors.firstName && <span className="error-message">{errors.firstName}</span>}
@@ -116,14 +151,14 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
 
             <div className="form-group">
               <label>
-                Nom : <span className="required">*</span>
+                Nom <span className="required">*</span>
               </label>
               <input
                 type="text"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                placeholder="Ex: Fournier"
+                placeholder="Nom"
                 className={errors.lastName ? 'error' : ''}
               />
               {errors.lastName && <span className="error-message">{errors.lastName}</span>}
@@ -132,14 +167,14 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
 
           <div className="form-group">
             <label>
-              Email : <span className="required">*</span>
+              Email <span className="required">*</span>
             </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Ex: alice@hospital.com"
+              placeholder="Email"
               className={errors.email ? 'error' : ''}
             />
             {errors.email && <span className="error-message">{errors.email}</span>}
@@ -147,14 +182,14 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
 
           <div className="form-group">
             <label>
-              Mot de passe : <span className="required">*</span>
+              Mot de passe <span className="required">*</span>
             </label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="••••••••"
+              placeholder="********"
               className={errors.password ? 'error' : ''}
             />
             {errors.password && <span className="error-message">{errors.password}</span>}
@@ -163,7 +198,7 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
           <div className="form-row">
             <div className="form-group">
               <label>
-                Rôle : <span className="required">*</span>
+                Role <span className="required">*</span>
               </label>
               <select
                 name="role"
@@ -171,7 +206,7 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 onChange={handleChange}
                 className={errors.role ? 'error' : ''}
               >
-                <option value="">Sélectionner</option>
+                <option value="">Selectionner</option>
                 {ROLE_LABELS.map((role) => (
                   <option key={role} value={role}>
                     {role}
@@ -183,7 +218,7 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
 
             <div className="form-group">
               <label>
-                Département : <span className="required">*</span>
+                Departement <span className="required">*</span>
               </label>
               <select
                 name="department"
@@ -191,7 +226,7 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
                 onChange={handleChange}
                 className={errors.department ? 'error' : ''}
               >
-                <option value="">Sélectionner</option>
+                <option value="">Selectionner</option>
                 {DEPARTMENTS.map((department) => (
                   <option key={department} value={department}>
                     {department}
@@ -202,12 +237,31 @@ const AddUserForm = ({ isOpen, onClose, onSubmit, editingUser = null }) => {
             </div>
           </div>
 
+          <div className="permissions-panel">
+            <div className="permissions-panel-header">
+              <span className="permissions-title">Permissions du role</span>
+              <span className="permissions-count">{permissionLabels.length} acces</span>
+            </div>
+
+            {permissionLabels.length === 0 ? (
+              <div className="permissions-empty">Choisissez un role pour voir les permissions attribuees.</div>
+            ) : (
+              <div className="permissions-list">
+                {permissionLabels.map((label) => (
+                  <span key={label} className="permission-chip">
+                    {label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
           <div className="form-actions">
             <button type="button" onClick={handleCancel} className="btn-cancel">
               Annuler
             </button>
             <button type="submit" className="btn-create">
-              {editingUser ? 'Sauvegarder' : 'Créer'}
+              {editingUser ? 'Enregistrer Modifications' : 'Ajouter Utilisateur'}
             </button>
           </div>
         </form>

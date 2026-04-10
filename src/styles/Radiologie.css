@@ -31,7 +31,7 @@
 }
 
 .rad-title span {
-  color: #0f4c75;
+  color: #0f766e;
 }
 
 .rad-subtitle {
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #0f4c75 0%, #1b6ca8 100%);
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -98,8 +98,8 @@
   gap: 12px;
 }
 
-.rad-stat-card.total   { border-left-color: #0f4c75; }
-.rad-stat-card.radio   { border-left-color: #1b6ca8; }
+.rad-stat-card.total   { border-left-color: #0f766e; }
+.rad-stat-card.radio   { border-left-color: #0d9488; }
 .rad-stat-card.scanner { border-left-color: #0d7377; }
 .rad-stat-card.irm     { border-left-color: #14a085; }
 .rad-stat-card.echo    { border-left-color: #1a535c; }
@@ -158,7 +158,7 @@
 }
 
 .rad-select:focus {
-  border-color: #0f4c75;
+  border-color: #0f766e;
 }
 
 .rad-search-wrap {
@@ -191,7 +191,7 @@
 }
 
 .rad-search:focus {
-  border-color: #0f4c75;
+  border-color: #0f766e;
 }
 
 
@@ -343,7 +343,7 @@
 
 .rad-action-btn.edit {
   background: #e0f2fe;
-  color: #0f4c75;
+  color: #0f766e;
 }
 
 .rad-action-btn.edit:hover {
@@ -364,7 +364,7 @@
 
 .rad-count {
   font-weight: 600;
-  color: #0f4c75;
+  color: #0f766e;
 }
 
 

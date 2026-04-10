@@ -4,12 +4,12 @@ import "../styles/MedecineInterne.css";
 
 const patientsData = [];
 
-const medecins    = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const medecins    = ["Tous les médecins"];
 const pathologies = ["Toutes les pathologies", "Diabète", "Hypertension", "Insuffisance cardiaque", "BPCO", "Insuffisance rénale", "Autre"];
 const statuts     = ["Tous les statuts", "hospitalise", "consultation", "suivi", "stable", "decompense"];
 
 const statutLabels = {
-  "hospitalise":  { label: "Hospitalisé",    color: "#0369a1", bg: "#f0f9ff" },
+  "hospitalise":  { label: "Hospitalisé",    color: "#0f766e", bg: "#f0fdfa" },
   "consultation": { label: "Consultation",   color: "#6d28d9", bg: "#faf5ff" },
   "suivi":        { label: "Suivi régulier", color: "#059669", bg: "#ecfdf5" },
   "stable":       { label: "Stable",         color: "#374151", bg: "#f3f4f6" },
@@ -20,7 +20,7 @@ const pathologieConfig = {
   "Diabète":               { icon: "🩸", color: "#b45309", bg: "#fffbeb" },
   "Hypertension":          { icon: "💓", color: "#dc2626", bg: "#fef2f2" },
   "Insuffisance cardiaque":{ icon: "❤️", color: "#be123c", bg: "#fff1f2" },
-  "BPCO":                  { icon: "🫁", color: "#0369a1", bg: "#f0f9ff" },
+  "BPCO":                  { icon: "🫁", color: "#0f766e", bg: "#f0fdfa" },
   "Insuffisance rénale":   { icon: "🫘", color: "#6d28d9", bg: "#faf5ff" },
   "Autre":                 { icon: "⚕️",  color: "#374151", bg: "#f3f4f6" },
 };
@@ -34,7 +34,7 @@ const maladiesChroniques = {
 };
 
 const avatarColors = [
-  "#0f4c75", "#1b6ca8", "#0d7377", "#14a085",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
   "#1a535c", "#0e6655", "#145a32", "#1a3c6e",
 ];
 

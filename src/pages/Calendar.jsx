@@ -35,13 +35,13 @@ const SERVICES = [
   { key: 'pediatrie',    label: 'Pédiatrie',          color: '#16a34a' },
   { key: 'gynecologie',  label: 'Gynécologie',         color: '#7c3aed' },
   { key: 'chirurgie',    label: 'Chirurgie',           color: '#374151' },
-  { key: 'radiologie',   label: 'Radiologie',          color: '#0f4c75' },
+  { key: 'radiologie',   label: 'Radiologie',          color: '#0f766e' },
   { key: 'laboratoire',  label: 'Laboratoire',         color: '#b45309' },
   { key: 'urgence',      label: 'Urgence',             color: '#dc2626' },
   { key: 'medecine',     label: 'Méd. Interne',        color: '#0d7377' },
 ];
 
-const MEDECINS  = ['Tous les médecins','Dr. A. Fournier','Dr. J. Chen','Dr. M. Blanc'];
+const MEDECINS  = ['Tous les médecins'];
 const CAS_TYPES = ['Tous les cas','Consultation','Suivi','Urgence','Chirurgie','Examen','Vaccination'];
 
 const weekLabel = (() => {
@@ -60,7 +60,7 @@ const Calendar = () => {
   const [clickedSlot,     setClickedSlot]     = useState(null);
   const [selectedRdv,     setSelectedRdv]     = useState(null);
   const [newRdv,          setNewRdv]          = useState({
-    patient: '', service: 'pediatrie', medecin: MEDECINS[1],
+    patient: '', service: 'pediatrie', medecin: '',
     type: 'Consultation', notes: '',
   });
 
@@ -68,7 +68,7 @@ const Calendar = () => {
     pediatrie:    { bg: '#dcfce7', color: '#15803d', border: '#86efac' },
     gynecologie:  { bg: '#f3e8ff', color: '#7c3aed', border: '#c4b5fd' },
     chirurgie:    { bg: '#f3f4f6', color: '#374151', border: '#d1d5db' },
-    radiologie:   { bg: '#dbeafe', color: '#1d4ed8', border: '#93c5fd' },
+    radiologie:   { bg: '#ccfbf1', color: '#0f766e', border: '#5eead4' },
     laboratoire:  { bg: '#fef3c7', color: '#b45309', border: '#fcd34d' },
     urgence:      { bg: '#fee2e2', color: '#dc2626', border: '#fca5a5' },
     medecine:     { bg: '#ccfbf1', color: '#0f766e', border: '#5eead4' },
@@ -86,7 +86,7 @@ const Calendar = () => {
 
   const handleCellClick = (dayKey, heure) => {
     setClickedSlot({ dayKey, heure });
-    setNewRdv({ patient: '', service: 'pediatrie', medecin: MEDECINS[1], type: 'Consultation', notes: '' });
+    setNewRdv({ patient: '', service: 'pediatrie', medecin: '', type: 'Consultation', notes: '' });
     setShowModal('add');
   };
 
@@ -258,7 +258,7 @@ const Calendar = () => {
             <div className="cal-modal-body">
               <div className="cal-form-row">
                 <label>Nom du patient *</label>
-                <input className="cal-form-input" placeholder="Ex: L. Dubois"
+                <input className="cal-form-input" placeholder=""
                   value={newRdv.patient} onChange={e => setNewRdv({...newRdv, patient: e.target.value})} />
               </div>
               <div className="cal-form-grid">

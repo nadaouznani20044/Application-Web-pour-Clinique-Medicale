@@ -52,6 +52,20 @@ const buildEmptyForm = (serviceValue) => ({
   emergencyPhone: '',
 });
 
+const buildFormFromPatient = (patient, fallbackServiceValue) => ({
+  fullName: patient?.fullName || '',
+  birthDate: patient?.birthDate || '',
+  gender: patient?.gender || 'homme',
+  phone: patient?.phone || '',
+  service:
+    patient?.serviceValue || resolveServiceValue(patient?.service) || fallbackServiceValue || '',
+  bloodType: patient?.bloodType || '',
+  medicalHistory: patient?.medicalHistory || '',
+  emergencyName: patient?.emergencyName || '',
+  emergencyRelation: patient?.emergencyRelation || '',
+  emergencyPhone: patient?.emergencyPhone || '',
+});
+
 const getTodayIso = () => {
   const now = new Date();
   const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
@@ -64,18 +78,30 @@ const AdmissionPatientModal = ({
   defaultService,
   onSubmit,
   patientIdPreview,
+  initialData,
+  title = 'Ajouter un nouveau dossier patient',
+  subtitle = "Saisie structuree pour les informations personnelles, medicales et d'urgence",
+  submitLabel = 'Enregistrer',
 }) => {
   const defaultServiceValue = resolveServiceValue(defaultService);
-  const [form, setForm] = useState(() => buildEmptyForm(defaultServiceValue));
+  const [form, setForm] = useState(() =>
+    initialData
+      ? buildFormFromPatient(initialData, defaultServiceValue)
+      : buildEmptyForm(defaultServiceValue)
+  );
   const [errors, setErrors] = useState({});
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
     if (!isOpen) return;
-    setForm(buildEmptyForm(defaultServiceValue));
+    setForm(
+      initialData
+        ? buildFormFromPatient(initialData, defaultServiceValue)
+        : buildEmptyForm(defaultServiceValue)
+    );
     setErrors({});
     setToast(null);
-  }, [defaultServiceValue, isOpen]);
+  }, [defaultServiceValue, initialData, isOpen]);
 
   if (!isOpen) return null;
 
@@ -140,10 +166,8 @@ const AdmissionPatientModal = ({
       <div className="admission-modal" onClick={(event) => event.stopPropagation()}>
         <div className="admission-header">
           <div>
-            <div className="admission-title">Ajouter un nouveau dossier patient</div>
-            <div className="admission-subtitle">
-              Saisie structuree pour les informations personnelles, medicales et d'urgence
-            </div>
+            <div className="admission-title">{title}</div>
+            <div className="admission-subtitle">{subtitle}</div>
           </div>
           <button
             type="button"
@@ -331,7 +355,7 @@ const AdmissionPatientModal = ({
               Annuler
             </button>
             <button type="submit" className="admission-btn submit">
-              Enregistrer
+              {submitLabel}
             </button>
           </div>
         </form>

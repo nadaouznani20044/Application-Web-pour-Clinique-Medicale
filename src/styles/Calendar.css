@@ -5,8 +5,9 @@
   font-family: 'DM Sans', sans-serif;
   background: #f8fafc;
   padding: 24px 20px;
-  height: 85vh;
-  width: 100vw;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
   color: #1a202c;
   box-sizing: border-box;
 }
@@ -102,7 +103,7 @@
 }
 
 .cal-stat-card.total { border-left-color: #1a6b4a; }
-.cal-stat-card.today { border-left-color: #0369a1; }
+.cal-stat-card.today { border-left-color: #0d9488; }
 .cal-stat-card.urg   { border-left-color: #dc2626; }
 
 .cal-stat-icon { font-size: 1.3rem; }

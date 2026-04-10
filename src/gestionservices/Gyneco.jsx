@@ -12,14 +12,8 @@ import '../styles/ChangeChiefModal.css';
 
 const ServiceDetail = ({ service, onBack }) => {
   const [activeTab, setActiveTab] = useState('informations');
-  const [staff, setStaff] = useState([
-    { id: 1, name: 'Dr. ' + service.chef, role: 'Chef de Service', department: 'Médecin' },
-  ]);
-  const [rooms, setRooms] = useState([
-    { id: 1, number: '101', floor: '1', capacity: 2, occupied: 1, Statut: 'Occupée' },
-    { id: 2, number: '102', floor: '1', capacity: 2, occupied: 0, Statut: 'Disponible' },
-    { id: 3, number: '201', floor: '2', capacity: 1, occupied: 1, Statut: 'Occupée' },
-  ]);
+  const [staff, setStaff] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   const [showEditService, setShowEditService] = useState(false);
   const [showAddPersonnel, setShowAddPersonnel] = useState(false);
@@ -171,7 +165,7 @@ const ServiceDetail = ({ service, onBack }) => {
               <h2>Medecin Chef</h2>
               <div className="chief-card">
                 <div className="chief-avatar">
-                  {service.chef.charAt(0)}
+                  {(service.chef || '').charAt(0)}
                 </div>
                 <div className="chief-info">
                   <h3>{service.chef}</h3>

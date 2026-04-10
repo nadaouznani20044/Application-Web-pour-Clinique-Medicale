@@ -29,7 +29,7 @@
 }
 
 .oph-title span {
-  color: #0369a1;
+  color: #0f766e;
 }
 
 .oph-badge {
@@ -37,7 +37,7 @@
   align-items: center;
   gap: 6px;
   background: #e0f2fe;
-  color: #0369a1;
+  color: #0f766e;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 12px;
@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -85,8 +85,8 @@
   border-left: 4px solid transparent;
 }
 
-.oph-stat-card.total      { border-left-color: #0369a1; }
-.oph-stat-card.examen     { border-left-color: #0891b2; }
+.oph-stat-card.total      { border-left-color: #0f766e; }
+.oph-stat-card.examen     { border-left-color: #0d9488; }
 .oph-stat-card.traitement { border-left-color: #0f766e; }
 .oph-stat-card.chirurgie  { border-left-color: #b45309; }
 
@@ -138,7 +138,7 @@
 }
 
 .oph-select:focus {
-  border-color: #0369a1;
+  border-color: #0f766e;
 }
 
 .oph-search-wrap {
@@ -171,7 +171,7 @@
 }
 
 .oph-search:focus {
-  border-color: #0369a1;
+  border-color: #0f766e;
 }
 
 
@@ -254,7 +254,7 @@
 .oph-detail-tag {
   display: inline-block;
   background: #e0f2fe;
-  color: #0369a1;
+  color: #0f766e;
   font-size: 0.78rem;
   font-weight: 600;
   padding: 3px 10px;
@@ -301,7 +301,7 @@
 
 .oph-action-btn.view {
   background: #e0f2fe;
-  color: #0369a1;
+  color: #0f766e;
 }
 
 .oph-action-btn.view:hover {
@@ -310,7 +310,7 @@
 
 .oph-action-btn.edit {
   background: #f0f9ff;
-  color: #075985;
+  color: #0f766e;
 }
 
 .oph-action-btn.edit:hover {
@@ -331,7 +331,7 @@
 
 .oph-count {
   font-weight: 600;
-  color: #0369a1;
+  color: #0f766e;
 }
 
 

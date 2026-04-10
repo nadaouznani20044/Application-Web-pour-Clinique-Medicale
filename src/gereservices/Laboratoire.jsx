@@ -3,13 +3,13 @@ import "../styles/Laboratoire.css";
 
 const analysesData = [];
 
-const medecins    = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const medecins    = ["Tous les médecins"];
 const categories  = ["Toutes les catégories", "Sang", "Biochimie", "Microbiologie", "Hormonal"];
 const statuts     = ["Tous les statuts", "en-attente", "en-cours", "resultat-pret", "envoye", "urgent"];
 
 const statutLabels = {
   "en-attente":    { label: "En attente",     color: "#b45309", bg: "#fffbeb" },
-  "en-cours":      { label: "En cours",       color: "#0369a1", bg: "#f0f9ff" },
+  "en-cours":      { label: "En cours",       color: "#0f766e", bg: "#f0fdfa" },
   "resultat-pret": { label: "Résultat prêt",  color: "#059669", bg: "#ecfdf5" },
   "envoye":        { label: "Envoyé médecin", color: "#7c3aed", bg: "#faf5ff" },
   "urgent":        { label: "Urgent",         color: "#dc2626", bg: "#fef2f2" },
@@ -17,7 +17,7 @@ const statutLabels = {
 
 const categorieConfig = {
   "Sang":          { icon: "🩸", color: "#dc2626", bg: "#fef2f2" },
-  "Biochimie":     { icon: "🧪", color: "#0369a1", bg: "#f0f9ff" },
+  "Biochimie":     { icon: "🧪", color: "#0d9488", bg: "#ecfeff" },
   "Microbiologie": { icon: "🦠", color: "#059669", bg: "#ecfdf5" },
   "Hormonal":      { icon: "⚗️",  color: "#7c3aed", bg: "#faf5ff" },
 };
@@ -30,8 +30,8 @@ const typesAnalyse = {
 };
 
 const avatarColors = [
-  "#b91c1c", "#c2410c", "#047857", "#0369a1",
-  "#6d28d9", "#0e7490", "#1d4ed8", "#7e22ce",
+  "#b91c1c", "#c2410c", "#047857", "#0f766e",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
 ];
 
 function getAvatarColor(name) {

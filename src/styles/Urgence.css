@@ -194,7 +194,7 @@
 
 .urg-stat-card.total    { border-left-color: #374151; }
 .urg-stat-card.admit    { border-left-color: #dc2626; background: #fef2f2; }
-.urg-stat-card.traite   { border-left-color: #0369a1; }
+.urg-stat-card.traite   { border-left-color: #0d9488; }
 .urg-stat-card.stable   { border-left-color: #059669; }
 .urg-stat-card.transfer { border-left-color: #6d28d9; }
 .urg-stat-card.critical { border-left-color: #dc2626; background: #fef2f2; }

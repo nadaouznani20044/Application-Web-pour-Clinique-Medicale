@@ -1,20 +1,18 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import '../styles/EditServiceForm.css';
 
-const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
+const EditServiceForm = ({ service, onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
     serviceName: '',
     description: '',
     location: '',
     phone: '',
-    headDoctor: ''
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  
   useEffect(() => {
     if (service) {
       setFormData({
@@ -22,29 +20,26 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
         description: service.description || '',
         location: service.location || '',
         phone: service.phone || '',
-        headDoctor: service.headDoctor || ''
       });
     }
     setErrors({});
   }, [service]);
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    
+
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: '',
       }));
     }
   };
 
-  
   const validateForm = () => {
     const newErrors = {};
 
@@ -61,20 +56,15 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Le téléphone est requis';
+      newErrors.phone = 'Le telephone est requis';
     } else if (!/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
-      newErrors.phone = 'Le téléphone doit contenir au moins 10 chiffres';
-    }
-
-    if (!formData.headDoctor.trim()) {
-      newErrors.headDoctor = 'Le médecin chef est requis';
+      newErrors.phone = 'Le telephone doit contenir au moins 10 chiffres';
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -90,26 +80,17 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
     }, 300);
   };
 
-  const getDoctorPhoto = (doctorName) => {
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(doctorName)}&background=1b5e20&color=fff&size=40`;
-  };
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        
         <div className="modal-header">
-          <h2 className="modal-title">
-            ✏️ Modifier le Service
-          </h2>
+          <h2 className="modal-title">Modifier le service</h2>
           <button className="btn-close" onClick={onClose} title="Fermer" type="button">
             <X size={24} />
           </button>
         </div>
 
-        
         <form className="modal-form" onSubmit={handleSubmit}>
-          
           <div className="form-group">
             <label htmlFor="serviceName">
               Nom du Service <span className="required">*</span>
@@ -120,16 +101,13 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
               name="serviceName"
               value={formData.serviceName}
               onChange={handleChange}
-              placeholder="Ex: Oncologie, Pédiatrie, Chirurgie..."
+              placeholder=""
               className={`form-input ${errors.serviceName ? 'input-error' : ''}`}
               disabled={isLoading}
             />
-            {errors.serviceName && (
-              <span className="error-message">❌ {errors.serviceName}</span>
-            )}
+            {errors.serviceName && <span className="error-message">Erreur: {errors.serviceName}</span>}
           </div>
 
-          
           <div className="form-group">
             <label htmlFor="description">
               Description <span className="required">*</span>
@@ -139,17 +117,14 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Ex: Service spécialisé dans le traitement des cancers..."
+              placeholder=""
               rows="3"
               className={`form-input ${errors.description ? 'input-error' : ''}`}
               disabled={isLoading}
             />
-            {errors.description && (
-              <span className="error-message">❌ {errors.description}</span>
-            )}
+            {errors.description && <span className="error-message">Erreur: {errors.description}</span>}
           </div>
 
-          
           <div className="form-group">
             <label htmlFor="location">
               Localisation <span className="required">*</span>
@@ -160,73 +135,36 @@ const EditServiceForm = ({ service, doctors = [], onSubmit, onClose }) => {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              placeholder="Ex: Bloc H, Étage 5"
+              placeholder=""
               className={`form-input ${errors.location ? 'input-error' : ''}`}
               disabled={isLoading}
             />
-            {errors.location && (
-              <span className="error-message">❌ {errors.location}</span>
-            )}
+            {errors.location && <span className="error-message">Erreur: {errors.location}</span>}
           </div>
 
-    
-
-          
           <div className="form-group">
-            <label htmlFor="headDoctor">
-              Médecin Chef <span className="required">*</span>
+            <label htmlFor="phone">
+              Telephone <span className="required">*</span>
             </label>
             <input
               type="text"
-              id="headDoctor"
-              name="headDoctor"
-              value={formData.headDoctor}
+              id="phone"
+              name="phone"
+              value={formData.phone}
               onChange={handleChange}
-              placeholder="Ex: Dr. Alice Fournier"
-              list="doctors-list-edit"
-              className={`form-input ${errors.headDoctor ? 'input-error' : ''}`}
+              placeholder=""
+              className={`form-input ${errors.phone ? 'input-error' : ''}`}
               disabled={isLoading}
             />
-            <datalist id="doctors-list-edit">
-              {doctors.map(doctor => (
-                <option key={doctor.id} value={doctor.name} />
-              ))}
-            </datalist>
-            {errors.headDoctor && (
-              <span className="error-message">❌ {errors.headDoctor}</span>
-            )}
-
-            
-            {formData.headDoctor && (
-              <div className="doctor-preview">
-                <img
-                  src={getDoctorPhoto(formData.headDoctor)}
-                  alt={formData.headDoctor}
-                  className="doctor-photo"
-                />
-                <div className="doctor-info">
-                  <p className="doctor-name">👨‍⚕️ {formData.headDoctor}</p>
-                </div>
-              </div>
-            )}
+            {errors.phone && <span className="error-message">Erreur: {errors.phone}</span>}
           </div>
 
-          
           <div className="form-actions">
-            <button
-              type="button"
-              onClick={onClose}
-              className="btn-cancel"
-              disabled={isLoading}
-            >
+            <button type="button" onClick={onClose} className="btn-cancel" disabled={isLoading}>
               Annuler
             </button>
-            <button
-              type="submit"
-              className="btn-submit"
-              disabled={isLoading}
-            >
-              {isLoading ? '⏳ Traitement...' : '💾 Sauvegarder'}
+            <button type="submit" className="btn-submit" disabled={isLoading}>
+              {isLoading ? 'Traitement...' : 'Sauvegarder'}
             </button>
           </div>
         </form>

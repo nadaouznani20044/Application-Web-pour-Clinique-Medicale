@@ -9,14 +9,14 @@ const casTypes  = ["Tous les cas", "grossesse", "echographie", "examen", "postpa
 
 const casTypeLabels = {
   grossesse:   { label: "Grossesse",    color: "#6b21a8", bg: "#faf5ff" },
-  echographie: { label: "Échographie",  color: "#0369a1", bg: "#f0f9ff" },
+  echographie: { label: "Échographie",  color: "#0f766e", bg: "#f0fdfa" },
   examen:      { label: "Examen",       color: "#0f766e", bg: "#f0fdfa" },
   postpartum:  { label: "Post-Partum",  color: "#b45309", bg: "#fffbeb" },
 };
 
 const avatarColors = [
   "#7c3aed", "#6d28d9", "#9333ea", "#a855f7",
-  "#0891b2", "#0e7490", "#0f766e", "#047857",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
 ];
 
 function getAvatarColor(name) {

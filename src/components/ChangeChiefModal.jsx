@@ -10,14 +10,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
 
   const [errors, setErrors] = useState({});
 
-  const doctors = [
-    { id: 1, name: 'Dr. Alice Fournier', specialty: 'Gynécologue', avatar: 'A' },
-    { id: 2, name: 'Dr. James Chen', specialty: 'Pédiatre', avatar: 'J' },
-    { id: 3, name: 'Dr. Karim Hassan', specialty: 'Ophtalmologue', avatar: 'K' },
-    { id: 4, name: 'Dr. Victoria Garcia', specialty: 'Radiologue', avatar: 'V' },
-    { id: 5, name: 'Dr. Yves Anderson', specialty: 'Chirurgien', avatar: 'Y' },
-    { id: 6, name: 'Dr. Frank Wilson', specialty: 'Médecin interne', avatar: 'F' },
-  ];
+  const doctors = [];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +45,7 @@ const ChangeChiefModal = ({ isOpen, currentChief, onClose, onSubmit }) => {
     const selectedDoctor = doctors.find(d => d.id === parseInt(formData.newChief));
     
     onSubmit({
-      newChief: selectedDoctor.name,
+      newChief: selectedDoctor?.name || '',
       startDate: formData.startDate,
       doctorId: parseInt(formData.newChief)
     });

@@ -318,6 +318,15 @@
   background: #0f766e;
 }
 
+.modal-btn-secondary {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.modal-btn-secondary:hover {
+  background: #cbd5e1;
+}
+
 @media (max-width: 900px) {
   .patients-container {
     padding: 1rem;

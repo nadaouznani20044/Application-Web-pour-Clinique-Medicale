@@ -1,9 +1,6 @@
 .form-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -26,7 +23,7 @@
   background: white;
   border-radius: 1rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 680px;
   max-height: 90vh;
   overflow-y: auto;
   animation: slideUp 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -48,7 +45,6 @@
   background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
   color: white;
   padding: 1.5rem;
-  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -59,6 +55,12 @@
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+}
+
+.form-header-subtitle {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  opacity: 0.92;
 }
 
 .form-content {
@@ -142,6 +144,56 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.permissions-panel {
+  border: 1px solid #dbe5f0;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.permissions-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.permissions-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.permissions-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0d9488;
+}
+
+.permissions-empty {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.permissions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.permission-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0f766e;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .form-actions {

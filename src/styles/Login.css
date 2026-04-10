@@ -12,7 +12,8 @@
   justify-content: center;
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: #94b8b8;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .login-bg-image {
@@ -34,8 +35,8 @@
 .app-window {
   position: relative;
   z-index: 10;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 0px;
@@ -44,10 +45,11 @@
 }
 
 .login-main {
-  flex: 1;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
   flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 100%;
   background: #f8fafc;
 }
 
@@ -108,7 +110,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 5px 10px;
+  width: 100%;
+  min-height: 0;
+  padding: 1rem;
   background: linear-gradient(135deg, rgba(13,148,136,0.04) 0%, transparent 60%);
 }
 
@@ -164,9 +168,9 @@
 .login-modal {
   background: white;
   border-radius: 14px;
-  padding: 10px 26px;
-  width: 100vw;
-  height: 60vh;
+  padding: 1rem 1.6rem 1.6rem;
+  width: min(600px, calc(100% - 2rem));
+  height: auto;
   max-width: 600px;
   max-height: 1000px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.04);

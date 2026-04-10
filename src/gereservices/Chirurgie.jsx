@@ -3,13 +3,13 @@ import "../styles/Chirurgie.css";
 
 const operationsData = [];
 
-const medecins      = ["Tous les chirurgiens", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc", "Dr. S. Karim"];
+const medecins      = ["Tous les chirurgiens"];
 const specialites   = ["Toutes les spécialités", "Orthopédie", "Générale", "Cardiaque", "Neurologique", "Plastique"];
 const statuts       = ["Tous les statuts", "preparation", "programmee", "en-cours", "post-op", "recuperation", "urgent"];
-const salles        = ["Toutes les salles", "Salle 1", "Salle 2", "Salle 3", "Salle 4"];
+const salles        = ["Toutes les salles"];
 
 const statutLabels = {
-  "preparation":  { label: "Préparation",   color: "#0369a1", bg: "#f0f9ff" },
+  "preparation":  { label: "Préparation",   color: "#0f766e", bg: "#f0fdfa" },
   "programmee":   { label: "Programmée",    color: "#6d28d9", bg: "#faf5ff" },
   "en-cours":     { label: "En cours",      color: "#059669", bg: "#ecfdf5" },
   "post-op":      { label: "Post-opératoire", color: "#b45309", bg: "#fffbeb" },
@@ -18,7 +18,7 @@ const statutLabels = {
 };
 
 const specialiteConfig = {
-  "Orthopédie":    { icon: "🦴", color: "#0369a1", bg: "#f0f9ff" },
+  "Orthopédie":    { icon: "🦴", color: "#0f766e", bg: "#f0fdfa" },
   "Générale":      { icon: "🏥", color: "#059669", bg: "#ecfdf5" },
   "Cardiaque":     { icon: "❤️", color: "#dc2626", bg: "#fef2f2" },
   "Neurologique":  { icon: "🧠", color: "#6d28d9", bg: "#faf5ff" },
@@ -131,7 +131,7 @@ export default function Chirurgie() {
             Salles d'opération
           </div>
           <div className="chi-salles-grid">
-            {["Salle 1", "Salle 2", "Salle 3", "Salle 4"].map((salle) => {
+            {[].map((salle) => {
               const occupied = operationsData.filter(o => o.salle === salle && o.statut === "en-cours").length > 0;
               return (
                 <div key={salle} className={`chi-salle-card ${occupied ? "occupied" : "libre"}`}>

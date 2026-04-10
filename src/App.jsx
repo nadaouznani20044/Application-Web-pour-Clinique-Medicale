@@ -5,7 +5,12 @@ import Services from './pages/Services';
 import Patients from './pages/Patients';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
+import Hospitalization from './pages/Hospitalization';
+import SystemSettings from './pages/SystemSettings';
 import Users from './pages/utilisateur';
+import ChefMedecinApp from './chefMedecin/ChefMedecinApp';
+import MedecinApp from './medecin/MedecinApp';
+import InfirmierApp from './infirmier/InfirmierApp';
 import Chirurgie from './gereservices/Chirurgie';
 import Gynecologie from './gereservices/Gynecologie';
 import Laboratoire from './gereservices/Laboratoire';
@@ -15,30 +20,65 @@ import Pediatrie from './gereservices/Pediatrie';
 import Radiologie from './gereservices/Radiologie';
 import Urgence from './gereservices/Urgence';
 import Gyneco from './gestionservices/Gyneco';
-import { canAccess, getDefaultPage } from './auth/permissions';
+import { canAccess, getDefaultPage, normalizeRole } from './auth/permissions';
+import { createAuthSession, clearAuthSession, loadAuthSession, saveAuthSession } from './auth/session';
+import { LANGUAGE_OPTIONS } from './config/languages';
 import './styles/Global.css';
 import './styles/App.css';
 import './styles/Login.css';
 import './styles/Users.css';
 import './styles/Gyneco.css';
+import './styles/UnifiedPages.css';
+
+const LANGUAGE_STORAGE_KEY = 'medical-app-language';
+
+const loadPreferredLanguage = () => {
+  if (typeof window === 'undefined') {
+    return 'fr';
+  }
+
+  const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  return LANGUAGE_OPTIONS.some((option) => option.value === stored) ? stored : 'fr';
+};
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const initialAuthSession = loadAuthSession();
+  const [authSession, setAuthSession] = useState(initialAuthSession);
+  const [currentUser, setCurrentUser] = useState(initialAuthSession?.user || null);
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedService, setSelectedService] = useState(null);
-  const currentUserRole = currentUser?.role;
+  const [language, setLanguage] = useState(loadPreferredLanguage);
   const contentRef = useRef(null);
+  const currentUserRole = currentUser?.roleLabel || currentUser?.role;
+  const currentUserRoleValue = normalizeRole(currentUser?.role || currentUser?.roleLabel);
+  const isAuthenticated = Boolean(authSession);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+    }
+    document.documentElement.lang = language;
+  }, [language]);
+
+  useEffect(() => {
+    if (authSession) {
+      saveAuthSession(authSession);
+    } else {
+      clearAuthSession();
+    }
+  }, [authSession]);
 
   const handleLogin = (userData) => {
-    setIsAuthenticated(true);
-    setCurrentUser(userData);
-    setCurrentPage(getDefaultPage(userData?.role));
+    const session = createAuthSession(userData);
+    setAuthSession(session);
+    setCurrentUser(session.user);
+    setCurrentPage(getDefaultPage(session.user?.role));
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
+    setAuthSession(null);
     setCurrentUser(null);
     setCurrentPage('dashboard');
   };
@@ -67,7 +107,7 @@ const App = () => {
   };
 
   const renderServiceDetail = () => {
-    if (currentUserRole === 'Administrateur') {
+    if (currentUserRoleValue === 'administrateur') {
       return (
         <Gyneco
           service={{ name: selectedService, chef: '', location: '', phone: '', description: '', status: 'Active' }}
@@ -104,10 +144,43 @@ const App = () => {
     return <Login onLogin={handleLogin} />;
   }
 
+  if (currentUserRoleValue === 'chef_medecin') {
+    return (
+      <ChefMedecinApp
+        user={currentUser}
+        onLogout={handleLogout}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
+    );
+  }
+
+  if (currentUserRoleValue === 'medecin') {
+    return (
+      <MedecinApp
+        user={currentUser}
+        onLogout={handleLogout}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
+    );
+  }
+
+  if (currentUserRoleValue === 'infirmier') {
+    return (
+      <InfirmierApp
+        user={currentUser}
+        onLogout={handleLogout}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
+    );
+  }
+
   const isServiceDetail = currentPage === 'service-detail';
   const pageKey = isServiceDetail ? 'services' : currentPage;
-  const hasAccess = canAccess(currentUserRole, pageKey);
-  const canView = (key) => canAccess(currentUserRole, key);
+  const hasAccess = canAccess(currentUserRoleValue, pageKey);
+  const canView = (key) => canAccess(currentUserRoleValue, key);
 
   return (
     <div className="app-wrapper">
@@ -213,6 +286,22 @@ const App = () => {
             />
           </div>
           <div className="topbar-right">
+            <label className="topbar-language" htmlFor="topbar-language-select">
+              <span className="topbar-language-label">Langue</span>
+              <select
+                id="topbar-language-select"
+                className="topbar-language-select"
+                value={language}
+                onChange={(event) => setLanguage(event.target.value)}
+                aria-label="Configuration de langue"
+              >
+                {LANGUAGE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.short}
+                  </option>
+                ))}
+              </select>
+            </label>
             <Bell className="topbar-icon" />
             <div className="topbar-avatar">{currentUser?.username?.charAt(0).toUpperCase() || 'HG'}</div>
             <ChevronDown className="topbar-dropdown" />
@@ -230,8 +319,12 @@ const App = () => {
             <>
               {currentPage === 'dashboard' && <Dashboard role={currentUserRole} />}
               {currentPage === 'services' && <Services onViewService={handleViewService} />}
-              {currentPage === 'patients' && <Patients />}
+              {currentPage === 'patients' && <Patients role={currentUserRole} />}
               {currentPage === 'calendar' && <Calendar />}
+              {currentPage === 'hospitalization' && <Hospitalization />}
+              {currentPage === 'settings' && (
+                <SystemSettings language={language} onLanguageChange={setLanguage} />
+              )}
               {currentPage === 'users' && <Users />}
               {currentPage === 'service-detail' && renderServiceDetail()}
             </>

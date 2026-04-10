@@ -3,13 +3,13 @@ import "../styles/Radiologie.css";
 
 const examensData = [];
 
-const medecins   = ["Tous les médecins", "Dr. A. Fournier", "Dr. J. Chen", "Dr. M. Blanc"];
+const medecins   = ["Tous les médecins"];
 const typeImages  = ["Tous les types", "Radio", "Scanner", "IRM", "Échographie"];
 const statuts     = ["Tous les statuts", "en-attente", "en-cours", "termine", "urgent"];
 
 const statutLabels = {
   "en-attente": { label: "En attente",  color: "#b45309", bg: "#fffbeb" },
-  "en-cours":   { label: "En cours",    color: "#0369a1", bg: "#f0f9ff" },
+  "en-cours":   { label: "En cours",    color: "#0f766e", bg: "#f0fdfa" },
   "termine":    { label: "Terminé",     color: "#047857", bg: "#f0fdf4" },
   "urgent":     { label: "Urgent",      color: "#dc2626", bg: "#fef2f2" },
 };
@@ -22,7 +22,7 @@ const typeImageIcons = {
 };
 
 const avatarColors = [
-  "#0f4c75", "#1b6ca8", "#163a59", "#0d7377",
+  "#0f766e", "#0d9488", "#14b8a6", "#5eead4",
   "#14a085", "#1a535c", "#0e6655", "#145a32",
 ];
 

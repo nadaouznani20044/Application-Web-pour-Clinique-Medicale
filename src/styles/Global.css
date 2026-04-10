@@ -11,7 +11,7 @@
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-info: #3b82f6;
+  --color-info: #0d9488;
   
   --color-slate-50: #f8fafc;
   --color-slate-100: #f1f5f9;
@@ -58,8 +58,8 @@ body {
 }
 
 #root {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
 
